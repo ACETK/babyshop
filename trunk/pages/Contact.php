@@ -1,4 +1,10 @@
-<form name="contact_us" action="" method="post">
+<?php
+/** Khởi tạo content */
+$ctpl = new XTemplate('./template/incContentBox.html');
+$ctpl->assign('ContentTitle',"Contact Us");
+
+//Sử lý nghiệp vụ -- yêu cầu gán vào biến $Temp
+$Temp = '<form name="contact_us" action="" method="post">
     <div class="wrapper_pic2_t infoBox_">
         <div class="wrapper_pic2_r">
             <div class="wrapper_pic2_b">
@@ -38,8 +44,16 @@
     <table cellpadding="0" cellspacing="5" border="0">
         <tr><td>
                 <table border="0" width="100%" cellspacing="0" cellpadding="2">
-                    <tr><td align="right"><input type="image" src="includes/languages/english/images/buttons/button_continue.gif" border="0" alt="Continue" title=" Continue "></td></tr>
+                    <tr><td align="right"><input type="image" src="includes/english/images/buttons/button_continue.gif" border="0" alt="Continue" title=" Continue "></td></tr>
                 </table>
             </td></tr>
     </table>
-</form>
+</form>';
+    //Kết thúc nghiệp vụ
+
+//đưa dữ liệu vào content
+$ctpl->assign('ContentInfo', $Temp);
+$ctpl->parse('box');
+$Content = $ctpl->text('box');
+/** Kết thúc content */
+?>

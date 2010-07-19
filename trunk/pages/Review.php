@@ -1,5 +1,10 @@
+<?php
+/** Khởi tạo content */
+$ctpl = new XTemplate('./template/incContentBox.html');
+$ctpl->assign('ContentTitle',"Read What Others Are Saying");
 
-<div class="result1_top"><img src="images/spacer.gif" tppabs="http://osc4.template-help.com/osc_28658/images/spacer.gif" border="0" alt="" width="1" height="1"></div>
+//Sử lý nghiệp vụ -- yêu cầu gán vào biến $Temp
+$Temp = '<div class="result1_top"><img src="images/spacer.gif" tppabs="http://osc4.template-help.com/osc_28658/images/spacer.gif" border="0" alt="" width="1" height="1"></div>
 
 <table border="0" cellspacing="0" cellpadding="0" class="result result_top_padd">
     <tr>
@@ -16,7 +21,7 @@
 
 <table border="0" width="100%" cellspacing="0" cellpadding="2">
     <tr>
-        <td class="main"><b><a href="javascript:if(confirm('http://osc4.template-help.com/osc_28658/product_reviews_info.php?products_id=83&reviews_id=4  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?\'))window.location=\'http://osc4.template-help.com/osc_28658/product_reviews_info.php?products_id=83&reviews_id=4\'" tppabs="http://osc4.template-help.com/osc_28658/product_reviews_info.php?products_id=83&reviews_id=4">Product #083</a></b> <span class="smallText">by Freddy Swanson</span></td>
+        <td class="main"><b><a href="javascript:if(confirm(\'http://osc4.template-help.com/osc_28658/product_reviews_info.php?products_id=83&reviews_id=4  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?\'))window.location=\'http://osc4.template-help.com/osc_28658/product_reviews_info.php?products_id=83&reviews_id=4\'" tppabs="http://osc4.template-help.com/osc_28658/product_reviews_info.php?products_id=83&reviews_id=4">Product #083</a></b> <span class="smallText">by Freddy Swanson</span></td>
         <td class="smallText vam" align="right">Date Added: Monday 03 May, 2010</td>
     </tr>
 </table>
@@ -255,4 +260,12 @@
 </table>
 
 <div class="result2_bottom"><img src="images/spacer.gif" tppabs="http://osc4.template-help.com/osc_28658/images/spacer.gif" border="0" alt="" width="1" height="1"></div>
+';
+    //Kết thúc nghiệp vụ
 
+//đưa dữ liệu vào content
+$ctpl->assign('ContentInfo', $Temp);
+$ctpl->parse('box');
+$Content = $ctpl->text('box');
+/** Kết thúc content */
+?>

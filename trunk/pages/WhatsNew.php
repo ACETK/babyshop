@@ -1,4 +1,10 @@
-<div class="result1_top"><img src="images/spacer.gif" border="0" alt="" width="1" height="1"></div>
+<?php
+/** Khởi tạo content */
+$ctpl = new XTemplate('./template/incContentBox.html');
+$ctpl->assign('ContentTitle',"New Products");
+
+//Sử lý nghiệp vụ -- yêu cầu gán vào biến $Temp
+$Temp = '<div class="result1_top"><img src="images/spacer.gif" border="0" alt="" width="1" height="1"></div>
 <table border="0" cellspacing="0" cellpadding="0" class="result result_top_padd">
     <tr>
         <td>Displaying <b>1</b> to <b>3</b> (of <b>104</b> new products)</td>
@@ -41,8 +47,8 @@
                                             <div class="data data_padd"><em>Date Added: Tuesday 20 April, 2010<br>Manufacturer: Example_1</em></div>
                                         </div><br>
                                         <div class="button_padd ofh">
-                                            <div class="fl_right"><a href=""><img src="includes/languages/english/images/buttons/button_add_to_cart1.gif" border="0" alt="" width="104" height="19"></a></div>
-                                            <div class="fl_left"><a href=""><img src="includes/languages/english/images/buttons/button_details.gif" border="0" alt="" width="81" height="19"></a></div>
+                                            <div class="fl_right"><a href=""><img src="includes/english/images/buttons/button_add_to_cart1.gif" border="0" alt="" width="104" height="19"></a></div>
+                                            <div class="fl_left"><a href=""><img src="includes/english/images/buttons/button_details.gif" border="0" alt="" width="81" height="19"></a></div>
                                         </div>
                                     </div></td></tr>
                         </table>
@@ -77,8 +83,8 @@
                                             <div class="price_padd vam">&nbsp;&nbsp;<span class="productSpecialPrice">$499.99</span></div>
                                         </div><br>
                                         <div class="button_padd ofh">
-                                            <div class="fl_right"><a href=""><img src="includes/languages/english/images/buttons/button_details.gif" border="0" alt="" width="81" height="19"></a></div>
-                                            <div class="fl_left"><a href=""><img src="includes/languages/english/images/buttons/button_add_to_cart1.gif" border="0" alt="" width="104" height="19"></a></div>
+                                            <div class="fl_right"><a href=""><img src="includes/english/images/buttons/button_details.gif" border="0" alt="" width="81" height="19"></a></div>
+                                            <div class="fl_left"><a href=""><img src="includes/english/images/buttons/button_add_to_cart1.gif" border="0" alt="" width="104" height="19"></a></div>
                                         </div>
 
                                     </div></td></tr>
@@ -114,8 +120,8 @@
                                             <div class="data data_padd"><em>Date Added: Tuesday 20 April, 2010<br>Manufacturer: Example_2</em></div>
                                         </div><br>
                                         <div class="button_padd ofh">
-                                            <div class="fl_right"><a href=""><img src="includes/languages/english/images/buttons/button_add_to_cart1.gif" border="0" alt="" width="104" height="19"></a></div>
-                                            <div class="fl_left"><a href=""><img src="includes/languages/english/images/buttons/button_details.gif" border="0" alt="" width="81" height="19"></a></div>
+                                            <div class="fl_right"><a href=""><img src="includes/english/images/buttons/button_add_to_cart1.gif" border="0" alt="" width="104" height="19"></a></div>
+                                            <div class="fl_left"><a href=""><img src="includes/english/images/buttons/button_details.gif" border="0" alt="" width="81" height="19"></a></div>
                                         </div>
                                     </div></td></tr>
                         </table></td>
@@ -134,4 +140,12 @@
         </td>
     </tr>
 </table>
-<div class="result2_bottom"><img src="images/spacer.gif" border="0" alt="" width="1" height="1"></div>
+<div class="result2_bottom"><img src="images/spacer.gif" border="0" alt="" width="1" height="1"></div>';
+    //Kết thúc nghiệp vụ
+
+//đưa dữ liệu vào content
+$ctpl->assign('ContentInfo', $Temp);
+$ctpl->parse('box');
+$Content = $ctpl->text('box');
+/** Kết thúc content */
+?>

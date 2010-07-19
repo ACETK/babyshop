@@ -1,7 +1,9 @@
 <?php
-$m = new XTemplate('./template/incInfoBox.html');
-$m->assign('BoxTitle','Manufacturers');
+/** Khởi tạo box */
+$btpl = new XTemplate('./template/incInfoBox.html');
+$btpl->assign('BoxTitle','Manufacturers');
 
+//Sử lý nghiệp vụ -- yêu cầu gán vào biến $Temp
 $Temp = '<form name="manufacturers" action="" method="get">
     <table cellpadding="0" cellspacing="0" border="0">
         <tr><td><select name="manufacturers_id" onChange="" size="1" class="select">
@@ -13,8 +15,11 @@ $Temp = '<form name="manufacturers" action="" method="get">
             </td></tr>
     </table>
 </form>';
+    //Kết thúc nghiệp vụ
 
-$m->assign('TEXT', $Temp);
-$m->parse('box');
-$Manufacturers = $m->text('box');
+//đưa dữ liệu vào box
+$btpl->assign('BoxInfo', $Temp);
+$btpl->parse('box');
+$Manufacturers = $btpl->text('box');
+/** Kết thúc box */
 ?>
