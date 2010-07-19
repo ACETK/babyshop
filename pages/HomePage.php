@@ -1,5 +1,10 @@
-<!-- new_products //-->
-<table border="0" width="" cellspacing="0" cellpadding="0" class="tableBox_output_table">
+<?php
+/** Khởi tạo content */
+$ctpl = new XTemplate('./template/incContentBox.html');
+$ctpl->assign('ContentTitle',"What's New Here?");
+
+//Sử lý nghiệp vụ -- yêu cầu gán vào biến $Temp
+$Temp = '<table border="0" width="" cellspacing="0" cellpadding="0" class="tableBox_output_table">
     <tr>
         <td  class="main"><table border="0" width="" cellspacing="0" cellpadding="0">
                 <tr>
@@ -26,7 +31,7 @@
                                                         </div></a></div></td></tr>
                                         <tr><td class="desc desc2_padd">Lorem ipsum dolor sit ame ...</td></tr>
                                         <tr><td class="price2_padd"><span class="productSpecialPrice">$42.00</span></td></tr>
-                                        <tr><td class="button2_padd button2_marg"><a href="" ><img src="includes/languages/english/images/buttons/button_details.gif" border="0" alt="" width="81" height="19"  class="btn1"></a> <a href="" ><img src="includes/languages/english/images/buttons/button_add_to_cart1.gif" border="0" alt="" width="104" height="19"  class="btn2"></a></td></tr>
+                                        <tr><td class="button2_padd button2_marg"><a href="" ><img src="includes/english/images/buttons/button_details.gif" border="0" alt="" width="81" height="19"  class="btn1"></a> <a href="" ><img src="includes/english/images/buttons/button_add_to_cart1.gif" border="0" alt="" width="104" height="19"  class="btn2"></a></td></tr>
                                     </table>
                                 </td></tr>
                         </table></td>
@@ -53,7 +58,7 @@
                                                         </div></a></div></td></tr>
                                         <tr><td class="desc desc2_padd">Lorem ipsum dolor sit ame ...</td></tr>
                                         <tr><td class="price2_padd"><span class="productSpecialPrice">$49.99</span></td></tr>
-                                        <tr><td class="button2_padd button2_marg"><a href="" ><img src="includes/languages/english/images/buttons/button_details.gif" border="0" alt="" width="81" height="19"  class="btn1"></a> <a href="" ><img src="includes/languages/english/images/buttons/button_add_to_cart1.gif" border="0" alt="" width="104" height="19"  class="btn2"></a></td></tr>
+                                        <tr><td class="button2_padd button2_marg"><a href="" ><img src="includes/english/images/buttons/button_details.gif" border="0" alt="" width="81" height="19"  class="btn1"></a> <a href="" ><img src="includes/english/images/buttons/button_add_to_cart1.gif" border="0" alt="" width="104" height="19"  class="btn2"></a></td></tr>
                                     </table>
                                 </td></tr>
                         </table></td>
@@ -82,7 +87,7 @@
                                                         </div></a></div></td></tr>
                                         <tr><td class="desc desc2_padd">Lorem ipsum dolor sit ame ...</td></tr>
                                         <tr><td class="price2_padd"><span class="productSpecialPrice">$499.99</span></td></tr>
-                                        <tr><td class="button2_padd button2_marg"><a href=""><img src="includes/languages/english/images/buttons/button_details.gif" border="0" alt="" width="81" height="19"  class="btn1"></a> <a href=""><img src="includes/languages/english/images/buttons/button_add_to_cart1.gif" border="0" alt="" width="104" height="19"  class="btn2"></a></td></tr>
+                                        <tr><td class="button2_padd button2_marg"><a href=""><img src="includes/english/images/buttons/button_details.gif" border="0" alt="" width="81" height="19"  class="btn1"></a> <a href=""><img src="includes/english/images/buttons/button_add_to_cart1.gif" border="0" alt="" width="104" height="19"  class="btn2"></a></td></tr>
                                     </table>
                                 </td></tr>
                         </table></td>
@@ -109,7 +114,7 @@
                                                         </div></a></div></td></tr>
                                         <tr><td class="desc desc2_padd">Lorem ipsum dolor sit ame ...</td></tr>
                                         <tr><td class="price2_padd"><span class="productSpecialPrice">$299.99</span></td></tr>
-                                        <tr><td class="button2_padd button2_marg"><a href="" ><img src="includes/languages/english/images/buttons/button_details.gif" border="0" alt="" width="81" height="19"  class="btn1"></a> <a href="" ><img src="includes/languages/english/images/buttons/button_add_to_cart1.gif" border="0" alt="" width="104" height="19"  class="btn2"></a></td></tr>
+                                        <tr><td class="button2_padd button2_marg"><a href="" ><img src="includes/english/images/buttons/button_details.gif" border="0" alt="" width="81" height="19"  class="btn1"></a> <a href="" ><img src="includes/english/images/buttons/button_add_to_cart1.gif" border="0" alt="" width="104" height="19"  class="btn2"></a></td></tr>
                                     </table>
                                 </td></tr>
                         </table></td>
@@ -117,5 +122,12 @@
             </table>
         </td>
     </tr>
-</table>
-<!-- new_products_eof //-->
+</table>';
+    //Kết thúc nghiệp vụ
+
+//đưa dữ liệu vào content
+$ctpl->assign('ContentInfo', $Temp);
+$ctpl->parse('box');
+$Content = $ctpl->text('box');
+/** Kết thúc content */
+?>

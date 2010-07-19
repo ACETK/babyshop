@@ -1,7 +1,9 @@
 <?php
-$s = new XTemplate('./template/incInfoBox.html');
-$s->assign('BoxTitle','Specials');
+/** Khởi tạo box */
+$btpl = new XTemplate('./template/incInfoBox.html');
+$btpl->assign('BoxTitle','Specials');
 
+//Sử lý nghiệp vụ -- yêu cầu gán vào biến $Temp
 $Temp = '<table cellspacing="0" cellpadding="0" border="0">
     <tbody>
         <tr><td class="name_padd"><span><a href="#" >Product #005</a></span></td></tr>
@@ -29,8 +31,11 @@ $Temp = '<table cellspacing="0" cellpadding="0" border="0">
                 <font style="font-size: 12pt; font-weight: bold;">Our price:</font> <strike style="color: red; font-size: 14pt; font-weight: bold;">$35.99</strike> <span class="productSpecialPrice">$30.00</span>
             </td></tr>
     </tbody></table>';
+    //Kết thúc nghiệp vụ
 
-$s->assign('TEXT', $Temp);
-$s->parse('box');
-$Specials = $s->text('box');
+//đưa dữ liệu vào box
+$btpl->assign('BoxInfo', $Temp);
+$btpl->parse('box');
+$Specials = $btpl->text('box');
+/** Kết thúc box */
 ?>

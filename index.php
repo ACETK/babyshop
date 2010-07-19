@@ -1,59 +1,56 @@
 <?php
-
+/** Khởi tạo giao diện */
 include_once 'xtemplate.class.php';
 $tpl = new XTemplate('template/template.html');
 
-//include 'includes/english/incCategories.php';
-$tpl->assign('BoxTitle', 'Categories');
-$tpl->assign_file('BoxInfo', 'includes/english/incCategories.php');
-$tpl->parse('main.body.left.box');
+//Thiết kế cột trái
+include 'includes/english/incCategories.php';
+$tpl->assign('BlockInfo', $Categories);
+$tpl->parse('main.body.left.block');
 
 include 'includes/english/incTwitter.php';
-$tpl->assign('BoxInfo', $Twitter);
-$tpl->parse('main.body.left.box');
+$tpl->assign('BlockInfo', $Twitter);
+$tpl->parse('main.body.left.block');
 
 include 'includes/english/incBestSellers.php';
-$tpl->assign('BoxInfo', $BestSellers);
-$tpl->parse('main.body.left.box');
+$tpl->assign('BlockInfo', $BestSellers);
+$tpl->parse('main.body.left.block');
 
-$tpl->parse('main.body.left');
+$tpl->parse('main.body.left');//Kết thúc cột trái
 
+//Thiết kế cột phải
 include 'includes/english/incManufacturers.php';
-$tpl->assign('BoxInfo', $Manufacturers);
-$tpl->parse('main.body.right.box');
+$tpl->assign('BlockInfo', $Manufacturers);
+$tpl->parse('main.body.right.block');
 
 include 'includes/english/incSpecials.php';
-$tpl->assign('BoxInfo', $Specials);
-$tpl->parse('main.body.right.box');
+$tpl->assign('BlockInfo', $Specials);
+$tpl->parse('main.body.right.block');
 
 include 'includes/english/incShipping.php';
-$tpl->assign('BoxInfo', $Shipping);
-$tpl->parse('main.body.right.box');
+$tpl->assign('BlockInfo', $Shipping);
+$tpl->parse('main.body.right.block');
 
-$tpl->parse('main.body.right');
+$tpl->parse('main.body.right');//Kết thúc cột phải
 
+//Bắt đầu cột chính
 if (isset($_GET['action'])) {
     $page = $_GET['action'];
     switch ($page) {
         case "Home":
-            $tpl->assign('TitleContent', "What's New Here?");
-            $tpl->assign_file('PageName', 'pages/HomePage.html');
+            include 'pages/HomePage.php';
             break;
         case "WhatsNew":
-            $tpl->assign('TitleContent', "New Products");
-            $tpl->assign_file('PageName', 'pages/WhatsNew.html');
+            include 'pages/WhatsNew.php';
             break;
         case "Specials":
-            $tpl->assign('TitleContent', "Get Them While They're Hot!");
-            $tpl->assign_file('PageName', 'pages/Specials.html');
+            include 'pages/Specials.php';
             break;
         case "Review":
-            $tpl->assign('TitleContent', 'Read What Others Are Saying');
-            $tpl->assign_file('PageName', 'pages/Review.html');
+            include 'pages/Review.php';
             break;
         case "Contact":
-            $tpl->assign('TitleContent', 'Contact Us');
-            $tpl->assign_file('PageName', 'pages/Contact.html');
+            include 'pages/Contact.php';
             break;
 //        case "ShoppingCart":
 //            include 'pages/ShoppingCart.php';
@@ -86,9 +83,9 @@ if (isset($_GET['action'])) {
             break;
     }
 }else{
-    $tpl->assign('TitleContent', 'What\'s New Here?');
-    $tpl->assign_file('PageName', 'pages/HomePage.html');
+    include 'pages/HomePage.php';
 }
+$tpl->assign('ContentInfo', $Content);
 
 $tpl->parse('main.body.content');
 $tpl->parse('main.body');
