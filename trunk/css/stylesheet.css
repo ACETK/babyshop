@@ -1,0 +1,248 @@
+/*
+  $Id: stylesheet.css 1739 2007-12-20 00:52:16Z hpdl $
+  osCommerce, Open Source E-Commerce Solutions
+  http://www.oscommerce.com
+  Copyright (c) 2003 osCommerce
+  Released under the GNU General Public License 
+*/
+/* ************************************************************************************* */
+BODY 								{color:#959595;margin:0px;background:#fff;}
+.bg2_body							{height:100%;background:url("../images/bg_body.gif") center 0px repeat fixed;}
+.bg3_body							{height:100%;}
+.bg4_body							{height:100%;}
+html, body 							{height:100%;}
+/* ************************************************************************************* */
+*									{padding:0px; margin:0px; font-size:12px; line-height:normal; font-family: Arial, Helvetica, sans-serif;}
+/* ************************************************************************************* */
+.width_table				{width:962px;position:relative; margin:auto;}
+.width_td					{padding:0px 0px 0px 0px;}
+.width_td1					{padding:0px 0px 0px 0px;}
+/* ************************************************************************************* */
+/* ************************************************************************************* */
+.main_table					{margin:0px 0px 0px 0px;}
+.box_width_left				{width:239px;}
+.box_width_right			{width:239px;}
+
+.content_width_td			{width:100%;padding:0px 0px 0px 0px;}
+.box_width_td_left			{padding:0px 8px 0px 0px;}
+.box_width_td_right			{padding:0px 0px 0px 8px;}
+
+.box_width_un_column		{width:112px;}
+.box_width_un_td_column		{padding:0px 12px 0px 0px;} 
+/* ************************************************************************************* */
+/* ************************************************************************************* */
+.row_1						{padding:0px 0px 0px 0px; height:136px;text-align:center;}
+.row_2						{padding:0px 0px 0px 0px; }
+.row_3						{padding:8px 0px 0px 0px;}
+.row_4						{padding:10px 0px 10px 0px; background:#f3f3f4; border-top:1px solid #ecedee;}
+/* ************************************************************************************* */
+/* ************************************************************************************* */
+.logo						{padding:25px 0px 0px 0px;height:99px; vertical-align:top; background:#fff;}
+.banner_02  				{padding:18px 0px 0px 0px; width:100%;}
+.banner_03  				{padding:0px 0px 0px 0px;}
+.banner_06,
+.banner_07					{padding:0px 0px 7px 0px;}
+
+.navigation					{width:100%;}
+.navigation2 				{text-align:right; height:49px; vertical-align:middle;background:url("../images/navigation2_bg.gif"/*tpa=http://osc4.template-help.com/osc_28658/images/navigation2_bg.gif*/) 0px 0px no-repeat;}
+.navigation2 td				{white-space:nowrap; vertical-align:middle;}
+.navigation2 .td			{vertical-align:middle; white-space:nowrap;color:#bfbfbf;}
+	
+
+.navigation2 a				{color:#000000; font-size:12px; line-height:12px; font-weight:normal;text-decoration:none;}
+.navigation2 a:hover		{color:#000000; text-decoration:underline;}
+.navigation2 .navigation 				{padding:8px 0px 0px 0px;}
+.navigation2 .navigation table			{width:22px;}
+.navigation2 .navigation .td			{padding:0px 17px 0px 0px;}
+.navigation_separator		{width:50%; text-align:center;}
+/* ************************************************************************************* */
+.languages 						{padding:0px 0px 0px 0px; text-align:right; vertical-align:top;}
+.languages table				{width:156px;}
+.languages .languages_img		{margin:0px 0px 0px 9px;}
+
+.currencies 					{padding:0px 0px 0px 17px;}
+.currencies table				{width:210px;}
+
+
+.navigation2 .languages td,
+.navigation2 .currencies td		{color:#000000; font-size:12px; line-height:13px; font-weight:normal; vertical-align:middle; vertical-align:middle;}
+/* ************************************************************************************* */
+/* ************************************************************************************* */
+.z1							{padding:0px 17px 0px 0px;}
+.z1 table					{width:246px;background:url("../images/z1.gif"/*tpa=http://osc4.template-help.com/osc_28658/images/z1.gif*/) 100% 0px no-repeat}
+.z1 td						{height:27px;padding:0px 17px 0px 0px; text-align:left}
+.z1 b						{color:#ff3000; font-size:12px; line-height:13px; font-weight:bold; text-decoration:underline;}
+.z1 td						{color:#000000; font-size:12px; line-height:13px; font-weight:normal;}
+.z1 a, .z1 a:hover 			{text-decoration:none;}
+.z1 a 		 				{color:#000000; font-size:12px; line-height:13px; font-weight:normal;  text-decoration:none}
+.z1 a:hover   				{color:#000000; text-decoration:underline;}
+.z1 a strong 		 		{color:#000000; font-size:12px; line-height:13px; font-weight:normal;  text-decoration:none}
+.z1 a:hover strong  		{color:#000000; text-decoration:underline;}
+
+/* ************************************************************************************* */
+.select			{width:100%;border:1px solid #dddcdc;background:#fff; color:#656565;vertical-align:middle;margin:0px 0px 0px 0px;padding:0px;}
+.select2 		{margin:0px 0px 6px 0px; border:0px solid #1d1d1d;background:#fff; color:#696969;}	
+.select2 td		{padding:3px 0px 13px 0px; height:36px; vertical-align:middle;}			 
+.select2 select	{width:70%; border:1px solid #e5e5e5;background:#fff; color:#999999;vertical-align:middle;margin:0px 10px 2px 10px;}
+.select3		{width:100%;border:1px solid #e5e5e5;background:#fff; color:#999999;vertical-align:middle;margin:0px 0px 0px 0px;padding:0px;}
+
+.search					{padding:40px 0px 0px 6px;vertical-align:middle; height:35px;}
+.search .go				{width:100%;border:0px solid #cccccc;background:transparent; color:#000000; font-size:12px; line-height:18px;vertical-align:middle;margin:0px 0px 0px 0px;
+						 padding-left:10px; padding-right:10px; height:18px; vertical-align:middle;}
+.search td				{color:#000000; font-size:12px; line-height:12px; font-weight:normal;}
+.search	.table			{width:291px;}
+.search	.td				{padding:0px 0px 0px 0px; vertical-align:middle;}
+/* ************************************************************************************* */
+/* ************************************************************************************* */
+.search_input-rep			{background:url("../images/search-rep.gif"/*tpa=http://osc4.template-help.com/osc_28658/images/search-rep.gif*/) 0px 0px repeat-x; width:100%;}
+.search_input-left			{background:url("../images/search-left.gif"/*tpa=http://osc4.template-help.com/osc_28658/images/search-left.gif*/) 0px 0px no-repeat;}
+.search_input-right			{background:url("../images/search-right.gif"/*tpa=http://osc4.template-help.com/osc_28658/images/search-right.gif*/) 100% 0px no-repeat;width:100%;vertical-align:middle; height:22px;}
+
+.search_button-rep			{background:url("../images/search2-rep.gif"/*tpa=http://osc4.template-help.com/osc_28658/images/search2-rep.gif*/) 0px 0px repeat-x;}
+.search_button-left			{background:url("../images/search2-left.gif"/*tpa=http://osc4.template-help.com/osc_28658/images/search2-left.gif*/) 0px 0px no-repeat;}
+.search_button-right		{background:url("../images/search2-right.gif"/*tpa=http://osc4.template-help.com/osc_28658/images/search2-right.gif*/) 100% 0px no-repeat;vertical-align:middle; height:22px;padding:0px 0px 0px 0px;}
+/* ************************************************************************************* */
+/* ************************************************************************************* */
+/* Header End */
+/* Footer */
+/* ************************************************************************************* */
+/* ************************************************************************************* */
+.footer 			{padding:0px 0px 0px 0px;} 
+.footer_td			{text-align:left;padding:10px 0px 10px 17px; width:100%; height:49px;}
+.footer2_td			{text-align:center;padding:10px 17px 10px 0px;}
+.footer .footer2_td		{vertical-align:middle;}
+.footer		  	  {color:#020001; font-size:12px; line-height:19px; font-weight:normal;  vertical-align:middle;}	
+.footer td 		  {color:#959ca1; font-size:12px; line-height:19px; font-weight:normal;  vertical-align:middle;}			
+.footer a 		  {color:#434343; font-size:12px; line-height:19px; font-weight:normal;  text-decoration:none;} 			
+.footer a:hover   {color:#434343;text-decoration:underline;}
+	
+.footer span 	  		{color:#959ca1; font-size:12px; font-weight:normal; }
+.footer span a 		  	{color:#bfbfbf; font-size:12px; font-weight:normal; text-decoration:none;} 			
+.footer span a:hover   	{color:#bfbfbf;text-decoration:underline;}
+
+.footer b				{color:#959ca1; font-size:12px; font-weight:normal;  text-decoration:none;}
+.footer b a 	  		{color:#959ca1; font-size:12px; font-weight:normal;  text-decoration:none;}			
+.footer b a:hover 		{color:#959ca1; text-decoration:underline;}
+/* ************************************************************************************* */
+/* Footer End */
+/* ************************************************************************************* */
+.popup_bg				{padding:0px 0px 0px 0px;background:url("../images/bg_body.gif"/*tpa=http://osc4.template-help.com/osc_28658/images/bg_body.gif*/) center 0px repeat #fff;}
+.popup_width_table		{margin:0px 0px 0px 0px;margin:auto;}
+.popup_width_td			{padding:0px 0px 0px 0px;}
+
+.popup_1				{padding:15px 27px 29px; text-align:right; height:100px;}
+.popup_2				{padding:0px 0px 0px 0px;}
+
+.popup					{height:100%;width:408px;background:url("../images/logo.png"/*tpa=http://osc4.template-help.com/osc_28658/images/logo.png*/) 0px 30px no-repeat;}
+
+.popup strong			{color:#999999; font-size:11px; line-height:13px; font-weight:bold; text-decoration:none;padding:8px 0px 6px 0px; display:block; }
+.popup  a,
+.popup  a u 	  		{color:#686868; font-size:12px; font-weight:normal; text-decoration:none;}			
+.popup  a:hover,
+.popup  a:hover u 		{color:#686868; text-decoration:underline;}
+
+.popup .popup_footer	  	  {text-align:center;padding:1px 0px 11px 0px;}
+.popup .popup_footer 	  	  {color:#686868; font-size:11px; line-height:19px; font-weight:normal;  vertical-align:top;}			
+.popup .popup_footer a 		  {color:#686868; font-size:11px; line-height:19px; font-weight:normal;  text-transform:none; text-decoration:none;} 			
+.popup .popup_footer a:hover  {color:#686868;text-decoration:underline;}
+/* ************************************************************************************* */
+/* ************************************************************************************* */
+.menu 						{width:100%;padding:0px 0px 0px 0px; width:100%;background:url("../images/menu_bg.gif") 0px 0px repeat-x;}
+.menu div					{background:url("../images/menu_tl.gif") 0px 0px no-repeat}
+.menu table					{background:url("../images/menu_tr.gif") 100% 0px no-repeat}
+.menu_separator				{width:2px;}
+.menu_separator	img			{padding:0px 0px 0px 0px; vertical-align:middle; text-align:center; width:2px;}
+/* ************************************************************************************* */	
+/* ************************************************************************************* */
+.menu #m1,
+.menu #m2,
+.menu #m3,
+.menu #m4,
+.menu #m5,
+.menu #m6,
+.menu #m7,
+.menu #m8,
+.menu #over_m1,
+.menu #over_m2,
+.menu #over_m3,
+.menu #over_m4,
+.menu #over_m5,
+.menu #over_m6,
+.menu #over_m7,
+.menu #over_m8,
+.menu #over2_m1,
+.menu #over2_m2,
+.menu #over2_m3,
+.menu #over2_m4,
+.menu #over2_m5,
+.menu #over2_m6,
+.menu #over2_m7,
+.menu #over2_m8			{width:20%; cursor:pointer; white-space:nowrap;text-align:center;padding:0px 10px 0px 10px; height:37px; vertical-align:middle;
+					font-size:16px;line-height:16px;font-weight:bold;}					
+
+.menu #m1,
+.menu #m2,
+.menu #m3,
+.menu #m4,
+.menu #m5,
+.menu #m6,
+.menu #m7,
+.menu #m8					{color:#fff;}
+
+.menu #over_m1,
+.menu #over_m2,
+.menu #over_m3,
+.menu #over_m4,
+.menu #over_m5,
+.menu #over_m6,
+.menu #over_m7,
+.menu #over_m8			{color:#FF4500;text-decoration:none;}
+
+.menu #over2_m1,
+.menu #over2_m2,
+.menu #over2_m3,
+.menu #over2_m4,
+.menu #over2_m5,
+.menu #over2_m6,
+.menu #over2_m7,
+.menu #over2_m8			{color:#fff;text-decoration:none;}
+/* ************************************************************************************* */
+.menu2_separator				{width:1px;vertical-align:middle;}
+.menu2_separator img			{padding:0px 13px 0px 13px; vertical-align:middle; text-align:center; width:1px;}
+/* ************************************************************************************* */
+/* ************************************************************************************* */
+.infoBox 							{background:#e6e6e6;}
+.orderEdit 							{font-family: Arial, Helvetica, sans-serif; font-size : 10px; color:#fff; text-decoration: underline; }
+/* ************************************************************************************* */
+/* ************************************************************************************* */
+.footer #m1,
+.footer #m2,
+.footer #m3,
+.footer #m4,
+.footer #m5,
+.footer #m6,
+.footer #m7,
+.footer #m8,
+.footer #m9					{color:#959ca1; cursor:pointer;}
+
+.footer #over_m1,
+.footer #over_m2,
+.footer #over_m3,
+.footer #over_m4,
+.footer #over_m5,
+.footer #over_m6,
+.footer #over_m7,
+.footer #over_m8,
+.footer #over_m9			{color:#434343; cursor:pointer;}
+
+.footer #over2_m1,
+.footer #over2_m2,
+.footer #over2_m3,
+.footer #over2_m4,
+.footer #over2_m5,
+.footer #over2_m6,
+.footer #over2_m7,
+.footer #over2_m8,
+.footer #over2_m9			{color:#434343; cursor:pointer;}
+/* ************************************************************************************* */
+/* ************************************************************************************* */
