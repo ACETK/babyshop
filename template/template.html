@@ -1,0 +1,103 @@
+<!-- BEGIN: main #header #body[left,content,right] #footer -->
+<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="LTR" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Favorite Toys {WebTitle}</title>
+        <link rel="stylesheet" type="text/css" href="css/constants.css" >
+        <link rel="stylesheet" type="text/css" href="css/stylesheet.css" >
+        <link rel="stylesheet" type="text/css" href="css/stylesheet_boxes.css" >
+        <link rel="stylesheet" type="text/css" href="css/stylesheet_content.css" >
+        <link rel="stylesheet" type="text/css" href="css/style.css" >
+        <script src="ie6_warning/ie6_script_other.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <!-- start -->
+        <table class="bg2_body">
+            <tr><td class="bg3_body">
+                    <table class="bg4_body">
+                        <tr><td>
+                                <table align="center" class="width_table">
+                                    <!-- BEGIN: header -->
+                                    <tr><td>
+                                            {FILE "template/english/incHeader.html"}
+                                        </td></tr>
+                                    <tr><td class="menu">
+                                            {FILE "template/english/incMenu.html"}
+                                        </td></tr>
+                                    <tr><td class="banner">
+                                            {FILE "template/english/incBanner.html"}
+                                        </td></tr>
+                                    <tr><td class="navigation2">
+                                            {FILE "template/english/incNavigation.html"}
+                                        </td></tr>
+                                    <!-- END: header -->
+
+                                    <!-- BEGIN: body -->
+                                    <tr><td class="row_3">
+                                            <table class="main_table">
+                                                <tr>
+                                                    <!-- BEGIN: left -->
+                                                    <td class="box_width_td_left">
+                                                        <table class="box_width_left" >
+                                                            <!-- BEGIN: box -->
+                                                            <tr><td>
+                                                                    {FILE "template/incInfoBox.html"}
+                                                                </td></tr>
+                                                            <!-- END: box-->
+                                                        </table>
+                                                    </td>
+                                                    <!-- END: left -->
+
+                                                    <!-- BEGIN: content -->
+                                                    <td class="content_width_td">
+                                                        <table cellpadding="0" cellspacing="0" border="0" align="center" class="content_wrapper_table">
+                                                            <tr><td class="content_wrapper_td">
+                                                                    <!-- Welcome_box_start -->
+                                                                    <!--   <table border="0" width="100%" cellspacing="0" cellpadding="0">
+                                                                         <tr><td class="main"></td></tr>
+                                                                         <tr><td></td></tr>
+                                                                         <tr><td class="main"></td></tr>
+                                                                       </table>  -->
+                                                                    <!-- Welcome_box_end -->
+                                                                    {ContentInfo}
+                                                                </td></tr>
+                                                        </table>
+                                                    </td>
+                                                    <!-- END: content -->
+
+                                                    <!-- BEGIN: right -->
+                                                    <td class="box_width_td_right">
+                                                        <table border="0" class="box_width_right" cellspacing="0" cellpadding="0">
+                                                            <!-- BEGIN: box -->
+                                                            <tr><td>
+                                                                    {BoxInfo}
+                                                                </td></tr>
+                                                            <!-- END: box-->
+                                                        </table>
+                                                    </td>
+                                                    <!-- END: right -->
+                                                </tr>
+                                            </table>
+                                        </td></tr>
+                                    <!-- END: body -->
+                                </table>
+                            </td></tr>
+                    </table>
+                </td></tr>
+        </table>
+
+
+        <!-- BEGIN: footer -->
+        <table>
+            <tr><td class="row_4">
+                    {FILE "includes/english/incFooter.html"}
+                </td></tr>
+        </table>
+        <!-- END: footer -->
+    </body>
+    <!--[if IE]>
+      <link href="css/ie_stylesheet.css" tppabs="http://osc4.template-help.com/osc_28658/css/ie_stylesheet.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
+</html>
+<!-- END: main -->
