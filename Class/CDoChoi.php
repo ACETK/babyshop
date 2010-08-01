@@ -153,7 +153,7 @@ class CDoChoi {
             <div class="cont_heading_c">
                 <table cellspacing="0" cellpadding="0" border="0" class="cont_heading_table">
                     <tbody><tr><td class="cont_heading_td">
-                                <div class="left_part"><a class="headerNavigation" href="#">Top</a> » <a class="headerNavigation" href="index.php?action=Home">Catalog</a> » <a class="headerNavigation" href="#">Toys by Age</a> » <a class="headerNavigation" href="#" >Quisque accumsan</a> » <a class="headerNavigation" href="#">Model 0104</a> » Product #104<br> <span class="smallText">[Model 0104]</span></div><div class="right_part"><span class="productSpecialPrice">$42.00</span></div>
+                                <div class="left_part"><a class="headerNavigation" href="index.php?action=Home">Home</a> » <a class="headerNavigation" href="index.php?action=productslist&idloai='.$this->MaLoai.'">Toys by Age</a> »'.$this->TenDoChoi.'<br> <span class="smallText">'.$this->MaDoChoi.'</span></div><div class="right_part"><span class="productSpecialPrice">'.$this->DonGiaBan.'</span></div>
 
                             </td></tr>
                     </tbody></table>
@@ -183,10 +183,10 @@ class CDoChoi {
                                                                             <div class="wrapper_pic2_bl">
                                                                                 <div class="wrapper_pic2_br">
                                                                                     <div class="s_width2_100"><script language="javascript"><!--
-                                                                                        document.write(\'&lt;a href="javascript:popupWindow(\'\')"&gt;&lt;img src="images/104.jpg" border="0" alt="Product #104" title=" Product #104 " width="197" height="157"&gt;&lt;/a&gt;\');
+                                                                                        document.write(\'<a href="javascript:popupWindow(\'pages/popup_image.php?pID='.$this->MaDoChoi.'\')"><img src="images/sanpham/'.$this->HinhAnh.'" border="0" alt="'.$this->TenDoChoi.'" title="'.$this->TenDoChoi.'" width="197" height="157"></a>\');
                                                                                         //-->;</script>
-                                                                                        <a href="javascript:popupWindow(\'\')" ><img width="197" height="157" border="0" title=" Product #104 " alt="Product #104" src="images/104.jpg"></a><noscript>
-                                                                                            <a href="http://localhost/BabyShop/images/104.jpg" target="_blank"><img src="images/104.jpg" border="0" alt="Product #104" title=" Product #104 " width="197" height="157"></a></noscript></div>
+                                                                                        <a href="javascript:popupWindow(\'pages/popup_image.php?pID='.$this->MaDoChoi.'\')" ><img src="images/sanpham/'.$this->HinhAnh.'" width="197" height="157" border="0" title="'.$this->TenDoChoi.'" alt="'.$this->TenDoChoi.'"></a><noscript>
+                                                                                            <a href="images/sanpham/'.$this->HinhAnh.'" target="_blank"><img src="images/sanpham/'.$this->HinhAnh.'" border="0" alt="'.$this->TenDoChoi.'" title="'.$this->TenDoChoi.'" width="197" height="157"></a></noscript></div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -196,14 +196,14 @@ class CDoChoi {
                                                         </div>
                                                     </div></div>
                                                 <script language="javascript"><!--
-                                                    document.write(\'&lt;a class="enlarge" href="javascript:popupWindow(\'http://osc4.template-help.com/osc_28658/popup_image.php?pID=104\')"&gt;Click to enlarge&lt;/a&gt;\');
+                                                    document.write(\'<a class="enlarge" href="javascript:popupWindow(\'pages/popup_image.php?pID='.$this->MaDoChoi.'\')">Click to enlarge</a>\');
                                                     //--></script>
-                                                <a href="javascript:popupWindow(\'\')" class="enlarge">Click to enlarge</a>
-                                                <noscript><a class="enlarge" href="http://localhost/BabyShop/images/104.jpg" target="_blank">Click to enlarge</a></noscript>
+                                                <a href="javascript:popupWindow(\'pages/popup_image.php?pID='.$this->MaDoChoi.'\')" class="enlarge">Click to enlarge</a>
+                                                <noscript><a class="enlarge" href="images/sanpham/'.$this->HinhAnh.'" target="_blank">Click to enlarge</a></noscript>
                                             </div>
-                                            <div class="main"><div class="desc2"><strong>Lorem ipsum dolor sit amet</strong>, consectetuer adipiscing elit. Pellentesque ut quam. Pellentesque vestibulum, velit eget venenatis auctor, quam turpis consequat quam, et ultricies leo neque et tortor. Quisque ut nulla non neque facilisis mattis. Sed quis nibh blandit lacus laoreet feugiat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris tincidunt erat nec risus accumsan tincidunt. Nunc augue massa, accumsan a, mollis vitae, porttitor eu, leo. Vestibulum purus. Vestibulum ipsum nibh, vulputate eu, bibendum quis, accumsan sit amet, metus. Sed leo. Aliquam quis quam. Sed sem. Aliquam erat volutpat.Sed sed nibh. Curabitur vel nisi et tortor luctus porta. Maecenas magna purus, tristique at, gravida a, ornare et, quam. Praesent sem risus, dignissim non, congue at, adipiscing vitae, odio. Proin dui. Vivamus elementum. In hac habitasse platea dictumst.<br>
-                                                    <a href="#">Lorem ipsum dolor sit amet</a>, consectetuer adipiscing elit. Pellentesque ut quam. Pellentesque vestibulum, velit eget venenatis auctor, quam turpis consequat quam, et ultricies leo neque et tortor. Quisque ut nulla non neque facilisis mattis.<br><strong>Sed quis nibh blandit lacus laoreet feugiat.</strong><br> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris tincidunt erat nec risus accumsan tincidunt. Nunc augue massa, accumsan a, mollis vitae, porttitor eu, leo. Vestibulum purus. Vestibulum ipsum nibh, vulputate eu, bibendum quis, accumsan sit amet, metus. Sed leo. Aliquam quis quam. Sed sem. Aliquam erat volutpat.Sed sed nibh. Curabitur vel nisi et tortor luctus porta. Maecenas magna purus, tristique at, gravida a, ornare et, quam. Praesent sem risus, dignissim non, congue at, adipiscing vitae, odio. Proin dui. Vivamus elementum. In hac habitasse platea dictumst.</div><br>
-                                                <br><div><b class="productSpecialPrice">$42.00</b></div></div><br>
+                                            <div class="main"><div class="desc2">'.$this->ThongTin.'<br>
+                                                    </div><br>
+                                                <br><div><b class="productSpecialPrice">'.$this->DonGiaBan.'</b></div></div><br>
                                             <div style="clear: both;"></div>
 
 
@@ -230,8 +230,8 @@ class CDoChoi {
                                             <div style="padding: 0px 0px 4px;"><img width="1" height="1" border="0" alt="" src="images/spacer.gif"></div><div style="padding: 0px 0px 4px;"><img width="1" height="1" border="0" alt="" src="images/spacer.gif"></div>
 
                                             <table width="100%" cellspacing="0" cellpadding="0" border="0"><tbody><tr>
-                                                        <td class="main button_marg"><a href="" ><img width="90" height="19" border="0" title=" Reviews " alt="Reviews" src="includes/languages/english/images/buttons/button_reviews.gif"></a></td>
-                                                        <td align="right" class="main button_marg"><input type="hidden" value="104" name="products_id"><input type="image" title=" Add to Shopping Cart " alt="Add to Shopping Cart" src="includes/languages/english/images/buttons/button_add_to_cart1.gif"></td>
+                                                        <td class="main button_marg"><a href="" ><img width="90" height="19" border="0" title=" Reviews " alt="Reviews" src="includes/english/images/buttons/button_reviews.gif"></a></td>
+                                                        <td align="right" class="main button_marg"><input type="hidden" value="104" name="products_id"><input type="image" title=" Add to Shopping Cart " alt="Add to Shopping Cart" src="includes/english/images/buttons/button_add_to_cart1.gif"></td>
                                                     </tr>
                                                 </tbody></table>
                                         </td></tr></tbody></table>
@@ -245,7 +245,7 @@ class CDoChoi {
 
         return $Temp;
     }
-    
+
 
 }
 ?>
