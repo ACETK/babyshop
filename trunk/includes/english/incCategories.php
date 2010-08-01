@@ -4,13 +4,20 @@ $btpl = new XTemplate('template/incInfoBox.html');
 $btpl->assign('BoxTitle', 'Categories');
 
 //Sử lý nghiệp vụ -- yêu cầu gán vào biến $Temp
-require_once 'includes/MySQLHelper.php';
-$sql = "SELECT TenLoai FROM LOAIDOCHOI";
+
+require_once 'Class/CLoaiDoChoi.php';
+
+
+$sql = "SELECT* FROM loaidochoi";
 $result = MySQLHelper::executeQuery($sql);
 
 $Temp ='<ul class="categories">';
-while($row = mysql_fetch_row($result)){
-    $Temp .='<li class="bg_list"><a href="" >'.$row[0].'</a></li>';
+while($row = mysql_fetch_array($result)){
+   
+    $ldc = new CLoaiDoChoi();
+    $ldc->setMaLoai($row['MaLoai']);
+    $ldc->setTenLoai($row['TenLoai']);
+    $Temp.= $ldc->View(1);
 }
 $Temp.='</ul>';
     //Kết thúc nghiệp vụ
@@ -20,4 +27,5 @@ $btpl->assign('BoxInfo', $Temp);
 $btpl->parse('box');
 $Categories = $btpl->text('box');
 /** Kết thúc box */
+
 ?>

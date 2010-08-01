@@ -1,7 +1,144 @@
-?php
-$Temp="";
-$Temp .='
-<script language="javascript"><!--
+<?php
+/* 
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+*/
+
+/**
+ * Description of CDoChoi
+ *
+ * @author MinhHieu
+ */
+class CDoChoi {
+    //put your code here
+    private $MaDoChoi;
+    private $TenDoChoi;
+    private $MaLoai;
+    private $MaNSX;
+    private $SoLuong;
+    private $DonGiaNhap;
+    private $DonGiaBan;
+    private $ThongTin;
+    private $HinhAnh;
+
+    ///
+    public function getThongTin() {
+        return $this->ThongTin;
+    }
+
+    public function setThongTin($ThongTin) {
+        $this->ThongTin = $ThongTin;
+    }
+
+    public function getHinhAnh() {
+        return $this->HinhAnh;
+    }
+
+    public function setHinhAnh($HinhAnh) {
+        $this->HinhAnh = $HinhAnh;
+    }
+
+
+    public function getMaDoChoi() {
+        return $this->MaDoChoi;
+    }
+
+    public function setMaDoChoi($MaDoChoi) {
+        $this->MaDoChoi = $MaDoChoi;
+    }
+
+    public function getTenDoChoi() {
+        return $this->TenDoChoi;
+    }
+
+    public function setTenDoChoi($TenDoChoi) {
+        $this->TenDoChoi = $TenDoChoi;
+    }
+
+    public function getMaLoai() {
+        return $this->MaLoai;
+    }
+
+    public function setMaLoai($MaLoai) {
+        $this->MaLoai = $MaLoai;
+    }
+
+    public function getMaNSX() {
+        return $this->MaNSX;
+    }
+
+    public function setMaNSX($MaNSX) {
+        $this->MaNSX = $MaNSX;
+    }
+
+    public function getSoLuong() {
+        return $this->SoLuong;
+    }
+
+    public function setSoLuong($SoLuong) {
+        $this->SoLuong = $SoLuong;
+    }
+
+    public function getDonGiaNhap() {
+        return $this->DonGiaNhap;
+    }
+
+    public function setDonGiaNhap($DonGiaNhap) {
+        $this->DonGiaNhap = $DonGiaNhap;
+    }
+
+    public function getDonGiaBan() {
+        return $this->DonGiaBan;
+    }
+
+    public function setDonGiaBan($DonGiaBan) {
+        $this->DonGiaBan = $DonGiaBan;
+    }
+    ///
+    function __construct() {
+        $this->MaDoChoi = "";
+        $this->TenDoChoi = "";
+        $this->MaLoai = "";
+        $this->MaNSX = "";
+        $this->SoLuong = "";
+        $this->DonGiaNhap = "";
+        $this->DonGiaBan = "";
+        $this->HinhAnh ="";
+        $this->ThongTin="";
+    }
+    // xu li nghiep vu
+    public function view($style) {
+        $Temp = "";
+        if($style==1) {
+            $Temp.=sprintf('<table cellspacing="" cellpadding="0" border="0">
+                                        <tbody><tr><td class="name name2_padd"><a href="index.php?action=chitiet&idmadochoi=%s">%s</a></td></tr>
+                                        <tr><td class="pic2_padd"><div style="width: 197px; height: 157px;" class="wrapper_pic_div"><a style="width: 197px; height: 157px;" href=""><img height="157" border="0" width="197" style="width: 197px; height: 157px;" title="" alt="Product #101" src="images/sanpham/%s"/>
+                                                        <div class="wrapper_pic_t">
+                                                            <div class="wrapper_pic_r">
+                                                                <div class="wrapper_pic_b">
+                                                                    <div class="wrapper_pic_l">
+                                                                        <div class="wrapper_pic_tl">
+                                                                            <div class="wrapper_pic_tr">
+                                                                                <div class="wrapper_pic_bl">
+                                                                                    <div style="width: 197px; height: 157px;" class="wrapper_pic_br"/>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div></a></div></td></tr>
+                                        <tr><td class="desc desc2_padd">%s</td></tr>
+                                        <tr><td class="price2_padd"><span class="productSpecialPrice">%s</span></td></tr>
+                                        <tr><td class="button2_padd button2_marg"><a href="index.php?action=chitiet&idmadochoi=%s"><img height="19" border="0" width="81" class="btn1" alt="" src="includes/english/images/buttons/button_details.gif"/></a> <a href=""><img height="19" border="0" width="104" class="btn2" alt="" src="includes/english/images/buttons/button_add_to_cart1.gif"/></a></td></tr>
+                                    </tbody></table>',$this->MaDoChoi,$this->TenDoChoi,$this->HinhAnh,$this->ThongTin,$this->DonGiaBan,$this->MaDoChoi);
+        }
+
+        return $Temp;
+    }
+    public function ViewDetail() {
+        $Temp="";
+        $Temp.='<script language="javascript"><!--
     function popupWindow(url) {
         window.open(url,\'popupWindow\',\'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes,copyhistory=no,width=100,height=100,screenX=150,screenY=150,top=150,left=150\')
     }
@@ -105,4 +242,10 @@ $Temp .='
         </div>
     </div>
 </form>';
+
+        return $Temp;
+    }
+    
+
+}
 ?>
