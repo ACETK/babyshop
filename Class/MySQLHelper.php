@@ -9,28 +9,24 @@ class MySQLHelper {
         $username = "root";
         $password = "";
 
-        function showError() {
-            die("Error " . mysql_errno( ) . " : " . mysql_error( ));
-        }
-
         // Tao ket noi CSDL
         if (!($connection = mysql_connect($hostName, $username, $password)))
             die("couldn't connect to $hostName");
 
         if (!(mysql_select_db($databaseName, $connection)))
-            showError();
+            die("Error " . mysql_errno( ) . " : " . mysql_error( ));
 
         // Thiet lap font Unicode
         if (!(mysql_query("set names 'utf8'")))
-            showError();
+           die("Error " . mysql_errno( ) . " : " . mysql_error( ));
 
         // Thuc thi cau truy van
         if (!($result = mysql_query($sql, $connection)))
-            showError();
+           die("Error " . mysql_errno( ) . " : " . mysql_error( ));
 
         // Dong ket noi CSDL
         if (!(mysql_close($connection)))
-            showError();
+            die("Error " . mysql_errno( ) . " : " . mysql_error( ));
 
         return $result;
     }

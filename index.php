@@ -1,4 +1,6 @@
 <?php
+include_once 'Class/MySQLHelper.php';
+/////////////////////////////
 /** Khởi tạo giao diện */
 include_once 'xtemplate.class.php';
 $tpl = new XTemplate('template/template.html');
@@ -52,6 +54,13 @@ if (isset($_GET['action'])) {
         case "Contact":
             include 'pages/Contact.php';
             break;
+         case"productslist":
+            include "pages/Products.php";
+            break;
+        case"chitiet":
+            include "pages/Detail.php";
+            break;
+
 //        case "ShoppingCart":
 //            include 'pages/ShoppingCart.php';
 //            break;
@@ -86,7 +95,6 @@ if (isset($_GET['action'])) {
     include 'pages/HomePage.php';
 }
 $tpl->assign('ContentInfo', $Content);
-
 $tpl->parse('main.body.content');
 $tpl->parse('main.body');
 $tpl->parse('main.header');
