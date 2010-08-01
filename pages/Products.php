@@ -1,19 +1,14 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
-*/
+/** Khởi tạo content */
 $ctpl = new XTemplate('./template/incContentBox.html');
 $ctpl->assign('ContentTitle',"What's New Here?");
 require_once 'Class/CDoChoi.php';
-///////////////////////
 
+//Sử lý nghiệp vụ -- yêu cầu gán vào biến $Temp
 $IDMaLoai = $_GET['idloai'];
 $sql = "SELECT* FROM dochoi where MaLoai=$IDMaLoai";
 $result = MySQLHelper::executeQuery($sql);
-//////////////////////
 
-//////////////////////
 $Temp='<div class="s_width2_100">
                         <table cellspacing="0" cellpadding="0" border="0" width="" class="tableBox_output_table">
     <tbody><tr>
