@@ -14,7 +14,7 @@ require_once 'Class/CDoChoi.php';
 require_once 'Class/CDanhSachDoChoi.php';
 require_once 'Class/MySQLHelper.php';
 
-$sql = "SELECT dc.MaDoChoi,MaLoai,TenDoChoi,ThongTin,DonGia,HinhAnh,NgayNhap
+$sql = "SELECT dc.MaDoChoi,MaLoai,TenDoChoi,ThongTin,DonGia,HinhAnh,NgayNhap,SoLuotXem
         FROM dochoi dc JOIN (SELECT ct.MaDoChoi,NgayNhap
                              FROM cthdnhap ct JOIN hdnhap hd on ct.SoHDN=hd.SoHDN 
                              ORDER BY NgayNhap DESC) t on dc.MaDoChoi=t.MaDoChoi
@@ -33,6 +33,7 @@ while($row = mysql_fetch_assoc($result)){
     $DC->setThongTin($row['ThongTin']);
     $DC->setDonGia($row['DonGia']);
     $DC->setHinhAnh($row['HinhAnh']);
+    $DC->setSoLuotXem($row['SoLuotXem']);
     $dsach->add($DC);
 }
 $Temp .= $dsach->viewList();

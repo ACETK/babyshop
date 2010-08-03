@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 03, 2010 at 05:24 AM
+-- Generation Time: Aug 03, 2010 at 06:24 AM
 -- Server version: 5.1.36
 -- PHP Version: 5.3.0
 
@@ -38,6 +38,19 @@ CREATE TABLE IF NOT EXISTS `cthdnhap` (
 -- Dumping data for table `cthdnhap`
 --
 
+INSERT INTO `cthdnhap` (`SoHDN`, `MaDoChoi`, `SoLuong`, `ThanhTien`) VALUES
+('HDN001', 'SP001', 10, '4000000'),
+('HDN001', 'SP003', 10, '40000'),
+('HDN001', 'SP004', 10, '150000'),
+('HDN001', 'SP006', 10, '630000'),
+('HDN001', 'SP008', 10, '150000'),
+('HDN001', 'SP010', 10, '1000000'),
+('HDN002', 'SP001', 10, '4000000'),
+('HDN002', 'SP002', 10, '7000000'),
+('HDN002', 'SP004', 10, '100000'),
+('HDN002', 'SP007', 10, '3000000'),
+('HDN002', 'SP008', 10, '150000'),
+('HDN002', 'SP009', 10, '1000000');
 
 -- --------------------------------------------------------
 
@@ -58,6 +71,11 @@ CREATE TABLE IF NOT EXISTS `cthdxuat` (
 -- Dumping data for table `cthdxuat`
 --
 
+INSERT INTO `cthdxuat` (`SoHDX`, `MaDoChoi`, `SoLuong`, `ThanhTien`) VALUES
+('HDX001', 'SP001', 1, '450000'),
+('HDX001', 'SP002', 2, '1600000'),
+('HDX001', 'SP005', 4, '900000'),
+('HDX001', 'SP007', 7, '2450000');
 
 -- --------------------------------------------------------
 
@@ -76,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `dochoi` (
   `SoLuotXem` int(11) DEFAULT '0',
   PRIMARY KEY (`MaDoChoi`),
   KEY `MaLoai` (`MaLoai`),
-  KEY `fk_dochoi_nhasanxuat1` (`MaNSX`)
+  KEY `MaNSX` (`MaNSX`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -84,16 +102,16 @@ CREATE TABLE IF NOT EXISTS `dochoi` (
 --
 
 INSERT INTO `dochoi` (`MaDoChoi`, `TenDoChoi`, `MaLoai`, `MaNSX`, `DonGia`, `ThongTin`, `HinhAnh`, `SoLuotXem`) VALUES
-('SP001', 'Bộ ghép Ngôi nhà nhỏ ', 1, 0, '450000 VNĐ', 'Trò chơi phổ biến tại Châu Âu khiến nhiều người say mê. Bé có thể cùng các bạn dùng những chi tiết gỗ để ghép nên những ngôi nhà trang trại xinh xắn. Bộ sản phẩm đòi hỏi bé phải có óc tưởng tượng và tư duy. Chất liệu gỗ sồi nhập từ Đức, tiêu chuẩn xu', 'SP001.jpg', 13),
-('SP002', 'Xe đạp cho bé  ', 1, 0, '790000 VNĐ ', 'Chiếc xe đạp nhỏ xinh xắn giúp bé tích cực vận động, tập đi xe đạp. Sản phẩm phù hợp cho trẻ từ 4 tuổi trở lên. Kích thước 85x54x11cm. (Veesano - Đồ chơi gỗ, đồ chơi thông minh, đồ chơi trí tuệ, đồ chơi giáo dục, đồ chơi an toàn).', 'SP002.jpg', 2),
-('SP003', 'Phấn viết chữ đẹp Veesano ', 1, 0, '4500 VNĐ', 'Phấn dành cho bé không ảnh hưởng đến sức khoe bé', 'SP003.jpg', 23),
-('SP004', 'Bảng tập viết chữ đẹp Veesano ', 1, 0, '17000 VNĐ ', 'Đẹp', 'SP004.jpg', 6),
-('SP005', 'Ghế ngồi của bé ', 1, 0, '180000 VNĐ', 'Chiếc ghế ngồi xinh xắn cho bé ngồi chơi, ngồi học, ngồi ăn cùng gia đình, kích thước 28.5cm x 28.5cm x 26cm (cao 49 cm), có 4 màu cho bé lựa chọn: đỏ, cam, xanh lá cây, xanh da trời. Gỗ thông vân sáng bóng nhẵn, mịn, kết cấu chắc chắn, tháo lắp di c', 'SP005.jpg', 15),
-('SP006', 'Chọn quần áo cho gấu ', 1, 0, '68000 VNĐ ', NULL, 'SP006.jpg', 3),
-('SP007', 'Lắp ráp nhà búp bê ', 1, 0, '365000 VNĐ', 'Bộ nhà BenHo. Giúp trẻ sáng tạo trong cách bày biện, thiết kế không gian sống theo trí tưởng tượng của Bé. Quan trọng hơn, ngôi nhà nhỏ này giúp bé có tình yêu thương gia đình, luôn hướng về ngôi nhà nhỏ thân thương của mình.', 'SP07.jpg', 10),
-('SP008', 'Con gỗ - Gọt bút ', 1, 0, '20000 VNĐ ', 'Với sản phẩm nghộ nghĩnh này bé không những có thể tự mình gọt bút chì một cách hào hứng mà còn là một món quà cho những giờ học thật lý thú', 'SP008.jpg', 0),
-('SP009', 'Bộ mô hình phòng ngủ ', 1, 0, '140000 VNĐ', 'Giúp trẻ sáng tạo trong cách bày biện, thiết kế không gian sống theo trí tưởng tượng của Bé, bé sẽ bày biện căn phòng ngủ của mình thật xinh xắn, gọn gàng như trong truyện cổ tích với: giường, tủ quần áo, bàn trang điểm, đèn ngủ..Đây cũng là bộ sản p', 'SP009.jpg', 6),
-('SP010', 'Bộ mô hình phòng khách ', 1, 0, '140000 VNĐ ', 'Giúp trẻ sáng tạo trong cách bày biện, thiết kế không gian sống theo trí tưởng tượng của bé, bé sẽ bày biện phòng khách nhà mình thật gọn gàng để tiếp khách với bộ bàn ghế, tivi, đèn cây. Đây cũng là bộ sản phẩm giúp bé có tình yêu thương và gắn bó v', 'SP010.jpg', 22);
+('SP001', 'Bộ ghép Ngôi nhà nhỏ ', 1, 1, '450000 VNĐ', 'Trò chơi phổ biến tại Châu Âu khiến nhiều người say mê. Bé có thể cùng các bạn dùng những chi tiết gỗ để ghép nên những ngôi nhà trang trại xinh xắn. Bộ sản phẩm đòi hỏi bé phải có óc tưởng tượng và tư duy. Chất liệu gỗ sồi nhập từ Đức, tiêu chuẩn xu', 'SP001.jpg', 13),
+('SP002', 'Xe đạp cho bé  ', 1, 1, '790000 VNĐ ', 'Chiếc xe đạp nhỏ xinh xắn giúp bé tích cực vận động, tập đi xe đạp. Sản phẩm phù hợp cho trẻ từ 4 tuổi trở lên. Kích thước 85x54x11cm. (Veesano - Đồ chơi gỗ, đồ chơi thông minh, đồ chơi trí tuệ, đồ chơi giáo dục, đồ chơi an toàn).', 'SP002.jpg', 2),
+('SP003', 'Phấn viết chữ đẹp Veesano ', 1, 2, '4500 VNĐ', 'Phấn dành cho bé không ảnh hưởng đến sức khoe bé', 'SP003.jpg', 23),
+('SP004', 'Bảng tập viết chữ đẹp Veesano ', 1, 2, '17000 VNĐ ', 'Đẹp', 'SP004.jpg', 6),
+('SP005', 'Ghế ngồi của bé ', 1, 1, '180000 VNĐ', 'Chiếc ghế ngồi xinh xắn cho bé ngồi chơi, ngồi học, ngồi ăn cùng gia đình, kích thước 28.5cm x 28.5cm x 26cm (cao 49 cm), có 4 màu cho bé lựa chọn: đỏ, cam, xanh lá cây, xanh da trời. Gỗ thông vân sáng bóng nhẵn, mịn, kết cấu chắc chắn, tháo lắp di c', 'SP005.jpg', 15),
+('SP006', 'Chọn quần áo cho gấu ', 1, 1, '68000 VNĐ ', NULL, 'SP006.jpg', 3),
+('SP007', 'Lắp ráp nhà búp bê ', 1, 2, '365000 VNĐ', 'Bộ nhà BenHo. Giúp trẻ sáng tạo trong cách bày biện, thiết kế không gian sống theo trí tưởng tượng của Bé. Quan trọng hơn, ngôi nhà nhỏ này giúp bé có tình yêu thương gia đình, luôn hướng về ngôi nhà nhỏ thân thương của mình.', 'SP07.jpg', 10),
+('SP008', 'Con gỗ - Gọt bút ', 1, 2, '20000 VNĐ ', 'Với sản phẩm nghộ nghĩnh này bé không những có thể tự mình gọt bút chì một cách hào hứng mà còn là một món quà cho những giờ học thật lý thú', 'SP008.jpg', 0),
+('SP009', 'Bộ mô hình phòng ngủ ', 1, 1, '140000 VNĐ', 'Giúp trẻ sáng tạo trong cách bày biện, thiết kế không gian sống theo trí tưởng tượng của Bé, bé sẽ bày biện căn phòng ngủ của mình thật xinh xắn, gọn gàng như trong truyện cổ tích với: giường, tủ quần áo, bàn trang điểm, đèn ngủ..Đây cũng là bộ sản p', 'SP009.jpg', 6),
+('SP010', 'Bộ mô hình phòng khách ', 1, 1, '140000 VNĐ ', 'Giúp trẻ sáng tạo trong cách bày biện, thiết kế không gian sống theo trí tưởng tượng của bé, bé sẽ bày biện phòng khách nhà mình thật gọn gàng để tiếp khách với bộ bàn ghế, tivi, đèn cây. Đây cũng là bộ sản phẩm giúp bé có tình yêu thương và gắn bó v', 'SP010.jpg', 22);
 
 -- --------------------------------------------------------
 
@@ -103,10 +121,10 @@ INSERT INTO `dochoi` (`MaDoChoi`, `TenDoChoi`, `MaLoai`, `MaNSX`, `DonGia`, `Tho
 
 CREATE TABLE IF NOT EXISTS `giamgia` (
   `MaDoChoi` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `Banner` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `DonGia` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `ThoiHan` date DEFAULT NULL,
-  PRIMARY KEY (`MaDoChoi`),
-  KEY `fk_giamgia_dochoi1` (`MaDoChoi`)
+  `GhiChu` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`MaDoChoi`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -132,6 +150,9 @@ CREATE TABLE IF NOT EXISTS `hdnhap` (
 -- Dumping data for table `hdnhap`
 --
 
+INSERT INTO `hdnhap` (`SoHDN`, `NgayNhap`, `GhiChu`, `KiemTra`) VALUES
+('HDN001', '2010-07-21', NULL, NULL),
+('HDN002', '2010-07-23', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -153,6 +174,8 @@ CREATE TABLE IF NOT EXISTS `hdxuat` (
 -- Dumping data for table `hdxuat`
 --
 
+INSERT INTO `hdxuat` (`SoHDX`, `NgayXuat`, `TenTaiKhoan`, `GhiChu`, `KiemTra`) VALUES
+('HDX001', '2010-08-02', 'darkmagikian', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -205,6 +228,9 @@ CREATE TABLE IF NOT EXISTS `nguoidung` (
 -- Dumping data for table `nguoidung`
 --
 
+INSERT INTO `nguoidung` (`TenTaiKhoan`, `TenNguoiDung`, `MatKhau`, `NgaySinh`, `GioiTinh`, `DiaChi`, `DienThoai`, `Email`) VALUES
+('admin', 'Quản Trị Hệ Thống', 'admin', NULL, NULL, NULL, NULL, NULL),
+('darkmagikian', 'Dark Magikian', '6494234', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -237,31 +263,31 @@ INSERT INTO `nhasanxuat` (`MaNSX`, `TenNSX`, `DiaChi`, `DienThoai`, `Email`) VAL
 -- Constraints for table `cthdnhap`
 --
 ALTER TABLE `cthdnhap`
-  ADD CONSTRAINT `cthdnhap_ibfk_1` FOREIGN KEY (`SoHDN`) REFERENCES `hdnhap` (`SoHDN`),
-  ADD CONSTRAINT `cthdnhap_ibfk_2` FOREIGN KEY (`MaDoChoi`) REFERENCES `dochoi` (`MaDoChoi`);
+  ADD CONSTRAINT `cthdnhap_ibfk_4` FOREIGN KEY (`MaDoChoi`) REFERENCES `dochoi` (`MaDoChoi`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `cthdnhap_ibfk_3` FOREIGN KEY (`SoHDN`) REFERENCES `hdnhap` (`SoHDN`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `cthdxuat`
 --
 ALTER TABLE `cthdxuat`
-  ADD CONSTRAINT `cthdxuat_ibfk_1` FOREIGN KEY (`SoHDX`) REFERENCES `hdxuat` (`SoHDX`),
-  ADD CONSTRAINT `cthdxuat_ibfk_2` FOREIGN KEY (`MaDoChoi`) REFERENCES `dochoi` (`MaDoChoi`);
+  ADD CONSTRAINT `cthdxuat_ibfk_4` FOREIGN KEY (`MaDoChoi`) REFERENCES `dochoi` (`MaDoChoi`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `cthdxuat_ibfk_3` FOREIGN KEY (`SoHDX`) REFERENCES `hdxuat` (`SoHDX`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `dochoi`
 --
 ALTER TABLE `dochoi`
-  ADD CONSTRAINT `fk_dochoi_nhasanxuat1` FOREIGN KEY (`MaNSX`) REFERENCES `nhasanxuat` (`MaNSX`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `dochoi_ibfk_1` FOREIGN KEY (`MaLoai`) REFERENCES `loaidochoi` (`MaLoai`);
+  ADD CONSTRAINT `dochoi_ibfk_2` FOREIGN KEY (`MaNSX`) REFERENCES `nhasanxuat` (`MaNSX`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `dochoi_ibfk_1` FOREIGN KEY (`MaLoai`) REFERENCES `loaidochoi` (`MaLoai`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `giamgia`
 --
 ALTER TABLE `giamgia`
-  ADD CONSTRAINT `fk_giamgia_dochoi1` FOREIGN KEY (`MaDoChoi`) REFERENCES `dochoi` (`MaDoChoi`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `giamgia_ibfk_1` FOREIGN KEY (`MaDoChoi`) REFERENCES `dochoi` (`MaDoChoi`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `hdxuat`
 --
 ALTER TABLE `hdxuat`
-  ADD CONSTRAINT `hdxuat_ibfk_1` FOREIGN KEY (`TenTaiKhoan`) REFERENCES `nguoidung` (`TenTaiKhoan`);
+  ADD CONSTRAINT `hdxuat_ibfk_1` FOREIGN KEY (`TenTaiKhoan`) REFERENCES `nguoidung` (`TenTaiKhoan`) ON DELETE NO ACTION ON UPDATE NO ACTION;

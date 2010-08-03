@@ -20,6 +20,7 @@ while($m = mysql_fetch_array($result)) {
             $dc->setDonGia($m['DonGia']);
             $dc->setThongTin($m['ThongTin']);
             $dc->setHinhAnh($m['HinhAnh']);
+            $dc->setSoLuotXem($m['SoLuotXem']);
             $dc->TenLoai = $tenloai;
             $Temp.= $dc->ViewDetail();
 }
