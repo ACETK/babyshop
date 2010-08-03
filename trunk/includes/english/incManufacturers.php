@@ -1,22 +1,41 @@
 <?php
-/** Khởi tạo box */
-$btpl = new XTemplate('./template/incInfoBox.html');
-$btpl->assign('BoxTitle','Manufacturers');
-
 //Sử lý nghiệp vụ -- yêu cầu gán vào biến $Temp
-$Temp = '<form name="manufacturers" action="" method="get">
+require_once 'Class/CNhaSanXuat.php';
+
+$sql = "SELECT* FROM nhasanxuat";
+$result = MySQLHelper::executeQuery($sql);
+
+
+$Temp = '
+    <script language="javascript">
+  function ChuyenTrang()
+	{
+		var comboBox = document.getElementById("manufacturers_id");
+		var str = comboBox.options[comboBox.selectedIndex].value;
+		window.location = "index.php?action=productslist&idnsx="+str;
+	}
+
+</script>
+   
+    <form name="manufacturers" action="" method="post">
     <table cellpadding="0" cellspacing="0" border="0">
-        <tr><td><select name="manufacturers_id" onChange="" size="1" class="select">
-                    <option value="" SELECTED>Please Select</option>
-                    <option value="1">Example_1</option>
-                    <option value="2">Example_2</option>
-                    <option value="3">Example_3</option>
-                </select>
+        <tr><td><select id="manufacturers_id" onChange="ChuyenTrang()" size="1" class="select">
+        <option value="\' or 1--" SELECTED>Chọn</option>';
+while($row = mysql_fetch_array($result)) {
+    $nsx = new CNhaSanXuat();
+    $nsx->setMaNSX($row['MaNSX']);
+    $nsx->setTenNSX($row['TenNSX']);
+    $Temp.= $nsx->View();
+}
+$Temp.='    </select>
             </td></tr>
     </table>
-</form>';
-    //Kết thúc nghiệp vụ
-
+</form>
+';
+//Kết thúc nghiệp vụ
+/** Khởi tạo box */
+$btpl = new XTemplate('./template/incInfoBox.html');
+$btpl->assign('BoxTitle','Nhà sản xuất');
 //đưa dữ liệu vào box
 $btpl->assign('BoxInfo', $Temp);
 $btpl->parse('box');

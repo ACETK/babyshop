@@ -60,6 +60,9 @@ if (isset($_GET['action'])) {
         case"detail":
             include "pages/Detail.php";
             break;
+        case"manufacturers":
+            include "pages/Manufacturers.php";
+            break;
 
 //        case "ShoppingCart":
 //            include 'pages/ShoppingCart.php';

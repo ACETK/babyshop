@@ -1,17 +1,23 @@
 <?php
 /** Khởi tạo content */
 $ctpl = new XTemplate('./template/incContentBox.html');
-$ctpl->assign('ContentTitle', "Products List");
+
 
 //Sử lý nghiệp vụ -- yêu cầu gán vào biến $Temp
 require_once 'Class/CDoChoi.php';
 require_once 'Class/CDanhSachDoChoi.php';
 require_once 'Class/MySQLHelper.php';
 
-$IDMaLoai = $_GET['idloai'];
-$sql = "SELECT* FROM dochoi where MaLoai=$IDMaLoai";
+if(isset ($_GET['idloai'])){
+    $IDMaLoai = $_GET['idloai'];
+    $sql = "SELECT* FROM dochoi where MaLoai=$IDMaLoai";
+    $ctpl->assign('ContentTitle', "Danh sách đồ chơi");
+}else if(isset ($_GET['idnsx'])){
+     $IDNSX = $_GET['idnsx'];
+    $sql = "SELECT* FROM dochoi where MaNSX=$IDNSX";
+    $ctpl->assign('ContentTitle', "Danh sách theo nhà sản xuất");
+}
 $result = MySQLHelper::executeQuery($sql);
-
 $Temp ="";
 $dsach = new CDanhSachDoChoi();
 while ($m = mysql_fetch_array($result)) {
@@ -27,6 +33,8 @@ while ($m = mysql_fetch_array($result)) {
 }
 $Temp .= $dsach->viewList();
 mysql_free_result($result);
+/////////////////ngiep vu nsx;
+
     //Kết thúc nghiệp vụ
 
 //đưa dữ liệu vào content
