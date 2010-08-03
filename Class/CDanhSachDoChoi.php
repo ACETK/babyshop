@@ -45,7 +45,11 @@ class CDanhSachDoChoi {
             if ($this->arrDoChoi[$i] instanceof CDoChoi) {
                 $sql = 'select TenLoai from loaidochoi where maloai =' . $this->arrDoChoi[$i]->getMaLoai();
                 $result = MySQLHelper::executeQuery($sql);
-                $row = mysql_fetch_assoc($result);
+                $loai = mysql_fetch_assoc($result);
+
+                $sql = 'select TenNSX from nhasanxuat where mansx =' . $this->arrDoChoi[$i]->getMaNSX();
+                $result = MySQLHelper::executeQuery($sql);
+                $nsx = mysql_fetch_assoc($result);
                 mysql_free_result($result);
 
                 $Temp .= '<td align="left"  style="width:50%;">
@@ -69,9 +73,24 @@ class CDanhSachDoChoi {
                                                             </div>
                                                         </div>
                                                     </div></a></div></td></tr>
-                                    <tr><td class="desc desc2_padd"><b>Categories:</b> ' . $row['TenLoai'] . '<br/>
-                                                                    <b>Views:</b> ' . $this->arrDoChoi[$i]->getSoLuotXem() . '</td></tr>
-                                    <tr><td class="price2_padd"><span class="productSpecialPrice">' . $this->arrDoChoi[$i]->getDonGia() . '</span></td></tr>
+                                    <tr><td class="listing2_padd">
+                                            <table cellspacing="0" cellpadding="0" border="0" class="listing">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><b><font>Loại đồ chơi&nbsp;:</font></b></td>
+							<td align="right"><font>' . $loai['TenLoai'] . '</font></td>
+                                                    </tr>
+                                                    <tr>
+							<td><b><font style="">Nhà sản xuất&nbsp;:</font></b></td>
+							<td align="right"><font><a href="index.php?action=productslist&idnsx=' . $this->arrDoChoi[$i]->getMaNSX().'">' . $nsx['TenNSX'] . '</a></font></td>
+                                                    </tr>
+                                                    <tr>
+							<td><b><font>Số lượt xem&nbsp;:</font></b></td>
+							<td align="right"><font>' . $this->arrDoChoi[$i]->getSoLuotXem() . '</font></td>
+                                                    </tr>
+                                                </tbody></table>
+                                        </td></tr>
+                                    <tr><td class="price2_padd"><span class="productSpecialPrice">' . number_format($this->arrDoChoi[$i]->getDonGia()) . '&nbsp;VNĐ</span></td></tr>
                                     <tr><td class="button2_padd button2_marg"><a href="index.php?action=detail&id=' . $this->arrDoChoi[$i]->getMaDoChoi() . '" ><img src="template/images/english/button_details.gif" border="0" alt="" width="81" height="19"  class="btn1"></a> <a href="" ><img src="template/images/english/button_add_to_cart1.gif" border="0" alt="" width="104" height="19"  class="btn2"></a></td></tr>
                                 </table>
                             </td></tr>

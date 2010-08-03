@@ -5,7 +5,7 @@ require_once 'Class/CDoChoi.php';
 require_once 'Class/CDanhSachDoChoi.php';
 require_once 'Class/MySQLHelper.php';
 
-$sql = "SELECT dc.MaDoChoi,MaLoai,TenDoChoi,ThongTin,DonGia,HinhAnh,NgayNhap,SoLuotXem
+$sql = "SELECT dc.MaDoChoi,MaLoai,MaNSX,TenDoChoi,ThongTin,DonGia,HinhAnh,NgayNhap,SoLuotXem
         FROM dochoi dc JOIN (SELECT ct.MaDoChoi,NgayNhap
                              FROM cthdnhap ct JOIN hdnhap hd on ct.SoHDN=hd.SoHDN 
                              ORDER BY NgayNhap DESC) t on dc.MaDoChoi=t.MaDoChoi
@@ -20,6 +20,7 @@ while($row = mysql_fetch_assoc($result)){
     $DC = new CDoChoi();
     $DC->setMaDoChoi($row['MaDoChoi']);
     $DC->setMaLoai($row['MaLoai']);
+    $DC->setMaNSX($row['MaNSX']);
     $DC->setTenDoChoi($row['TenDoChoi']);
     $DC->setThongTin($row['ThongTin']);
     $DC->setDonGia($row['DonGia']);

@@ -45,6 +45,7 @@ if (isset($_GET['action'])) {
     switch ($page) {
         case "Home":
             include 'pages/HomePage.php';
+            $tpl->parse('main.header.banner');
             break;
         case "WhatsNew":
             include 'pages/WhatsNew.php';
@@ -76,6 +77,12 @@ if (isset($_GET['action'])) {
         case "LogIn":
             include 'pages/LogIn.php';
             break;
+        case "TimKiem":
+            include 'pages/AdvancedSearch.php';
+            break;
+        case "KetQuaTimKiem":
+            include 'pages/SearchResults.php';
+            break;
 //        case "ShoppingCart":
 //            include 'pages/ShoppingCart.php';
 //            break;
@@ -89,11 +96,6 @@ if (isset($_GET['action'])) {
 //        case "Conditions":
 //            include 'pages/Conditions.php';
 //            break;
-//        case "AdvancedSearch":
-//            include 'pages/AdvancedSearch.php';
-//            break;
-        
-        
 //        case "PasswordForgotten":
 //            include 'pages/PasswordForgotten.php';
 //            break;
@@ -104,6 +106,7 @@ if (isset($_GET['action'])) {
     }
 }else{
     include 'pages/HomePage.php';
+    $tpl->parse('main.header.banner');
 }
 $tpl->assign('ContentInfo', $Content);
 $tpl->parse('main.body.content');
