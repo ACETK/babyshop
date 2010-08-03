@@ -9,7 +9,7 @@ require_once 'Class/CDoChoi.php';
 ///////////////////////
 
 
-$IDMaDoChoi =$_GET['idmadochoi'];
+$IDMaDoChoi =$_GET['id'];
 $sql = "SELECT* FROM DOCHOI where MaDoChoi='$IDMaDoChoi'";
 $result = MySQLHelper::executeQuery($sql);
 
@@ -24,16 +24,13 @@ while($m = mysql_fetch_array($result)) {
             $dc->setMaDoChoi($m['MaDoChoi']);
             $dc->setTenDoChoi($m['TenDoChoi']);
             $dc->setMaLoai($m['MaLoai']);
-            $dc->setMaNSX($m['MaNSX']);
-            $dc->setSoLuong($m['SoLuong']);
-            $dc->setDonGiaNhap($m['DonGiaNhap']);
-            $dc->setDonGiaBan($m['DonGiaBan']);
+            $dc->setDonGia($m['DonGia']);
             $dc->setThongTin($m['ThongTin']);
             $dc->setHinhAnh($m['HinhAnh']);
             $dc->TenLoai = $tenloai;
             $Temp.= $dc->ViewDetail();
 }
-
+mysql_free_result($result);
 
 //đưa dữ liệu vào content
 $ctpl->assign('ContentInfo', $Temp);

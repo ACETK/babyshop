@@ -57,7 +57,7 @@ if (isset($_GET['action'])) {
          case"productslist":
             include "pages/Products.php";
             break;
-        case"chitiet":
+        case"detail":
             include "pages/Detail.php";
             break;
 
