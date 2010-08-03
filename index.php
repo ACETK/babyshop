@@ -21,6 +21,10 @@ $tpl->parse('main.body.left.block');
 $tpl->parse('main.body.left');//Kết thúc cột trái
 
 //Thiết kế cột phải
+include 'includes/english/incLogin.php';
+$tpl->assign('BlockInfo', $Login);
+$tpl->parse('main.body.right.block');
+
 include 'includes/english/incManufacturers.php';
 $tpl->assign('BlockInfo', $Manufacturers);
 $tpl->parse('main.body.right.block');
@@ -63,7 +67,15 @@ if (isset($_GET['action'])) {
         case"manufacturers":
             include "pages/Manufacturers.php";
             break;
-
+         case "CreateAccount":
+            include 'pages/CreateAccount.php';
+            break;
+         case "CASuccess":
+            include 'pages/CreateAccountSuccess.php';
+            break;
+        case "LogIn":
+            include 'pages/LogIn.php';
+            break;
 //        case "ShoppingCart":
 //            include 'pages/ShoppingCart.php';
 //            break;
@@ -80,12 +92,8 @@ if (isset($_GET['action'])) {
 //        case "AdvancedSearch":
 //            include 'pages/AdvancedSearch.php';
 //            break;
-//        case "CreateAccount":
-//            include 'pages/CreateAccount.php';
-//            break;
-//        case "LogIn":
-//            include 'pages/LogIn.php';
-//            break;
+        
+        
 //        case "PasswordForgotten":
 //            include 'pages/PasswordForgotten.php';
 //            break;
