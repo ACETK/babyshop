@@ -2,13 +2,41 @@
 /** Khởi tạo content */
 $ctpl = new XTemplate('./template/incContentBox.html');
 $ctpl->assign('ContentTitle',"What's New Here?");
-//Khởi tạo giao diện danh sách sản phẩm
-$plist = new XTemplate("./template/incProductsList.html");
-$plist->assign('ProductName', $PName);
-$plist->assign('ProductImgURL', $PImgURL);
-$plist->assign('ProductImgAlt', $PName);
+////Khởi tạo giao diện danh sách sản phẩm
+//$plist = new XTemplate("./template/incProductsList.html");
+//$plist->assign('ProductName', $PName);
+//$plist->assign('ProductImgURL', $PImgURL);
+//$plist->assign('ProductImgAlt', $PName);
+//$plist->assign('ProductPrice', $PName);
+
 //Sử lý nghiệp vụ -- yêu cầu gán vào biến $Temp
-$Temp = "";
+require_once 'Class/CDoChoi.php';
+require_once 'Class/CDanhSachDoChoi.php';
+require_once 'Class/MySQLHelper.php';
+
+$sql = "SELECT dc.MaDoChoi,MaLoai,TenDoChoi,ThongTin,DonGia,HinhAnh,NgayNhap
+        FROM dochoi dc JOIN (SELECT ct.MaDoChoi,NgayNhap
+                             FROM cthdnhap ct JOIN hdnhap hd on ct.SoHDN=hd.SoHDN 
+                             ORDER BY NgayNhap DESC) t on dc.MaDoChoi=t.MaDoChoi
+        GROUP BY dc.MaDoChoi
+        ORDER BY NgayNhap DESC,TenDoChoi
+        LIMIT 0,10";
+$result = MySQLHelper::executeQuery($sql);
+
+$Temp ="";
+$dsach = new CDanhSachDoChoi();
+while($row = mysql_fetch_assoc($result)){
+    $DC = new CDoChoi();
+    $DC->setMaDoChoi($row['MaDoChoi']);
+    $DC->setMaLoai($row['MaLoai']);
+    $DC->setTenDoChoi($row['TenDoChoi']);
+    $DC->setThongTin($row['ThongTin']);
+    $DC->setDonGia($row['DonGia']);
+    $DC->setHinhAnh($row['HinhAnh']);
+    $dsach->add($DC);
+}
+$Temp .= $dsach->viewList();
+mysql_free_result($result);
     //Kết thúc nghiệp vụ
 
 //đưa dữ liệu vào content
