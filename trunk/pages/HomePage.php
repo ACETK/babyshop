@@ -1,13 +1,4 @@
 <?php
-/** Khởi tạo content */
-$ctpl = new XTemplate('./template/incContentBox.html');
-$ctpl->assign('ContentTitle',"What's New Here?");
-////Khởi tạo giao diện danh sách sản phẩm
-//$plist = new XTemplate("./template/incProductsList.html");
-//$plist->assign('ProductName', $PName);
-//$plist->assign('ProductImgURL', $PImgURL);
-//$plist->assign('ProductImgAlt', $PName);
-//$plist->assign('ProductPrice', $PName);
 
 //Sử lý nghiệp vụ -- yêu cầu gán vào biến $Temp
 require_once 'Class/CDoChoi.php';
@@ -40,6 +31,10 @@ $Temp .= $dsach->viewList();
 mysql_free_result($result);
     //Kết thúc nghiệp vụ
 
+
+/** Khởi tạo content */
+$ctpl = new XTemplate('./template/incContentBox.html');
+$ctpl->assign('ContentTitle',"Có gì mới hôm nay?");
 //đưa dữ liệu vào content
 $ctpl->assign('ContentInfo', $Temp);
 $ctpl->parse('box');
