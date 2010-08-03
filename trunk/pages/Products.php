@@ -25,6 +25,7 @@ while ($m = mysql_fetch_array($result)) {
     $dc->setMaDoChoi($m['MaDoChoi']);
     $dc->setTenDoChoi($m['TenDoChoi']);
     $dc->setMaLoai($m['MaLoai']);
+    $dc->setMaNSX($m['MaNSX']);
     $dc->setDonGia($m['DonGia']);
     $dc->setThongTin($m['ThongTin']);
     $dc->setHinhAnh($m['HinhAnh']);

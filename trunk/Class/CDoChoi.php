@@ -141,7 +141,7 @@ class CDoChoi {
                                 </div>
                                 <div class="main"><div class="desc2">' . $this->ThongTin . '<br>
                                     </div><br>
-                                    <br><div><b class="productSpecialPrice">' . $this->DonGia . '</b></div></div><br>
+                                    <br><div><b class="productSpecialPrice">' . number_format($this->DonGia) . '&nbsp;VNĐ</b></div></div><br>
                                 <div style="clear: both;"></div>
                             </td></tr>
                     </tbody>

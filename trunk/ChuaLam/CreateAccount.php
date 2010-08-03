@@ -655,4 +655,5 @@ $Temp.='<script language="javascript"><!--
     </div>
 </div>
 </form>';
+echo $Temp;
 ?>
