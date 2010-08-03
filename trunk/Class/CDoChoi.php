@@ -11,12 +11,22 @@ class CDoChoi {
     private $MaDoChoi;
     private $TenDoChoi;
     private $MaLoai;
+    private $MaNSX;
     private $DonGia;
     private $ThongTin;
     private $HinhAnh;
     private $SoLuotXem;
 
     ///
+
+    public function getMaNSX() {
+        return $this->MaNSX;
+    }
+
+    public function setMaNSX($MaNSX) {
+        $this->MaNSX = $MaNSX;
+    }
+
     public function getSoLuotXem() {
         return $this->SoLuotXem;
     }
@@ -82,6 +92,7 @@ class CDoChoi {
         $this->HinhAnh = "";
         $this->ThongTin = "";
         $this->SoLuotXem = 0;
+        $this->MaNSX = 1;
     }
 
     public function ViewDetail() {
@@ -145,7 +156,7 @@ class CDoChoi {
                                 <table cellspacing="4" cellpadding="0" border="0">
                                     <tbody>
                                         <tr>
-                                            <td class="main">This product was added to our catalog on Tuesday 20 April, 2010.</td>
+                                            <td class="main">Views: '.$this->SoLuotXem.'</td>
                                         </tr>
                                     </tbody></table>
 
