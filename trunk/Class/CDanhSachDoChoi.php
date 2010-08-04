@@ -27,6 +27,12 @@ class CDanhSachDoChoi {
 
     public function viewList() {
         //bắt đầu bảng
+        if(count($this->arrDoChoi)<1){
+            $Temp = '<table cellspacing="0" cellpadding="0" class="main">
+					<tbody><tr><td style="padding: 25px 20px 20px;">Chưa có sản phẩm nào trong chuyên mục. Vui lòng quay lại sau.</td></tr>
+				</tbody></table>';
+            return $Temp;
+        }
         $Temp = '
          <table border="0" width="" cellspacing="0" cellpadding="0" class="tableBox_output_table">
             <tr><td  class="main">

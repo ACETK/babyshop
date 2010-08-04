@@ -1,6 +1,5 @@
 <?php
-
-$Temp="";
+$Temp = "";
 $Temp.='<script language="javascript"><!--
     var form = "";
     var submitted = false;
@@ -116,50 +115,34 @@ $Temp.='<script language="javascript"><!--
         }
     }
 
-function toggle_pass(passid) {
-    if (window.XMLHttpRequest) {
-        http = new XMLHttpRequest();
-    } else if (window.ActiveXObject) {
-        http = new ActiveXObject("Microsoft.XMLHTTP");
+    function toggle_pass(passid) {
+        if (window.XMLHttpRequest) {
+            http = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            http = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        handle = document.getElementById(passid);
+        var url = "ajax_check_pass.php?";
+        if(handle.value.length > 0) {
+            var fullurl = url + "do=check_password_strength&pass=" + encodeURIComponent(handle.value);
+            http.open("GET", fullurl, true);
+            http.send(null);
+            http.onreadystatechange = statechange_password;
+        }else{
+            document.getElementById("password_strength").innerHTML = "";
+        }
     }
-    handle = document.getElementById(passid);
-    var url = "ajax_check_pass.php?";
-    if(handle.value.length > 0) {
-        var fullurl = url + "do=check_password_strength&pass=" + encodeURIComponent(handle.value);
-        http.open("GET", fullurl, true);
-        http.send(null);
-        http.onreadystatechange = statechange_password;
-    }else{
-        document.getElementById("password_strength").innerHTML = "";
-    }
-}
 
-function statechange_password() {
-    if (http.readyState == 4) {
-        var xmlObj = http.responseXML;
-        var html = xmlObj.getElementsByTagName("result").item(0).firstChild.data;
-        document.getElementById("password_strength").innerHTML = html;
+    function statechange_password() {
+        if (http.readyState == 4) {
+            var xmlObj = http.responseXML;
+            var html = xmlObj.getElementsByTagName("result").item(0).firstChild.data;
+            document.getElementById("password_strength").innerHTML = html;
+        }
     }
-}
 
     //--></script>
-    <style type="text/css">
-    input {
-        border: 1px solid #000000;
-        padding: 5px;
-    }
-    #password_strength {
-        width: 250px;
-        background: #cccccc;
-    }
-    #password_bar {
-        font-size: 11px;
-        background: #7FFF00;
-        border: 1px solid #cccccc;
-        padding: 5px;
-    }
-</style>
-    <form onsubmit="return check_form(create_account);" method="post" action="index.php?action=CASuccess" name="create_account"><input type="hidden" value="process" name="action">
+<form onsubmit="return check_form(create_account);" method="post" action="index.php?action=CASuccess" name="create_account"><input type="hidden" value="process" name="action">
     <table cellspacing="0" cellpadding="0" border="0">
         <tbody><tr>
                 <td class="smallText"><br>
@@ -189,7 +172,7 @@ function statechange_password() {
                                         <table cellspacing="4" cellpadding="2" border="0">
                                             <tbody><tr>
                                                     <td class="main b_width"><strong>Giới tính:</strong></td>
-                                                    <td class="main radio"><input type="radio" style="background: url(&quot;images/spacer.gif&quot;) repeat scroll 0px 0px transparent; border: 0px none;" value="Nam" name="gender"> Nam <input type="radio" style="background: url(&quot;images/spacer.gif&quot;) repeat scroll 0px 0px transparent; border: 0px none;" value="Nữ" name="gender"> Nữ&nbsp;<span class="inputRequirement">*</span></td>
+                                                    <td class="main radio"><input type="radio" style="background: url(&quot;template/images/spacer.gif&quot;) repeat scroll 0px 0px transparent; border: 0px none;" value="Nam" name="gender"> Nam <input type="radio" style="background: url(&quot;template/images/spacer.gif&quot;) repeat scroll 0px 0px transparent; border: 0px none;" value="Nữ" name="gender"> Nữ&nbsp;<span class="inputRequirement">*</span></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="main b_width"><strong>Họ và tên:</strong></td>
@@ -216,10 +199,7 @@ function statechange_password() {
         </div>
     </div>
 
-
-
-
-    <div style="padding: 0px 0px 4px;"><img width="1" height="1" border="0" alt="" src="images/spacer.gif"></div>
+    <div style="padding: 0px 0px 4px;"><img width="1" height="1" border="0" alt="" src="template/images/spacer.gif"></div>
     <table cellspacing="0" cellpadding="0" border="0">
         <tbody><tr>
                 <td class="main indent_2"><b>Thông tin liên hệ:</b></td>
@@ -255,21 +235,16 @@ function statechange_password() {
             </div>
         </div>
     </div>
-    <div style="padding: 0px 0px 4px;"><img width="1" height="1" border="0" alt="" src="images/spacer.gif"></div>
-
-
-    <div style="padding: 0px 0px 4px;"><img width="1" height="1" border="0" alt="" src="images/spacer.gif"></div>
+    <div style="padding: 0px 0px 4px;"><img width="1" height="1" border="0" alt="" src="template/images/spacer.gif"></div>
     <table cellspacing="0" cellpadding="0" border="0">
         <tbody><tr>
                 <td class="main indent_2"><b>Thông tin tài khoản:</b></td>
             </tr>
         </tbody></table>
-
     <div class="wrapper_pic2_t infoBox_">
         <div class="wrapper_pic2_r">
             <div class="wrapper_pic2_b">
                 <div class="wrapper_pic2_l">
-
                     <div class="wrapper_pic2_tl s_width2_100">
                         <div class="wrapper_pic2_tr">
                             <div class="wrapper_pic2_bl">
@@ -283,9 +258,7 @@ function statechange_password() {
                                                 </tr>
                                                 <tr>
                                                     <td class="main b_width"><strong>Mật khẩu:</strong></td>
-                                                    <td class="main width2_100"><input type="password" maxlength="40" name="password">
-                                                    &nbsp;<span class="inputRequirement">*</span></td>
-                                                 
+                                                    <td class="main width2_100"><input type="password" maxlength="40" name="password">&nbsp;<span class="inputRequirement">*</span></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="main b_width"><strong>Nhập lại mật khẩu:</strong></td>
@@ -302,7 +275,7 @@ function statechange_password() {
             </div>
         </div>
     </div>
-    <div style="padding: 0px 0px 4px;"><img width="1" height="1" border="0" alt="" src="images/spacer.gif"></div>
+    <div style="padding: 0px 0px 4px;"><img width="1" height="1" border="0" alt="" src="template/images/spacer.gif"></div>
     <table cellspacing="5" cellpadding="0" border="0">
         <tbody><tr><td>
                     <table width="100%" cellspacing="0" cellpadding="2" border="0">
@@ -317,7 +290,7 @@ function statechange_password() {
 ';
 /** Khởi tạo content */
 $ctpl = new XTemplate('./template/incContentBox.html');
-$ctpl->assign('ContentTitle',"Thông tin đăng kí");
+$ctpl->assign('ContentTitle', "Thông tin đăng kí");
 //đưa dữ liệu vào content
 $ctpl->assign('ContentInfo', $Temp);
 $ctpl->parse('box');

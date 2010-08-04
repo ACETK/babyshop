@@ -9,8 +9,8 @@ require_once 'Class/MySQLHelper.php';
 
 ////////////////////
 //Tạo biến phân trang
-// số dòng trên một trang
-$rowsPerPage = 2;
+// số sản phẩm trên một trang
+$rowsPerPage = 6;
 // mặc định hiển thị trang 1
 $pageNum = 1;
 // nếu có $_GET['page'] thì sử dụng nó làm trang hiển thị
@@ -51,11 +51,6 @@ while ($m = mysql_fetch_array($result)) {
 }
 mysql_free_result($result);
 
-//////////////////
-//Hiển thị kết wả
-$Temp ="";
-$Temp .= $dsach->viewList();
-
 //////////////////////////
 //Tạo link liên kết trang
 //
@@ -72,10 +67,10 @@ $nav  = '';
 
 for($page = 1; $page <= $maxPage; $page++){
    if ($page == $pageNum){
-      $nav .= " $page "; // khong can tao link cho trang hien hanh
+      $nav .= " $page &nbsp;"; // khong can tao link cho trang hien hanh
    }
    else{
-      $nav .= " <a class=\"pageResults\" href=\"$self&page=$page\">$page</a> ";
+      $nav .= " <a class=\"pageResults\" href=\"$self&page=$page\">$page</a> &nbsp;";
    }
 }
 
@@ -99,12 +94,24 @@ if ($pageNum < $maxPage){
    $next = '&nbsp;'; // dang o trang cuoi, khong can in lien ket trang ke
    $last = '&nbsp;'; // va lien ket trang cuoi
 }
-// hien thi cac link lien ket trang
+
+//////////////////
+//Hiển thị kết wả
+$Temp = "";
+if($maxPage > 1)
+$Temp ='<div class="result2_top"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"></div>
+        <table cellspacing="0" cellpadding="0" border="0" class="result result_bottom_padd">
+        <tbody><tr>
+                <td align="right" class="result_right">Trang: &nbsp;'.$first .'&nbsp;'. $prev .'&nbsp;'. $nav .'&nbsp;'. $next .'&nbsp;'. $last.'</td>
+            </tr>
+        </tbody></table>
+        <div class="result2_bottom"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"></div>';;
+$Temp .= $dsach->viewList();
+if($maxPage > 1)
 $Temp.=  '<div class="result2_top"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"></div>
         <table cellspacing="0" cellpadding="0" border="0" class="result result_bottom_padd">
         <tbody><tr>
-                <td style="">Displaying <b>1</b> to <b>4</b> (of <b>8</b> products)</td>
-                <td align="right" class="result_right">Result Pages: &nbsp;'.$first . $prev . $nav . $next . $last.'</td>
+                <td align="right" class="result_right">Trang: &nbsp;'.$first .'&nbsp;'. $prev .'&nbsp;'. $nav .'&nbsp;'. $next .'&nbsp;'. $last.'</td>
             </tr>
         </tbody></table>
         <div class="result2_bottom"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"></div>';
