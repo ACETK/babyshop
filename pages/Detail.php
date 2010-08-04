@@ -28,7 +28,7 @@ while($m = mysql_fetch_array($result)) {
 
 //đưa dữ liệu vào content
 $ctpl = new XTemplate('./template/incContentBox.html');
-$ctpl->assign('ContentTitle','<div class="left_part"><a class="headerNavigation" href="index.php?action=Home">Home</a> » <a class="headerNavigation" href="index.php?action=productslist&idloai=' . $dc->getMaLoai() . '">Toys by Age</a> »' . $dc->getTenDoChoi() . '<br> <span class="smallText">Model: ' . $dc->getMaDoChoi() . '</span></div><div class="right_part"><span class="productSpecialPrice">' . $dc->getDonGia() . '</span></div>');
+$ctpl->assign('ContentTitle','<div><a class="headerNavigation" href="index.php?action=productslist&idloai=' . $dc->getMaLoai() . '">Toys by Age</a> »' . $dc->getTenDoChoi() . '<br> <span class="smallText">Model: ' . $dc->getMaDoChoi() . '</span></div>');
 $ctpl->assign('ContentInfo', $Temp);
 $ctpl->parse('box');
 $Content = $ctpl->text('box');

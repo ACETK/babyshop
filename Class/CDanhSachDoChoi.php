@@ -56,8 +56,8 @@ class CDanhSachDoChoi {
                     <table cellpadding="0" cellspacing="0" border="0" class="prod_div">
                         <tr><td class="prod_padd2">
                                 <table cellpadding="0" cellspacing="0" border="0">
-                                    <tr><td class="name name2_padd"><a href="">' . $this->arrDoChoi[$i]->getTenDoChoi() . '</a></td></tr>
-                                    <tr><td class="pic2_padd"><div class="wrapper_pic_div" style="width:197px;height:157px;"><a href="" style="width:197px;height:157px;"><img src="images/sanpham/' . $this->arrDoChoi[$i]->getHinhAnh() . '" border="0" alt="' . $this->arrDoChoi[$i]->getTenDoChoi() . '" title="' . $this->arrDoChoi[$i]->getTenDoChoi() . '" width="197" height="157"  style="width:197px;height:157px;">
+                                    <tr><td class="name name2_padd"><a href="index.php?action=detail&id=' . $this->arrDoChoi[$i]->getMaDoChoi() . '">' . $this->arrDoChoi[$i]->getTenDoChoi() . '</a></td></tr>
+                                    <tr><td class="pic2_padd"><div class="wrapper_pic_div" style="width:197px;height:157px;"><a href="index.php?action=detail&id=' . $this->arrDoChoi[$i]->getMaDoChoi() . '" style="width:197px;height:157px;"><img src="images/sanpham/' . $this->arrDoChoi[$i]->getHinhAnh() . '" border="0" alt="' . $this->arrDoChoi[$i]->getTenDoChoi() . '" title="' . $this->arrDoChoi[$i]->getTenDoChoi() . '" width="197" height="157"  style="width:197px;height:157px;">
                                                     <div class="wrapper_pic_t">
                                                         <div class="wrapper_pic_r">
                                                             <div class="wrapper_pic_b">
@@ -78,7 +78,7 @@ class CDanhSachDoChoi {
                                                 <tbody>
                                                     <tr>
                                                         <td><b><font>Loại đồ chơi&nbsp;:</font></b></td>
-							<td align="right"><font>' . $loai['TenLoai'] . '</font></td>
+							<td align="right"><font><a href="index.php?action=productslist&idloai=' . $this->arrDoChoi[$i]->getMaLoai().'">' . $loai['TenLoai'] . '</a></font></td>
                                                     </tr>
                                                     <tr>
 							<td><b><font style="">Nhà sản xuất&nbsp;:</font></b></td>
