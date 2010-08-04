@@ -1,8 +1,9 @@
 <?php
 //Sử lý nghiệp vụ -- yêu cầu gán vào biến $Temp
-$Loi="";
- $Temp='
-                    <form method="post" action="" name="login">
+
+
+$Temp='
+    <form method="post" action="" >
                     <table width="100%" cellspacing="5" cellpadding="0" border="0" style="height: 150px">
                                              <tbody>
 
@@ -24,54 +25,96 @@ $Loi="";
                                                                                             
                                                                                     </tbody></table>
                                                                                     </form>';
-if(isset($_POST['ok']))
-{      
-         $u=$_POST['taikhoan'];
-         $p=$_POST['password'];
-       	 if($_POST['taikhoan'] == NULL)
-            {
-              $Temp.="Tên tài khoản không được bỏ trống </br>";}
-         if($_POST['password'] == NULL)
-            {  
-                 $Temp.= "Mật khẩu không được bỏ trống";
+session_start();
+    if(isset($_POST['ok']))
+    {
+        //// Dùng hàm addslashes() để tránh SQL injection, dùng hàm md5() để mã hóa password
+             $username = $_POST['taikhoan'] ;
+             $password =  $_POST['password']  ;
+             // Lấy thông tin của username đã nhập trong table nguoidung
+            $sql = "SELECT TenTaiKhoan,MatKhau FROM nguoidung WHERE TenTaiKhoan='$username'";
+            $result = MySQLHelper::executeQuery($sql);
+            $member = mysql_fetch_array($result);
+        // Nếu username này không tồn tại thì....
+            if($username == NULL && $password == NULL)
+                {
+                  $Temp.="Tên tài khoản và mật khẩu không được bỏ trống </br>";}
+            else{
+                if($username != $member['TenTaiKhoan']){
+                    $Temp.= "Tên tài khoản chưa có! ";
+                }else{
+                    if($password != $member['MatKhau']){
+                        $Temp.= "Sai mật khẩu";
+                    }else{
+                     // Khởi động phiên làm việc (session)
+                    $_SESSION['user'] = $member['TenTaiKhoan'];
+                    $Temp="";
+                    $Temp.='
+                     <form name = "Logout" method ="post" action = "">
+                                        <table>
+                                            <tr> <td> Chào <a href="">'.$member['TenTaiKhoan'].' </a> | <input type="submit" name="thoat" value="Thoát" title=" Đăng xuất " alt="Đăng xuất"> </td></tr>
+                                        </form>
+                                        </table>';
+                                        if(isset ($_POST['thoat'])){
+                                            if (session_destroy()){
+                                                $Temp.= "Thoát thành công!";
+                                            }
+                                       }
+                    }
+                }
             }
-         if($u!= NULL && $p!= NULL)
-            {
-              $sql="select TenTaiKhoan,MatKhau from nguoidung where TenTaiKhoan='".$u."' and MatKhau='".$p."'";
-              $result = MySQLHelper::executeQuery($sql);
-                  if(mysql_num_rows($result) == 0)
-                  {
-                      $Temp.= "Tên tài khoản hoặc mật khẩu sai, vui lòng nhập lại";
-                  }
-                  else
-                  {
-                      $row=mysql_fetch_array($result);
-//                      session_start();
-//                       session_register("tentk");
-                     session_start();
-                    if(isset ($tentk)){
-                          unset($tentk['TenTaiKhoan']);
-                     }
-                     session_register("tentk");
-                     $tentk['TenTaiKhoan'] = $row['TenTaiKhoan'];
-
-                //	   $_SESSION['level'] = $row[level];
-                       $Temp="";
-                        $Temp.='
-                            <form name = "frmLogout" method ="post" action = "">
-                            <table> 
-                            <tr> <td> Chào '.$tentk['TenTaiKhoan'].' | <a href="">Thoát </a> </td></tr>
-                               </form>
-                                 </table>';
-                       
-                        
-                   }
-
-                   
-
-          }
+               
             
-}
+                
+                
+            
+                 
+    //       	 if($_POST['taikhoan'] == NULL)
+    //            {
+    //              $Temp.="Tên tài khoản không được bỏ trống </br>";}
+    //         if($_POST['password'] == NULL)
+    //            {
+    //                 $Temp.= "Mật khẩu không được bỏ trống";
+    //            }
+    //         if($u!= NULL && $p!= NULL)
+    //            {
+    //              $sql="select TenTaiKhoan,MatKhau from nguoidung where TenTaiKhoan='".$u."' and MatKhau='".$p."'";
+    //              $result = MySQLHelper::executeQuery($sql);
+    //                  if(mysql_num_rows($result) == 0)
+    //                  {
+    //                      $Temp.= "Tên tài khoản hoặc mật khẩu sai, vui lòng nhập lại";
+    //                  }
+    //                  else
+    //                  {
+    //                      // Dùng hàm addslashes() để tránh SQL injection, dùng hàm md5() để mã hóa password
+    //
+    //                      $row=mysql_fetch_array($result);
+    //                      //bat dat phien lam viec
+    //                     session_start();
+    //                    if(isset ($tentk)){
+    //                          unset($tentk['TenTaiKhoan']);
+    //                     }
+    //                     session_register("tentk");
+    //                     $tentk['TenTaiKhoan'] = $row['TenTaiKhoan'];
+    //
+    //                //	   $_SESSION['level'] = $row[level];
+    //                       $Temp="";
+    //                        $Temp.='
+    //                            <form name = "frmLogout" method ="post" action = "">
+    //                            <table>
+    //                            <tr> <td> Chào '.$member['TenTaiKhoan'].' | <a href="">Thoát </a> </td></tr>
+    //                            </form>
+    //                            </table>';
+    //
+    //
+    //                   }
+    //
+    //
+    //
+    //          }
+
+    }
+
 
 
 

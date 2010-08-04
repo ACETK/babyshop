@@ -1,4 +1,5 @@
 <?php
+
 $Temp="";
 $Temp.='<script language="javascript"><!--
     var form = "";
@@ -114,7 +115,50 @@ $Temp.='<script language="javascript"><!--
             return true;
         }
     }
+
+function toggle_pass(passid) {
+    if (window.XMLHttpRequest) {
+        http = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        http = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    handle = document.getElementById(passid);
+    var url = "ajax_check_pass.php?";
+    if(handle.value.length > 0) {
+        var fullurl = url + "do=check_password_strength&pass=" + encodeURIComponent(handle.value);
+        http.open("GET", fullurl, true);
+        http.send(null);
+        http.onreadystatechange = statechange_password;
+    }else{
+        document.getElementById("password_strength").innerHTML = "";
+    }
+}
+
+function statechange_password() {
+    if (http.readyState == 4) {
+        var xmlObj = http.responseXML;
+        var html = xmlObj.getElementsByTagName("result").item(0).firstChild.data;
+        document.getElementById("password_strength").innerHTML = html;
+    }
+}
+
     //--></script>
+    <style type="text/css">
+    input {
+        border: 1px solid #000000;
+        padding: 5px;
+    }
+    #password_strength {
+        width: 250px;
+        background: #cccccc;
+    }
+    #password_bar {
+        font-size: 11px;
+        background: #7FFF00;
+        border: 1px solid #cccccc;
+        padding: 5px;
+    }
+</style>
     <form onsubmit="return check_form(create_account);" method="post" action="index.php?action=CASuccess" name="create_account"><input type="hidden" value="process" name="action">
     <table cellspacing="0" cellpadding="0" border="0">
         <tbody><tr>
@@ -239,7 +283,9 @@ $Temp.='<script language="javascript"><!--
                                                 </tr>
                                                 <tr>
                                                     <td class="main b_width"><strong>Mật khẩu:</strong></td>
-                                                    <td class="main width2_100"><input type="password" maxlength="40" name="password">&nbsp;<span class="inputRequirement">*</span></td>
+                                                    <td class="main width2_100"><input type="password" maxlength="40" name="password">
+                                                    &nbsp;<span class="inputRequirement">*</span></td>
+                                                 
                                                 </tr>
                                                 <tr>
                                                     <td class="main b_width"><strong>Nhập lại mật khẩu:</strong></td>
