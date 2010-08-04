@@ -96,6 +96,15 @@ class CDoChoi {
     }
 
     public function ViewDetail() {
+        $sql = 'select TenLoai from loaidochoi where maloai =' . $this->MaLoai;
+        $result = MySQLHelper::executeQuery($sql);
+        $loai = mysql_fetch_assoc($result);
+
+        $sql = 'select TenNSX from nhasanxuat where mansx =' . $this->MaNSX;
+        $result = MySQLHelper::executeQuery($sql);
+        $nsx = mysql_fetch_assoc($result);
+        mysql_free_result($result);
+
         $Temp = "";
         $Temp.='<script language="javascript"><!--
                     function popupWindow(url) {
@@ -156,7 +165,23 @@ class CDoChoi {
                                 <table cellspacing="4" cellpadding="0" border="0">
                                     <tbody>
                                         <tr>
-                                            <td class="main">Views: '.$this->SoLuotXem.'</td>
+                                            <td class="main">
+                                            <table cellspacing="0" cellpadding="0" border="0" class="listing">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><b><font>Loại đồ chơi&nbsp;:</font></b></td>
+							<td align="right"><font><a href="index.php?action=productslist&idloai=' . $this->MaLoai.'">' . $loai['TenLoai'] . '</a></font></td>
+                                                    </tr>
+                                                    <tr>
+							<td><b><font style="">Nhà sản xuất&nbsp;:</font></b></td>
+							<td align="right"><font><a href="index.php?action=productslist&idnsx=' . $this->MaNSX.'">' . $nsx['TenNSX'] . '</a></font></td>
+                                                    </tr>
+                                                    <tr>
+							<td><b><font>Số lượt xem&nbsp;:</font></b></td>
+							<td align="right"><font>' . $this->SoLuotXem . '</font></td>
+                                                    </tr>
+                                                </tbody></table>
+                                            </td>
                                         </tr>
                                     </tbody></table>
 

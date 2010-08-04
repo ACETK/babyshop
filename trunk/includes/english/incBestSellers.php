@@ -1,6 +1,6 @@
 <?php
 //Sử lý nghiệp vụ -- yêu cầu gán vào biến $Temp
-$sql = "SELECT TenDoChoi
+$sql = "SELECT dc.MaDoChoi,TenDoChoi
         FROM dochoi dc JOIN cthdxuat ct ON dc.MaDoChoi=ct.MaDoChoi
         ORDER BY SoLuong DESC,TenDoChoi";
 $result = MySQLHelper::executeQuery($sql);
@@ -8,7 +8,7 @@ $result = MySQLHelper::executeQuery($sql);
 $Temp = '<ul class="bestsellers">';
 $num = 1;
 while($row = mysql_fetch_assoc($result)){
-    $Temp .= '<li class="bg_list2"><a href=""><b>'.$num++.'.&nbsp;&nbsp;</b><font>'.$row['TenDoChoi'].'</font></a></li>';
+    $Temp .= '<li class="bg_list2"><a href="index.php?action=detail&id='.$row['MaDoChoi'].'"><b>'.$num++.'.&nbsp;&nbsp;</b><font>'.$row['TenDoChoi'].'</font></a></li>';
 }
 $Temp .= '</ul>';
     //Kết thúc nghiệp vụ
