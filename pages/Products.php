@@ -10,7 +10,7 @@ require_once 'Class/MySQLHelper.php';
 ////////////////////
 //Tạo biến phân trang
 // số sản phẩm trên một trang
-$rowsPerPage = 6;
+$productsPerPage = 6;
 // mặc định hiển thị trang 1
 $pageNum = 1;
 // nếu có $_GET['page'] thì sử dụng nó làm trang hiển thị
@@ -18,19 +18,19 @@ if(isset($_GET['page'])){
     $pageNum = $_GET['page'];
 }
 // chỉ số của dữ liệu đầu tiên
-$offset = ($pageNum - 1) * $rowsPerPage;
+$offset = ($pageNum - 1) * $productsPerPage;
 
 //////////////////
 //sử lý dữ liệu xuất
 if(isset ($_GET['idloai'])){
     $IDMaLoai = $_GET['idloai'];
-    $sql = "SELECT* FROM dochoi where MaLoai=$IDMaLoai"." LIMIT $offset, $rowsPerPage";
+    $sql = "SELECT* FROM dochoi where MaLoai=$IDMaLoai"." LIMIT $offset, $productsPerPage";
     $sql_numrows = "SELECT COUNT(*) AS NumRows FROM dochoi where MaLoai=$IDMaLoai";
     $self = "index.php?action=productslist&idloai=".$IDMaLoai;
     $ctpl->assign('ContentTitle', "Danh sách theo loại đồ chơi");
 }else if(isset ($_GET['idnsx'])){
     $IDNSX = $_GET['idnsx'];
-    $sql = "SELECT* FROM dochoi where MaNSX=$IDNSX"." LIMIT $offset, $rowsPerPage";
+    $sql = "SELECT* FROM dochoi where MaNSX=$IDNSX"." LIMIT $offset, $productsPerPage";
     $sql_numrows = "SELECT COUNT(*) AS NumRows FROM dochoi where MaNSX=$IDNSX";
     $self = "index.php?action=productslist&idloai=".$IDNSX;
     $ctpl->assign('ContentTitle', "Danh sách theo nhà sản xuất");
@@ -60,7 +60,7 @@ $row = mysql_fetch_assoc($result);
 $numrows = $row['NumRows'];
 
 // tính tổng số trang sẽ hiển thị
-$maxPage = ceil($numrows/$rowsPerPage);
+$maxPage = ceil($numrows/$productsPerPage);
 
 // hiển thị liên kết đến từng trang
 $nav  = '';

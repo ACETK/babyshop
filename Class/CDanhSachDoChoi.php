@@ -25,6 +25,10 @@ class CDanhSachDoChoi {
         }
     }
 
+    public function getSize(){
+        return count($this->arrDoChoi);
+    }
+
     public function viewList() {
         //bắt đầu bảng
         if(count($this->arrDoChoi)<1){
