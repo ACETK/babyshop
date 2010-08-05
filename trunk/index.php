@@ -84,6 +84,12 @@ if (isset($_GET['action'])) {
         case "KetQuaTimKiem":
             include 'pages/SearchResults.php';
             break;
+        case "userprofile":
+            include 'pages/UsersProfile.php';
+            break;
+        case "EditProfileSuccess":
+            include 'pages/UsersProfileSuccess.php';
+            break;
 //        case "ShoppingCart":
 //            include 'pages/ShoppingCart.php';
 //            break;

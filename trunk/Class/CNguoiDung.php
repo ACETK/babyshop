@@ -116,6 +116,119 @@ class CNguoiDung {
                     ';
         return $Temp;
     }
+    public function ViewThongTin() {
+        $Temp ="";
+        $Temp.='<form>
+    <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+            <tr>
+            <tr>
+                <td><img width="100%" height="10" border="0" alt="" src="images/pixel_trans.gif"></td>
+            </tr>
+        </tbody>
+    </table>
+    <table width="100%" cellspacing="0" cellpadding="2" border="0">
+        <tbody><tr>
+                <td class="main indent_2"><b>Thông tin cá nhân:</b></td>
+
+            </tr>
+        </tbody>
+    </table>
+    <div class="wrapper_pic2_t infoBox_">
+        <div class="wrapper_pic2_r">
+            <div class="wrapper_pic2_b">
+                <div class="wrapper_pic2_l">
+                    <div class="wrapper_pic2_tl s_width2_100">
+                        <div class="wrapper_pic2_tr">
+                            <div class="wrapper_pic2_bl">
+                                <div class="wrapper_pic2_br wrapper_pic2_padd">
+                                    <div class="s_width2_100">
+                                        <table cellspacing="4" cellpadding="2" border="0">
+                                            <tbody><tr>
+                                                    <td class="main b_width"><strong>Giới tính:</strong></td>
+                                                    <td class="main radio">'.$this->GioiTinh.'  </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="main b_width"><strong>Họ và tên:</strong></td>
+                                                    <td class="main width2_100">'.$this->TenNguoiDung.'</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="main b_width"><strong>Ngày sinh:</strong></td>
+                                                    <td class="main width2_100">'.$this->NgaySinh.'</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="main b_width"><strong>E-Mail :</strong></td>
+                                                  <td class="main width2_100">'.$this->Email.'</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div style="padding: 0px 0px 4px;"><img width="1" height="1" border="0" alt="" src="images/spacer.gif"></div>
+    <table cellspacing="0" cellpadding="0" border="0">
+        <tbody><tr>
+                <td class="main indent_2"><b>Thông tin liên hệ:</b></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="wrapper_pic2_t infoBox_">
+        <div class="wrapper_pic2_r">
+            <div class="wrapper_pic2_b">
+                <div class="wrapper_pic2_l">
+                    <div class="wrapper_pic2_tl s_width2_100">
+                        <div class="wrapper_pic2_tr">
+                            <div class="wrapper_pic2_bl">
+                                <div class="wrapper_pic2_br wrapper_pic2_padd">
+                                    <div class="s_width2_100">
+                                        <table cellspacing="4" cellpadding="2" border="0">
+                                            <tbody><tr>
+                                                    <td class="main b_width"><strong>Điện thoại:</strong></td>
+                                                    <td class="main width2_100">'.$this->DienThoai.'</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="main b_width"><strong>Địa chỉ:</strong></td>
+                                                    <td class="main width2_100">'.$this->DiaChi.'</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="padding: 0px 0px 4px;"><img width="1" height="1" border="0" alt="" src="images/spacer.gif"></div>
+    <table cellspacing="5" cellpadding="0" border="0">
+        <tbody><tr><td>
+                    <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                        <tbody><tr>
+                                <td><a href="index.php?action=userprofile">Cập nhật</a></td>
+                                <td><a href="index.php?action=Home">Trở về trang chủ></a></td>
+                            </tr>
+                        </tbody></table>
+
+                </td></tr>
+        </tbody></table>
+</form>  ';
+        return $Temp;
+    }
+
 
 }
 ?>
