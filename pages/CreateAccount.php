@@ -7,10 +7,33 @@ $Temp.='<script language="javascript"><!--
     var error = false;
     var error_message = "";
 
+    function sosanhtk(field_name,message){
+        if (form.elements[field_name] && (form.elements[field_name].type != "hidden")){
+        var field_value = form.elements[field_name].value;
+        var valuesosanh= Array();
+                    ';
+                    $sql = "SELECT TenTaiKhoan FROM nguoidung";
+                    $result = MySQLHelper::executeQuery($sql);
+                    $i=0;
+                    while($m = mysql_fetch_array($result)){
+                        $Temp.='valuesosanh['.$i.']="'.$m['TenTaiKhoan'].'";';
+                        $i++;
+                    }
+                  $Temp.='
+                for(var i=0;i<valuesosanh.length;i++){
+                    if(valuesosanh[i] == field_value)
+                    {
+
+                        error_message = error_message + "*" + message + "\n";
+                        error = true;
+
+                    }
+                }
+       }
+    }
     function check_input(field_name, field_size, message) {
         if (form.elements[field_name] && (form.elements[field_name].type != "hidden")) {
             var field_value = form.elements[field_name].value;
-
             if (field_value.length < field_size) {
                 error_message = error_message + "* " + message + "\n";
                 error = true;
@@ -18,9 +41,9 @@ $Temp.='<script language="javascript"><!--
         }
     }
 
+
     function check_radio(field_name, message) {
         var isChecked = false;
-
         if (form.elements[field_name] && (form.elements[field_name].type != "hidden")) {
             var radio = form.elements[field_name];
 
@@ -64,90 +87,90 @@ $Temp.='<script language="javascript"><!--
         }
     }
 
-    function check_password_new(field_name_1, field_name_2, field_name_3, field_size, message_1, message_2, message_3) {
-        if (form.elements[field_name_1] && (form.elements[field_name_1].type != "hidden")) {
-            var password_current = form.elements[field_name_1].value;
-            var password_new = form.elements[field_name_2].value;
-            var password_confirmation = form.elements[field_name_3].value;
+function check_password_new(field_name_1, field_name_2, field_name_3, field_size, message_1, message_2, message_3) {
+if (form.elements[field_name_1] && (form.elements[field_name_1].type != "hidden")) {
+    var password_current = form.elements[field_name_1].value;
+    var password_new = form.elements[field_name_2].value;
+    var password_confirmation = form.elements[field_name_3].value;
 
-            if (password_current.length < field_size) {
-                error_message = error_message + "* " + message_1 + "\n";
-                error = true;
-            } else if (password_new.length < field_size) {
-                error_message = error_message + "* " + message_2 + "\n";
-                error = true;
-            } else if (password_new != password_confirmation) {
-                error_message = error_message + "* " + message_3 + "\n";
-                error = true;
-            }
-        }
+    if (password_current.length < field_size) {
+        error_message = error_message + "* " + message_1 + "\n";
+        error = true;
+    } else if (password_new.length < field_size) {
+        error_message = error_message + "* " + message_2 + "\n";
+        error = true;
+    } else if (password_new != password_confirmation) {
+        error_message = error_message + "* " + message_3 + "\n";
+        error = true;
     }
+}
+}
 
-    function check_form(form_name) {
-        if (submitted == true) {
-            alert("Thông tin đăng kí đã được gởi. Vui lòng đợi trong giây lát.");
-            return false;
-        }
+function check_form(form_name) {
+if (submitted == true) {
+    alert("Thông tin đăng kí đã được gởi. Vui lòng đợi trong giây lát.");
+    return false;
+}
 
-        error = false;
-        form = form_name;
-        error_message = "Có lỗi đã xảy ra trong quá trình đăng kí.\n\nVui lòng kiểm tra nhưng thông tin sau:\n\n";
+error = false;
+form = form_name;
+error_message = "Có lỗi đã xảy ra trong quá trình đăng kí.\n\nVui lòng kiểm tra nhưng thông tin sau:\n\n";
+sosanhtk("taikhoan","Tài khoản đã tồn tại");
+check_radio("gender", "Xin vui lòng chọn giới tính.");
 
-        check_radio("gender", "Xin vui lòng chọn giới tính.");
+check_input("hoten", 2, "Họ tên ít nhất 2 ký tự .");
 
-        check_input("hoten", 2, "Họ tên ít nhất 2 ký tự .");
+check_input("dob", 10, "Vui lòng nhập ngày sinh theo định dạng: MM/DD/YYYY (VD: 05/21/1970)");
 
-        check_input("dob", 10, "Vui lòng nhập ngày sinh theo định dạng: MM/DD/YYYY (VD: 05/21/1970)");
+check_input("email_address", 6, "Địa chỉ email ít nhất 6 ký tự.");
+check_input("diachi", 5, "Địa chỉ ít nhất 5 ký tự");
 
-        check_input("email_address", 6, "Địa chỉ email ít nhất 6 ký tự.");
-        check_input("diachi", 5, "Địa chỉ ít nhất 5 ký tự");
+check_input("telephone", 3, "Điện thoại ít nhất 3 kí tụ.");
+check_input("taikhoan", 5, "Tài khoản ít nhất 5 ký tự .");
+check_password("password", "confirmation", 5, "Mật khẩu ít nhất 5 ký tự", "Mật khẩu nhập lại phải giống mật khẩu ban đầu.");
+check_password_new("password_current", "password_new", "password_confirmation", 5, "Mật khẩu cũ ít nhất 5 ký tự.", "Mật khẩu mới cũng ít nhất 5 ký tự.", "2 mật khẩu mới phải trùng nhau.");
 
-        check_input("telephone", 3, "Điện thoại ít nhất 3 kí tụ.");
-        check_input("taikhoan", 5, "Tài khoản ít nhất 5 ký tự .");
-        check_password("password", "confirmation", 5, "Mật khẩu ít nhất 5 ký tự", "Mật khẩu nhập lại phải giống mật khẩu ban đầu.");
-        check_password_new("password_current", "password_new", "password_confirmation", 5, "Mật khẩu cũ ít nhất 5 ký tự.", "Mật khẩu mới cũng ít nhất 5 ký tự.", "2 mật khẩu mới phải trùng nhau.");
-
-        if (error == true) {
-            alert(error_message);
-            return false;
-        } else {
-            submitted = true;
-            return true;
-        }
-    }
+if (error == true) {
+    alert(error_message);
+    return false;
+} else {
+    submitted = true;
+    return true;
+}
+}
 
 function toggle_pass(passid) {
-    if (window.XMLHttpRequest) {
-        http = new XMLHttpRequest();
-    } else if (window.ActiveXObject) {
-        http = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    handle = document.getElementById(passid);
-    var url = "ajax_check_pass.php?";
-    if(handle.value.length > 0) {
-        var fullurl = url + "do=check_password_strength&pass=" + encodeURIComponent(handle.value);
-        http.open("GET", fullurl, true);
-        http.send(null);
-        http.onreadystatechange = statechange_password;
-    }else{
-        document.getElementById("password_strength").innerHTML = "";
-    }
+if (window.XMLHttpRequest) {
+    http = new XMLHttpRequest();
+} else if (window.ActiveXObject) {
+    http = new ActiveXObject("Microsoft.XMLHTTP");
+}
+handle = document.getElementById(passid);
+var url = "ajax_check_pass.php?";
+if(handle.value.length > 0) {
+    var fullurl = url + "do=check_password_strength&pass=" + encodeURIComponent(handle.value);
+    http.open("GET", fullurl, true);
+    http.send(null);
+    http.onreadystatechange = statechange_password;
+}else{
+    document.getElementById("password_strength").innerHTML = "";
+}
 }
 
 function statechange_password() {
-    if (http.readyState == 4) {
-        var xmlObj = http.responseXML;
-        var html = xmlObj.getElementsByTagName("result").item(0).firstChild.data;
-        document.getElementById("password_strength").innerHTML = html;
-    }
+if (http.readyState == 4) {
+    var xmlObj = http.responseXML;
+    var html = xmlObj.getElementsByTagName("result").item(0).firstChild.data;
+    document.getElementById("password_strength").innerHTML = html;
+}
 }
 
-    //--></script>
-    <form onsubmit="return check_form(create_account);" method="post" action="index.php?action=CASuccess" name="create_account"><input type="hidden" value="process" name="action">
+//--></script>
+<form onsubmit="return check_form(create_account);" method="post" action="index.php?action=CASuccess" name="create_account"><input type="hidden" value="process" name="action">
     <table cellspacing="0" cellpadding="0" border="0">
         <tbody><tr>
                 <td class="smallText"><br>
-                    <font color="#ff0000"><small><b>Chú ý:</b></small></font><small></small> nếu bạn đã có tài khoản vui lòng đăng nhập lại tại <a href="index.php?action=LogIn"><u>Trang đăng nhập</u></a>.</td>
+                    <font color="#ff0000"><small><b>Chú ý:</b></small></font><small></small> nếu bạn đã có tài khoản vui lòng đăng nhập ô bên phải.</td>
             </tr>
             <tr>
                 <td><img width="100%" height="10" border="0" alt="" src="images/pixel_trans.gif"></td>
@@ -157,7 +180,7 @@ function statechange_password() {
     <table width="100%" cellspacing="0" cellpadding="2" border="0">
         <tbody><tr>
                 <td class="main indent_2"><b>Thông tin cá nhân:</b></td>
-                <td align="right" class="inputRequirement">* Required information</td>
+                <td align="right" class="inputRequirement">* Thông tin bắt buộc</td>
             </tr>
         </tbody>
     </table>
@@ -268,8 +291,8 @@ function statechange_password() {
                                                 <tr>
                                                     <td class="main b_width"><strong>Mật khẩu:</strong></td>
                                                     <td class="main width2_100"><input type="password" maxlength="40" name="password">
-                                                    &nbsp;<span class="inputRequirement">*</span></td>
-                                                 
+                                                        &nbsp;<span class="inputRequirement">*</span></td>
+
                                                 </tr>
                                                 <tr>
                                                     <td class="main b_width"><strong>Nhập lại mật khẩu:</strong></td>

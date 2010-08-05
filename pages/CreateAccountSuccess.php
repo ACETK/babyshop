@@ -17,12 +17,14 @@ $thang = substr($ns,3,2);
 $ngay = substr($ns,0,2);
 $nam = substr($ns,6,4);
 $ntn = $nam."-".$thang."-". $ngay;
-$DK->setTenTaiKhoan($tk);
-$sql = sprintf("INSERT INTO nguoidung (TenTaiKhoan, TenNguoiDung, MatKhau,NgaySinh,GioiTinh,DiaChi,DienThoai,Email) VALUES ('%s', '%s','%s', '%s', '%s','%s','%s', '%s')",$tk,$ht,$mk,$ntn,$gt,$dc,$dt,$em);
-$result = MySQLHelper::executeQuery($sql);
-if($result==1){
-    $Temp .= $DK->View();
-}
+        $DK->setTenTaiKhoan($tk);
+        $sql = sprintf("INSERT INTO nguoidung (TenTaiKhoan, TenNguoiDung, MatKhau,NgaySinh,GioiTinh,DiaChi,DienThoai,Email) VALUES ('%s', '%s','%s', '%s', '%s','%s','%s', '%s')",$tk,$ht,$mk,$ntn,$gt,$dc,$dt,$em);
+        $result = MySQLHelper::executeQuery($sql);
+        if($result==1){
+            $Temp .= $DK->View();
+        }
+
+
 ///////////////////////////
 
 
