@@ -1,5 +1,10 @@
 <!-- BEGIN: searchbox -->
-<script language="javascript"><!--
+<script type="text/javascript" language="javascript">
+    function isDate(dateStr) {
+        var re = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{2,4})$/;
+        if (re.test(dateStr)) return true;
+        return false;
+    }
     function check_form() {
         var error_message = "Có lỗi xãy ra trong quá trình tìm kiếm.\n\nVui lòng xem lại những thông tin dưới đây:\n\n";
         var error_found = false;
@@ -10,30 +15,29 @@
         var pto = document.advanced_search.pto.value;
         var pfrom_float;
         var pto_float;
+        var re = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4,4})$/;
 
-        if ((dfrom.length > 0) && (dfrom != 'dd/mm/yyyy')) {
-            if (!IsValidDate(dfrom, 'dd/mm/yyyy')) {
-                error_message = error_message + "* Định dạng 'Ngày nhập từ' phải là dd/mm/yyyy (vd: 22/10/1989).\n";
+        if(dfrom != 'dd/mm/yyyy')
+            if ( !re.test(dfrom)) {
+                error_message = error_message + "* Định dạng 'Ngày nhập từ' phải là dd/mm/yyyy (vd: 22/7/2010).\n";
                 error_field = document.advanced_search.dfrom;
                 error_found = true;
             }
-        }
 
-        if ((dto.length > 0) && (dto != 'dd/mm/yyyy')) {
-            if (!IsValidDate(dto, 'dd/mm/yyyy')) {
-                error_message = error_message + "* Định dạng 'Ngày nhập đến' phải là dd/mm/yyyy (vd: 12/02/1990).\n";
+        if(dto != 'dd/mm/yyyy')
+            if (!re.test(dto)) {
+                error_message = error_message + "* Định dạng 'Ngày nhập đến' phải là dd/mm/yyyy (vd: 7/7/2010).\n";
                 error_field = document.advanced_search.dto;
                 error_found = true;
             }
-        }
-
-        if ((dfrom.length > 0) && (dfrom != 'dd/mm/yyyy') && (IsValidDate(dfrom, 'dd/mm/yyyy')) && (dto.length > 0) && (dto != 'dd/mm/yyyy') && (IsValidDate(dto, 'dd/mm/yyyy'))) {
-            if (!CheckDateRange(document.advanced_search.dfrom, document.advanced_search.dto)) {
-                error_message = error_message + "* 'Ngày nhập từ' phải sau hoặc bằng 'Ngày nhập đến'.\n";
-                error_field = document.advanced_search.dto;
-                error_found = true;
-            }
-        }
+//
+//        if ((dfrom.length > 0) && (dfrom != 'dd/mm/yyyy') && (IsValidDate(dfrom, 'dd/mm/yyyy')) && (dto.length > 0) && (dto != 'dd/mm/yyyy') && (IsValidDate(dto, 'dd/mm/yyyy'))) {
+//            if (!CheckDateRange(document.advanced_search.dfrom, document.advanced_search.dto)) {
+//                error_message = error_message + "* 'Ngày nhập từ' phải sau hoặc bằng 'Ngày nhập đến'.\n";
+//                error_field = document.advanced_search.dto;
+//                error_found = true;
+//            }
+//        }
 
         if (pfrom.length > 0) {
             pfrom_float = parseFloat(pfrom);
@@ -79,7 +83,7 @@
     function popupWindow(url) {
         window.open(url,'popupWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,height=515,width=485,screenX=150,screenY=150,top=150,left=150')
     }
-    //--></script>
+</script>
 <form name="advanced_search" action="index.php" method="get" onSubmit="return check_form(this);">
     <input type="hidden" name="action" value="KetQuaTimKiem" />
     <div class="wrapper_pic2_t infoBox_">
@@ -164,11 +168,11 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="fieldKey">Ngày nhập từ:</td>
-                                                    <td class="fieldValue"><input type="text" onfocus="if(this.value =='dd/mm/yyyy' ) this.value=''" onblur="if(this.value=='') this.value='dd/mm/yyyy'" value="dd/mm/yyyy" name="dfrom"></td>
+                                                    <td class="fieldValue"><input type="text"  value="dd/mm/yyyy" name="dfrom"></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="fieldKey">Ngày nhập đến:</td>
-                                                    <td class="fieldValue"><input type="text" onfocus="if(this.value =='dd/mm/yyyy' ) this.value=''" onblur="if(this.value=='') this.value='dd/mm/yyyy'" value="dd/mm/yyyy" name="dto"></td>
+                                                    <td class="fieldValue"><input type="text"  value="dd/mm/yyyy" name="dto"></td>
                                                 </tr>
                                             </tbody></table>
 

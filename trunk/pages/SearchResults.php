@@ -3,46 +3,63 @@ require_once 'Class/CDoChoi.php';
 require_once 'Class/CDanhSachDoChoi.php';
 require_once 'Class/MySQLHelper.php';
 
+////////////////////////////////
+//Lấy dữ liệu, tạo câu truy vấn
+$sql = "SELECT * FROM dochoi WHERE 1 ";
+if (isset($_GET['MaLoai']) && $_GET['MaLoai'] != NULL)
+    $sql .= ' AND MaLoai = ' . $_GET['MaLoai'];
+if (isset($_GET['MaNSX']) && $_GET['MaNSX'] != NULL)
+    $sql .= ' AND MaNSX = ' . $_GET['MaNSX'];
+if (isset($_GET['tukhoa']) && $_GET['tukhoa'] != NULL) {
+    if (isset($_GET['TimThongTin'])) {
+        $sql .= " AND ThongTin LIKE '%" . $_GET['tukhoa'] . "%'";
+    } else {
+        $sql .= " AND TenDoChoi LIKE '%" . $_GET['tukhoa'] . "%'";
+    }
+}
+if (isset($_GET['pfrom']) && isset($_GET['pto'])) {
+    if ($_GET['pfrom'] != NULL && $_GET['pto'] != NULL) {
+        $sql .= " AND DonGia BETWEEN " . $_GET['pfrom'] . " AND " . $_GET['pto'];
+    } else if ($_GET['pfrom'] != NULL && $_GET['pto'] == NULL) {
+        $sql .= " AND DonGia > " . $_GET['pfrom'];
+    } else if ($_GET['pfrom'] == NULL && $_GET['pto'] != NULL) {
+        $sql .= " AND DonGia < " . $_GET['pto'];
+    }
+}
+if (isset($_GET['dfrom']) && isset($_GET['dto']) && ($_GET['dfrom']!="dd/mm/yyyy" || $_GET['dto']!="dd/mm/yyyy")) {
+    $join = " dochoi dc JOIN cthdnhap ct ON dc.madochoi=ct.madochoi JOIN hdnhap hd ON ct.sohdn=hd.sohdn ";
+    $sql = str_replace("dochoi", $join, $sql);
+    $dfrom = $_GET['dfrom'];
+    $dto = $_GET['dto'];
+    $dfrom = explode("/", $dfrom);
+    $dfrom = $dfrom[2]."-".$dfrom[1]."-".$dfrom[0];
+    $dto = explode("/", $dto);
+    $dto = $dto[2]."-".$dto[1]."-".$dto[0];
+
+    if ($dfrom != "yyyy-mm-dd" && $dto != "yyyy-mm-dd") {
+        $sql .= " AND NgayNhap BETWEEN '$dfrom' AND '$dto'";
+    } else if ($dfrom != "yyyy-mm-dd" && $dto == "yyyy-mm-dd") {
+        $sql .= " AND NgayNhap > '$dfrom'";
+    } else if ($dfrom == "yyyy-mm-dd" && $dto != "yyyy-mm-dd") {
+        $sql .= " AND NgayNhap < '$dto'";
+    }
+    $sql.= " GROUP BY dc.madochoi ";
+}
+
 ////////////////////
-//Tạo biến phân trang
+// Bắt đầu phân trang
 // số sản phẩm trên một trang
-$productsPerPage = 2;
+$productsPerPage = 6;
 // mặc định hiển thị trang 1
 $pageNum = 1;
 // nếu có $_GET['page'] thì sử dụng nó làm trang hiển thị
-if(isset($_REQUEST['page'])){
-    $pageNum = $_REQUEST['page'];
-}
+if(isset($_GET['page']))  $pageNum = $_GET['page'];
 // chỉ số của dữ liệu đầu tiên
 $offset = ($pageNum - 1) * $productsPerPage;
 
-$sql = "SELECT * FROM dochoi WHERE 1 ";
-if (isset($_REQUEST['MaLoai']) && $_REQUEST['MaLoai'] != NULL)
-    $sql .= ' AND MaLoai = ' . $_REQUEST['MaLoai'];
-if (isset($_REQUEST['MaNSX']) && $_REQUEST['MaNSX'] != NULL)
-    $sql .= ' AND MaNSX = ' . $_REQUEST['MaNSX'];
-if (isset($_REQUEST['tukhoa']) && $_REQUEST['tukhoa'] != NULL) {
-    if (isset($_REQUEST['TimThongTin'])) {
-        $sql .= " AND ThongTin LIKE '%" . $_REQUEST['tukhoa'] . "%'";
-    } else {
-        $sql .= " AND TenDoChoi LIKE '%" . $_REQUEST['tukhoa'] . "%'";
-    }
-}
-if (isset($_REQUEST['pfrom']) && isset($_REQUEST['pto'])) {
-    if ($_REQUEST['pfrom'] != NULL && $_REQUEST['pto'] != NULL) {
-        $sql .= " AND DonGia BETWEEN " . $_REQUEST['pfrom'] . " AND " . $_REQUEST['pto'];
-    } else if ($_REQUEST['pfrom'] != NULL && $_REQUEST['pto'] == NULL) {
-        $sql .= " AND DonGia > " . $_REQUEST['pfrom'];
-    } else if ($_REQUEST['pfrom'] == NULL && $_REQUEST['pto'] != NULL) {
-        $sql .= " AND DonGia < " . $_REQUEST['pto'];
-    }
-}
-
-$sql .= " LIMIT $offset,$productsPerPage";
-//echo $sql;
-
-$result = MySQLHelper::executeQuery($sql);
-$Temp = "";
+/////////////
+//đổ dữ liệu vào class
+$result = MySQLHelper::executeQuery($sql." LIMIT $offset,$productsPerPage");
 $dsach = new CDanhSachDoChoi();
 while ($row = mysql_fetch_assoc($result)) {
     $DC = new CDoChoi();
@@ -56,19 +73,22 @@ while ($row = mysql_fetch_assoc($result)) {
     $DC->setSoLuotXem($row['SoLuotXem']);
     $dsach->add($DC);
 }
-mysql_free_result($result);
 
+//đếm tổng số sản phẩm tìm được
 $sql_numrows = str_replace('*', ' COUNT(*) AS NumRows ',$sql);
-$self = "index.php?action=KetQuaTimKiem";
+$sql_numrows = str_replace(' GROUP BY dc.madochoi ', '',$sql_numrows);
 $result = MySQLHelper::executeQuery($sql_numrows);
 $row = mysql_fetch_assoc($result);
-$numrows = $row['NumRows'];
-
+$numproducts = $row['NumRows'];
+mysql_free_result($result);
 // tính tổng số trang sẽ hiển thị
-$maxPage = ceil($numrows/$productsPerPage);
-// hiển thị liên kết đến từng trang
-$nav  = '';
+$maxPage = ceil($numproducts/$productsPerPage);
+//tạo đường dẫn cho link phân trang
+$self = "index.php".str_replace($_SERVER['PHP_SELF'], '',$_SERVER['REQUEST_URI']);
 
+//Bắt đầu tạo link phân trang
+// biến giữ các link liên kết đến từng trang
+$nav  = '';
 for($page = 1; $page <= $maxPage; $page++){
    if ($page == $pageNum){
       $nav .= " $page &nbsp;"; // khong can tao link cho trang hien hanh
@@ -78,45 +98,50 @@ for($page = 1; $page <= $maxPage; $page++){
    }
 }
 
-// tao lien ket den trang truoc & trang sau, trang dau, trang cuoi
+// tạo liên kết đến trang: trước, sau, đầu, cuối
 if ($pageNum > 1){
    $page  = $pageNum - 1;
    $prev  = " <a class=\"pageResults\" href=\"$self&page=$page\">[Trước]</a> ";
-
    $first = " <a class=\"pageResults\" href=\"$self&page=1\">[Đầu]</a> ";
 }else{
-   $prev  = '&nbsp;'; // dang o trang 1, khong can in lien ket trang truoc
-   $first = '&nbsp;'; // va lien ket trang dau
+   $prev  = ''; // Đang ở trang đầu, ko cần liên kết đến trang trước
+   $first = ''; //  và trang đầu
 }
 
 if ($pageNum < $maxPage){
    $page = $pageNum + 1;
    $next = " <a class=\"pageResults\" href=\"$self&page=$page\">[Tiếp]</a> ";
-
    $last = " <a class=\"pageResults\" href=\"$self&page=$maxPage\">[Cuối]</a> ";
 }else{
-   $next = '&nbsp;'; // dang o trang cuoi, khong can in lien ket trang ke
-   $last = '&nbsp;'; // va lien ket trang cuoi
+   $next = ''; // Đang ở trang cuối, ko cần liên kết đến trang sau
+   $last = ''; // va trang cuối
 }
 
-$Temp .= $dsach->viewList();
-//$Temp .= divPage($numrows, $pageNum, $div, $productsPerPage);
-
+///////////////////////////////
+//Hoàn tất, xuất dữ liệu
+$Temp = "";
 if($maxPage > 1)
-$Temp.=  '<div class="result2_top"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"></div>
-        <table cellspacing="0" cellpadding="0" border="0" class="result result_bottom_padd">
-        <tbody><tr>
-                <td align="right" class="result_right">Trang: &nbsp;'.$first .'&nbsp;'. $prev .'&nbsp;'. $nav .'&nbsp;'. $next .'&nbsp;'. $last.'</td>
-            </tr>
-        </tbody></table>
-        <div class="result2_bottom"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"></div>';
-echo $_REQUEST['page'];
-////////////////
-//xử lý giao diện
-/** Khởi tạo content */
+    $Temp.='<div class="result2_top"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"></div>
+            <table cellspacing="0" cellpadding="0" border="0" class="result result_bottom_padd">
+            <tbody><tr>
+                    <td align="right" class="result_right">Trang: &nbsp;'.$first .'&nbsp;'. $prev .'&nbsp;'. $nav .'&nbsp;'. $next .'&nbsp;'. $last.'</td>
+                </tr>
+            </tbody></table>
+            <div class="result2_bottom"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"></div>';
+$Temp .= $dsach->viewList();
+if($maxPage > 1)
+    $Temp.='<div class="result2_top"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"></div>
+            <table cellspacing="0" cellpadding="0" border="0" class="result result_bottom_padd">
+            <tbody><tr>
+                    <td align="right" class="result_right">Trang: &nbsp;'.$first .'&nbsp;'. $prev .'&nbsp;'. $nav .'&nbsp;'. $next .'&nbsp;'. $last.'</td>
+                </tr>
+            </tbody></table>
+            <div class="result2_bottom"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"></div>';
+
+////////////////////////////////
+//Đưa dữ liệu vào trang chính
 $ctpl = new XTemplate('./template/incContentBox.html');
-$ctpl->assign('ContentTitle', "Kết quả tìm kiếm");
-//đưa dữ liệu vào content
+$ctpl->assign('ContentTitle', 'Đã tìm được '.$numproducts.' kết quả liên quan');
 $ctpl->assign('ContentInfo', $Temp);
 $ctpl->parse('box');
 $Content = $ctpl->text('box');
@@ -126,8 +151,9 @@ $Content .= '<div style="padding: 0px 0px 4px;"><img height="1" border="0" width
             <tbody>
                 <tr>
                     <td align="right" class="main">
-                        <a href="javascript:window.history.back(-1);"><img height="19" border="0" width="71" title=" Back " alt="Back" src="includes/english/images/buttons/button_back1.gif" style="width: 71px; height: 19px;"></a>
+                        <a href="index.php?action=TimKiem"><img height="19" border="0" width="71" title=" Back " alt="Back" src="includes/english/images/buttons/button_back1.gif" style="width: 71px; height: 19px;"></a>
                     </td></tr>
             </tbody></table>';
-/** Kết thúc content */
 ?>
+
+

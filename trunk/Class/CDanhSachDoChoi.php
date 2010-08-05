@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Description of CDanhSachDoChoi
  *
@@ -25,18 +24,79 @@ class CDanhSachDoChoi {
         }
     }
 
-    public function getSize(){
+    public function getSize() {
         return count($this->arrDoChoi);
     }
 
     public function viewList() {
         //bắt đầu bảng
-        if(count($this->arrDoChoi)<1){
+        if (count($this->arrDoChoi) < 1) {
             $Temp = '<table cellspacing="0" cellpadding="0" class="main">
 					<tbody><tr><td style="padding: 25px 20px 20px;">Chưa có sản phẩm nào trong chuyên mục. Vui lòng quay lại sau.</td></tr>
 				</tbody></table>';
             return $Temp;
         }
+
+        if (count($this->arrDoChoi) == 1) {
+            $sql = 'select TenLoai from loaidochoi where maloai =' . $this->arrDoChoi[0]->getMaLoai();
+            $result = MySQLHelper::executeQuery($sql);
+            $loai = mysql_fetch_assoc($result);
+
+            $sql = 'select TenNSX from nhasanxuat where mansx =' . $this->arrDoChoi[0]->getMaNSX();
+            $result = MySQLHelper::executeQuery($sql);
+            $nsx = mysql_fetch_assoc($result);
+            mysql_free_result($result);
+            $Temp = '<table cellspacing="0" cellpadding="0" border="0" width="" class="tableBox_output_table">
+                        <tbody><tr>
+                                <td class="main">
+                                    <table cellpadding="0" cellspacing="0" border="0" class="prod_div">
+                                            <tr><td class="prod_padd2">
+                                                    <table cellpadding="0" cellspacing="0" border="0">
+                                                        <tr><td class="name name2_padd"><a href="index.php?action=detail&id=' . $this->arrDoChoi[0]->getMaDoChoi() . '">' . $this->arrDoChoi[0]->getTenDoChoi() . '</a></td></tr>
+                                                        <tr><td class="pic2_padd"><div class="wrapper_pic_div" style="width:197px;height:157px;"><a href="index.php?action=detail&id=' . $this->arrDoChoi[0]->getMaDoChoi() . '" style="width:197px;height:157px;"><img src="images/sanpham/' . $this->arrDoChoi[0]->getHinhAnh() . '" border="0" alt="' . $this->arrDoChoi[0]->getTenDoChoi() . '" title="' . $this->arrDoChoi[0]->getTenDoChoi() . '" width="197" height="157"  style="width:197px;height:157px;">
+                                                                        <div class="wrapper_pic_t">
+                                                                            <div class="wrapper_pic_r">
+                                                                                <div class="wrapper_pic_b">
+                                                                                    <div class="wrapper_pic_l">
+                                                                                        <div class="wrapper_pic_tl">
+                                                                                            <div class="wrapper_pic_tr">
+                                                                                                <div class="wrapper_pic_bl">
+                                                                                                    <div class="wrapper_pic_br" style="width:197px;height:157px;"></div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div></a></div></td></tr>
+                                                        <tr><td class="listing2_padd">
+                                                                <table cellspacing="0" cellpadding="0" border="0" class="listing">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td><b><font>Loại đồ chơi&nbsp;:</font></b></td>
+                                                                            <td align="right"><font><a href="index.php?action=productslist&idloai=' . $this->arrDoChoi[0]->getMaLoai() . '">' . $loai['TenLoai'] . '</a></font></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><b><font style="">Nhà sản xuất&nbsp;:</font></b></td>
+                                                                            <td align="right"><font><a href="index.php?action=productslist&idnsx=' . $this->arrDoChoi[0]->getMaNSX() . '">' . $nsx['TenNSX'] . '</a></font></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><b><font>Số lượt xem&nbsp;:</font></b></td>
+                                                                            <td align="right"><font>' . $this->arrDoChoi[0]->getSoLuotXem() . '</font></td>
+                                                                        </tr>
+                                                                    </tbody></table>
+                                                            </td></tr>
+                                                        <tr><td class="price2_padd"><span class="productSpecialPrice">' . number_format($this->arrDoChoi[0]->getDonGia()) . '&nbsp;VNĐ</span></td></tr>
+                                                        <tr><td class="button2_padd button2_marg"><a href="index.php?action=detail&id=' . $this->arrDoChoi[0]->getMaDoChoi() . '" ><img src="template/images/english/button_details.gif" border="0" alt="" width="81" height="19"  class="btn1"></a> <a href="" ><img src="template/images/english/button_add_to_cart1.gif" border="0" alt="" width="104" height="19"  class="btn2"></a></td></tr>
+                                                    </table>
+                                                </td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody></table>';
+            return $Temp;
+        }
+
         $Temp = '
          <table border="0" width="" cellspacing="0" cellpadding="0" class="tableBox_output_table">
             <tr><td  class="main">
@@ -88,11 +148,11 @@ class CDanhSachDoChoi {
                                                 <tbody>
                                                     <tr>
                                                         <td><b><font>Loại đồ chơi&nbsp;:</font></b></td>
-							<td align="right"><font><a href="index.php?action=productslist&idloai=' . $this->arrDoChoi[$i]->getMaLoai().'">' . $loai['TenLoai'] . '</a></font></td>
+							<td align="right"><font><a href="index.php?action=productslist&idloai=' . $this->arrDoChoi[$i]->getMaLoai() . '">' . $loai['TenLoai'] . '</a></font></td>
                                                     </tr>
                                                     <tr>
 							<td><b><font style="">Nhà sản xuất&nbsp;:</font></b></td>
-							<td align="right"><font><a href="index.php?action=productslist&idnsx=' . $this->arrDoChoi[$i]->getMaNSX().'">' . $nsx['TenNSX'] . '</a></font></td>
+							<td align="right"><font><a href="index.php?action=productslist&idnsx=' . $this->arrDoChoi[$i]->getMaNSX() . '">' . $nsx['TenNSX'] . '</a></font></td>
                                                     </tr>
                                                     <tr>
 							<td><b><font>Số lượt xem&nbsp;:</font></b></td>
@@ -131,3 +191,5 @@ class CDanhSachDoChoi {
 
 }
 ?>
+
+

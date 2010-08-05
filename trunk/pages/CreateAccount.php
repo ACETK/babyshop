@@ -1,5 +1,4 @@
 <?php
-
 $Temp="";
 $Temp.='<script language="javascript"><!--
     var form = "";
