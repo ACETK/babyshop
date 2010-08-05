@@ -103,9 +103,9 @@ if (isset($_GET['action'])) {
 //        case "Conditions":
 //            include 'pages/Conditions.php';
 //            break;
-//        case "PasswordForgotten":
-//            include 'pages/PasswordForgotten.php';
-//            break;
+        case "PasswordForgotten":
+            include 'pages/Password_forgotten.php';
+            break;
 
         default:
             $tpl->assign('PagesName', 'pages/HomePage.html');
