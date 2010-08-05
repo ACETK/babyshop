@@ -62,7 +62,7 @@ if ( !isset($_SESSION['isLogin']) || $_SESSION['isLogin'] == 0) {
             $tentk = $_SESSION['TenTaiKhoan'];
             $Temp.=' <form name = "Logout" method ="post" action="includes/english/XuLyDangXuat.php">
                            <table>
-                            <tr> <td> Chào <a href="">'.$tentk.' </a> | <input type="submit" name="thoat" value="Thoát" title=" Đăng xuất " alt="Đăng xuất"> </td></tr>
+                            <tr> <td> Chào <a href="index.php?action=EditProfileSuccess">'.$tentk.' </a> | <input type="submit" name="thoat" value="Thoát" title=" Đăng xuất " alt="Đăng xuất"> </td></tr>
                             </table></form>';
             }
     
