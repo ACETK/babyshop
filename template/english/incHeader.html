@@ -1,15 +1,18 @@
 <table>
-    <tr><td class="logo"><a href="index.php?action=Home"><img src="template/images/logo.png"  border="0" alt="" width="313" height="48"></a></td>
+    <tr><td class="logo"><a href="index.php?action=Home"><img src="template/images/logo.png"  border="0" alt="Trang chủ" width="313" height="48"></a></td>
         <td class="navigation">
             <table>
                 <tr><td class="search">
-                        <form name="search" action="index.php?action=KetQuaTimKiem" method="post">
+                        <form name="search" action="index.php?action=KetQuaTimKiem" method="get">
                             <table align="right" class="table">
                                 <tr><td class="td">Tìm:&nbsp;&nbsp;
                                     </td>
                                     <td class="search_input-rep">
                                         <table cellpadding="0" cellspacing="0" border="0" class="search_input-left">
-                                            <tr><td class="search_input-right"><input type=text name="tukhoa" class="go" style="width:100%" value="đồ chơi..." onblur="if(this.value=='') this.value='đồ chơi...'" onfocus="if(this.value =='đồ chơi...' ) this.value=''"></td></tr>
+                                            <tr><td class="search_input-right">
+                                                    <input type="hidden" name="action" value="KetQuaTimKiem" >
+                                                    <input type=text name="tukhoa" class="go" style="width:100%" value="đồ chơi..." onblur="if(this.value=='') this.value='đồ chơi...'" onfocus="if(this.value =='đồ chơi...' ) this.value=''">
+                                                </td></tr>
                                         </table>
                                     </td>
                                     <td><img src="template/images/spacer.gif" border="0" alt="" width="3" height="1"></td>

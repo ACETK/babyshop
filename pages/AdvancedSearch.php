@@ -21,7 +21,7 @@ $asearch->assign('OptionLoai', $OptionLoai);
 $asearch->assign('OptionNSX', $OptionNSX);
 $asearch->parse('searchbox');
 
-//đưa dữ liệu chính vào Content
+//đưa dữ liệu chính vào Content [Temp]
 $Temp = $asearch->text('searchbox');
 /** Khởi tạo content */
 $ctpl = new XTemplate('./template/incContentBox.html');
