@@ -90,6 +90,10 @@ if (isset($_GET['action'])) {
         case "EditProfileSuccess":
             include 'pages/UsersProfileSuccess.php';
             break;
+        case "XuLyQuenMT":
+            include 'pages/XuLyQuenMatKhau.php';
+            break;
+
 //        case "ShoppingCart":
 //            include 'pages/ShoppingCart.php';
 //            break;
