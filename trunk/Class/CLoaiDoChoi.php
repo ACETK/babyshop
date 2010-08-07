@@ -39,8 +39,8 @@ class CLoaiDoChoi {
             if($Type==1) {
                  $Temp .='<li class="bg_list"><a href="index.php?action=productslist&idloai='.$this->MaLoai.'" >'.$this->TenLoai.'</a></li>';
             }
-            else {
-                $Temp.= "<tr><td>".$this->TenLoai."</td></tr>";
+            if($Type==2){
+                $Temp.= '<option value="'.$this->MaLoai.'">'.$this->TenLoai.'</option>';
             }
         return $Temp;
     }

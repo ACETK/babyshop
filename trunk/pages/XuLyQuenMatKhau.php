@@ -3,7 +3,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
+if(isset($_POST['taikhoan']) && isset($_POST['taikhoan'])){
 $TKTAM = $_POST['taikhoan'];
 $ETAM = $_POST['email'];
 $sql = "SELECT MatKhau From nguoidung Where TenTaiKhoan='$TKTAM' And Email='$ETAM'";
@@ -22,8 +22,8 @@ if($kq==1)
 }else{
     $Temp.="Tài khoản không tồn tại.Vui lòng đăng ký!";
 }
-/////////////
-////////////////
+}
+
 
 
 

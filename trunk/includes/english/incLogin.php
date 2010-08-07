@@ -58,15 +58,20 @@ if ( !isset($_SESSION['isLogin']) || $_SESSION['isLogin'] == 0) {
 }
     else {
             if(isset ($_SESSION['TenTaiKhoan'])){
-            $TuaDe= "Đăng xuất";
-            $tentk = $_SESSION['TenTaiKhoan'];
-            $Temp.=' <form name = "Logout" method ="post" action="includes/english/XuLyDangXuat.php">
-                           <table>
-                            <tr> <td> Chào <a href="index.php?action=EditProfileSuccess">'.$tentk.' </a> | <input type="submit" name="thoat" value="Thoát" title=" Đăng xuất " alt="Đăng xuất"> </td></tr>
-                            </table></form>';
-            }
-    
+                $TuaDe= "Đăng xuất";
+                $tentk = $_SESSION['TenTaiKhoan'];
+                $Temp.=' <form name = "Logout" method ="post" action="includes/english/XuLyDangXuat.php">
+                               <table>
+                                <tr> <td> Chào <a href="index.php?action=EditProfileSuccess">'.$tentk.' </a> | <input type="submit" name="thoat" value="Thoát" title=" Đăng xuất " alt="Đăng xuất"> </td></tr>
+                                </table></form>';
+                 if($tentk=="admin")   {
+                     $Temp.='<form>
+                               <table>
+                         <tr><td> <a href="index.php?action=ProductsAdmin">Thêm đồ chơi</a><tr><td>
+                         </table></form>';
                 }
+         }
+    }
 
 
 ////////////
