@@ -93,6 +93,12 @@ if (isset($_GET['action'])) {
         case "XuLyQuenMT":
             include 'pages/XuLyQuenMatKhau.php';
             break;
+         case "ProductsAdmin":
+            include 'pages/InsertProductsAdmin.php';
+            break;
+        case "ManageThem":
+            include 'pages/InserProductsAdminManager.php';
+            break;
 
 //        case "ShoppingCart":
 //            include 'pages/ShoppingCart.php';
