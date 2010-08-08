@@ -313,7 +313,7 @@ if (http.readyState == 4) {
         <tbody><tr><td>
                     <table width="100%" cellspacing="0" cellpadding="2" border="0">
                         <tbody><tr>
-                                <td><input type="image" title=" Continue " alt="Continue" src="includes/english/images/buttons/button_continue.gif"></td>
+                                <td><input type="image" title=" Continue " alt="Continue" src="template/images/english/button_continue.gif"></td>
                             </tr>
                         </tbody></table>
 

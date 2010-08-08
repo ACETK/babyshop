@@ -108,9 +108,7 @@ if (isset($_GET['action'])) {
          case "ProductsAdmin":
             include 'pages/InsertProductsAdmin.php';
             break;
-        case "ManageThem":
-            include 'pages/InserProductsAdminManager.php';
-            break;
+       
 //        case "Shipping":
 //            include 'pages/Shipping.php';
 //            break;
