@@ -51,8 +51,8 @@ $Temp.='
                             <div style="padding: 0px 0px 4px;"><img width="1" height="1" border="0" alt="" src="images/spacer.gif"></div>
                             <table cellspacing="5" cellpadding="0" border="0"><tbody><tr><td>
                                             <table width="100%" cellspacing="0" cellpadding="2" border="0">
-                                                <tbody><tr><td><a href="index.php?action=Home"><img width="71" height="19" border="0" title=" Back " alt="Back" src="includes/english/images/buttons/button_back1.gif"></a></td>
-                                                        <td align="right"><input type="image" title=" Continue " alt="Continue" src="includes/english/images/buttons/button_continue.gif"></td></tr>
+                                                <tbody><tr><td><a href="index.php?action=Home"><img width="71" height="19" border="0" title=" Back " alt="Back" src="template/images/english/button_back1.gif"></a></td>
+                                                        <td align="right"><input type="image" title=" Continue " alt="Continue" src="template/images/english/button_continue.gif"></td></tr>
                                                 </tbody></table>
                                         </td></tr></tbody></table>
                         </div>

@@ -1,6 +1,6 @@
 <?php
 //mảng $old được lấy từ => select MaDoChoi from dochoi ORDER BY MaDoChoi
-$old = array("SP0000","SP0001","SP0002","SP0003","SP0004","SP0005","SP0006","SP0007","SP0008","SP0009","SP1010","SP0111","SP0116");
+$old = array("SP0002","SP0003","SP0004","SP0005");
 //Quy định chữ đầu của MaDoChoi; nếu csdl đầy có thể đổi sau
 $maNew = "SP";
 //đếm số tổng số sản phẩm = mysql_num_rows($result)
