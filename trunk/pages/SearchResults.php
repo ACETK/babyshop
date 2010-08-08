@@ -37,11 +37,11 @@ if (isset($_GET['dfrom']) && isset($_GET['dto']) && ($_GET['dfrom']!="dd/mm/yyyy
     $dto = $dto[2]."-".$dto[1]."-".$dto[0];
 
     if ($dfrom != "yyyy-mm-dd" && $dto != "yyyy-mm-dd") {
-        $sql .= " AND NgayNhap BETWEEN '$dfrom' AND '$dto'";
+        $sql .= " AND hd.NgayNhap BETWEEN '$dfrom' AND '$dto'";
     } else if ($dfrom != "yyyy-mm-dd" && $dto == "yyyy-mm-dd") {
-        $sql .= " AND NgayNhap > '$dfrom'";
+        $sql .= " AND hd.NgayNhap > '$dfrom'";
     } else if ($dfrom == "yyyy-mm-dd" && $dto != "yyyy-mm-dd") {
-        $sql .= " AND NgayNhap < '$dto'";
+        $sql .= " AND hd.NgayNhap < '$dto'";
     }
     $sql.= " GROUP BY dc.madochoi ";
 }
