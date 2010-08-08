@@ -47,7 +47,7 @@ html, body 							{height:100%;}
 .navigation2 				{text-align:right; height:49px; vertical-align:middle;background:url("../images/navigation2_bg.gif"/*tpa=http://osc4.template-help.com/osc_28658/images/navigation2_bg.gif*/) 0px 0px no-repeat;}
 .navigation2 td				{white-space:nowrap; vertical-align:middle;}
 .navigation2 .td			{vertical-align:middle; white-space:nowrap;color:#bfbfbf;}
-	
+
 
 .navigation2 a				{color:#000000; font-size:12px; line-height:12px; font-weight:normal;text-decoration:none;}
 .navigation2 a:hover		{color:#000000; text-decoration:underline;}
@@ -56,16 +56,16 @@ html, body 							{height:100%;}
 .navigation2 .navigation .td			{padding:0px 17px 0px 0px;}
 .navigation_separator		{width:50%; text-align:center;}
 /* ************************************************************************************* */
-.languages 						{padding:0px 0px 0px 0px; text-align:right; vertical-align:top;}
-.languages table				{width:156px;}
-.languages .languages_img		{margin:0px 0px 0px 9px;}
+.advancedsearch 						{padding:0px 0px 0px 0px; text-align:center; vertical-align:top;}
+.advancedsearch table				{width:auto;}
+.advancedsearch .languages_img		{margin:0px 0px 0px 9px;}
 
-.currencies 					{padding:0px 0px 0px 17px;}
-.currencies table				{width:210px;}
+.role 					{padding:0px 0px 0px 17px;}
+.role table				{width:210px;}
 
 
-.navigation2 .languages td,
-.navigation2 .currencies td		{color:#000000; font-size:12px; line-height:13px; font-weight:normal; vertical-align:middle; vertical-align:middle;}
+.navigation2 .advancedsearch td,
+.navigation2 .role td		{color:#000000; font-size:12px; line-height:13px; font-weight:normal; vertical-align:middle; vertical-align:middle;}
 /* ************************************************************************************* */
 /* ************************************************************************************* */
 .z1							{padding:0px 17px 0px 0px;}
@@ -88,7 +88,7 @@ html, body 							{height:100%;}
 
 .search					{padding:40px 0px 0px 6px;vertical-align:middle; height:35px;}
 .search .go				{width:100%;border:0px solid #cccccc;background:transparent; color:#000000; font-size:12px; line-height:18px;vertical-align:middle;margin:0px 0px 0px 0px;
-						 padding-left:10px; padding-right:10px; height:18px; vertical-align:middle;}
+                padding-left:10px; padding-right:10px; height:18px; vertical-align:middle;}
 .search td				{color:#000000; font-size:12px; line-height:12px; font-weight:normal;}
 .search	.table			{width:291px;}
 .search	.td				{padding:0px 0px 0px 0px; vertical-align:middle;}
@@ -115,7 +115,7 @@ html, body 							{height:100%;}
 .footer td 		  {color:#959ca1; font-size:12px; line-height:19px; font-weight:normal;  vertical-align:middle;}			
 .footer a 		  {color:#434343; font-size:12px; line-height:19px; font-weight:normal;  text-decoration:none;} 			
 .footer a:hover   {color:#434343;text-decoration:underline;}
-	
+
 .footer span 	  		{color:#959ca1; font-size:12px; font-weight:normal; }
 .footer span a 		  	{color:#bfbfbf; font-size:12px; font-weight:normal; text-decoration:none;} 			
 .footer span a:hover   	{color:#bfbfbf;text-decoration:underline;}
@@ -178,7 +178,7 @@ html, body 							{height:100%;}
 .menu #over2_m6,
 .menu #over2_m7,
 .menu #over2_m8			{width:20%; cursor:pointer; white-space:nowrap;text-align:center;padding:0px 10px 0px 10px; height:37px; vertical-align:middle;
-					font-size:16px;line-height:16px;font-weight:bold;}					
+                   font-size:16px;line-height:16px;font-weight:bold;}
 
 .menu #m1,
 .menu #m2,
