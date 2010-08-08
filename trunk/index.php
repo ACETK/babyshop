@@ -78,7 +78,7 @@ if (isset($_GET['action'])) {
         case "LogIn":
             include 'pages/LogIn.php';
             break;
-        case "TimKiem":
+        case "AdvancedSearch":
             include 'pages/AdvancedSearch.php';
             break;
         case "KetQuaTimKiem":
@@ -90,6 +90,9 @@ if (isset($_GET['action'])) {
         case "EditProfileSuccess":
             include 'pages/UsersProfileSuccess.php';
             break;
+        case "ShoppingCart":
+            include 'pages/ShoppingCart.php';
+            break;
         case "XuLyQuenMT":
             include 'pages/XuLyQuenMatKhau.php';
             break;
@@ -99,10 +102,6 @@ if (isset($_GET['action'])) {
         case "ManageThem":
             include 'pages/InserProductsAdminManager.php';
             break;
-
-//        case "ShoppingCart":
-//            include 'pages/ShoppingCart.php';
-//            break;
 //        case "Shipping":
 //            include 'pages/Shipping.php';
 //            break;

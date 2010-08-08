@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 03, 2010 at 11:57 PM
+-- Generation Time: Aug 08, 2010 at 08:53 AM
 -- Server version: 5.1.36
 -- PHP Version: 5.3.0
 
@@ -92,6 +92,7 @@ CREATE TABLE IF NOT EXISTS `dochoi` (
   `ThongTin` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   `HinhAnh` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `SoLuotXem` int(11) DEFAULT '0',
+  `NgayNhap` date NOT NULL,
   PRIMARY KEY (`MaDoChoi`),
   KEY `MaLoai` (`MaLoai`),
   KEY `MaNSX` (`MaNSX`)
@@ -101,17 +102,17 @@ CREATE TABLE IF NOT EXISTS `dochoi` (
 -- Dumping data for table `dochoi`
 --
 
-INSERT INTO `dochoi` (`MaDoChoi`, `TenDoChoi`, `MaLoai`, `MaNSX`, `DonGia`, `ThongTin`, `HinhAnh`, `SoLuotXem`) VALUES
-('SP001', 'Bộ ghép Ngôi nhà nhỏ ', 1, 1, '450000', 'Trò chơi phổ biến tại Châu Âu khiến nhiều người say mê. Bé có thể cùng các bạn dùng những chi tiết gỗ để ghép nên những ngôi nhà trang trại xinh xắn. Bộ sản phẩm đòi hỏi bé phải có óc tưởng tượng và tư duy. Chất liệu gỗ sồi nhập từ Đức, tiêu chuẩn xu', 'SP001.jpg', 13),
-('SP002', 'Xe đạp cho bé  ', 1, 1, '790000', 'Chiếc xe đạp nhỏ xinh xắn giúp bé tích cực vận động, tập đi xe đạp. Sản phẩm phù hợp cho trẻ từ 4 tuổi trở lên. Kích thước 85x54x11cm. (Veesano - Đồ chơi gỗ, đồ chơi thông minh, đồ chơi trí tuệ, đồ chơi giáo dục, đồ chơi an toàn).', 'SP002.jpg', 2),
-('SP003', 'Phấn viết chữ đẹp Veesano ', 1, 2, '4500', 'Phấn dành cho bé không ảnh hưởng đến sức khoe bé', 'SP003.jpg', 23),
-('SP004', 'Bảng tập viết chữ đẹp Veesano ', 1, 2, '17000', 'Đẹp', 'SP004.jpg', 6),
-('SP005', 'Ghế ngồi của bé ', 1, 1, '180000', 'Chiếc ghế ngồi xinh xắn cho bé ngồi chơi, ngồi học, ngồi ăn cùng gia đình, kích thước 28.5cm x 28.5cm x 26cm (cao 49 cm), có 4 màu cho bé lựa chọn: đỏ, cam, xanh lá cây, xanh da trời. Gỗ thông vân sáng bóng nhẵn, mịn, kết cấu chắc chắn, tháo lắp di c', 'SP005.jpg', 15),
-('SP006', 'Chọn quần áo cho gấu ', 1, 1, '68000', NULL, 'SP006.jpg', 3),
-('SP007', 'Lắp ráp nhà búp bê ', 1, 2, '365000', 'Bộ nhà BenHo. Giúp trẻ sáng tạo trong cách bày biện, thiết kế không gian sống theo trí tưởng tượng của Bé. Quan trọng hơn, ngôi nhà nhỏ này giúp bé có tình yêu thương gia đình, luôn hướng về ngôi nhà nhỏ thân thương của mình.', 'SP007.jpg', 10),
-('SP008', 'Con gỗ - Gọt bút ', 1, 2, '20000', 'Với sản phẩm nghộ nghĩnh này bé không những có thể tự mình gọt bút chì một cách hào hứng mà còn là một món quà cho những giờ học thật lý thú', 'SP008.jpg', 0),
-('SP009', 'Bộ mô hình phòng ngủ ', 1, 1, '140000', 'Giúp trẻ sáng tạo trong cách bày biện, thiết kế không gian sống theo trí tưởng tượng của Bé, bé sẽ bày biện căn phòng ngủ của mình thật xinh xắn, gọn gàng như trong truyện cổ tích với: giường, tủ quần áo, bàn trang điểm, đèn ngủ..Đây cũng là bộ sản p', 'SP009.jpg', 6),
-('SP010', 'Bộ mô hình phòng khách ', 1, 1, '140000', 'Giúp trẻ sáng tạo trong cách bày biện, thiết kế không gian sống theo trí tưởng tượng của bé, bé sẽ bày biện phòng khách nhà mình thật gọn gàng để tiếp khách với bộ bàn ghế, tivi, đèn cây. Đây cũng là bộ sản phẩm giúp bé có tình yêu thương và gắn bó v', 'SP010.jpg', 22);
+INSERT INTO `dochoi` (`MaDoChoi`, `TenDoChoi`, `MaLoai`, `MaNSX`, `DonGia`, `ThongTin`, `HinhAnh`, `SoLuotXem`, `NgayNhap`) VALUES
+('SP001', 'Bộ ghép Ngôi nhà nhỏ ', 1, 1, '450000', 'Trò chơi phổ biến tại Châu Âu khiến nhiều người say mê. Bé có thể cùng các bạn dùng những chi tiết gỗ để ghép nên những ngôi nhà trang trại xinh xắn. Bộ sản phẩm đòi hỏi bé phải có óc tưởng tượng và tư duy. Chất liệu gỗ sồi nhập từ Đức, tiêu chuẩn xu', 'SP001.jpg', 13, '0000-00-00'),
+('SP002', 'Xe đạp cho bé  ', 1, 1, '790000', 'Chiếc xe đạp nhỏ xinh xắn giúp bé tích cực vận động, tập đi xe đạp. Sản phẩm phù hợp cho trẻ từ 4 tuổi trở lên. Kích thước 85x54x11cm. (Veesano - Đồ chơi gỗ, đồ chơi thông minh, đồ chơi trí tuệ, đồ chơi giáo dục, đồ chơi an toàn).', 'SP002.jpg', 2, '0000-00-00'),
+('SP003', 'Phấn viết chữ đẹp Veesano ', 1, 2, '4500', 'Phấn dành cho bé không ảnh hưởng đến sức khoe bé', 'SP003.jpg', 23, '0000-00-00'),
+('SP004', 'Bảng tập viết chữ đẹp Veesano ', 1, 2, '17000', 'Đẹp', 'SP004.jpg', 6, '0000-00-00'),
+('SP005', 'Ghế ngồi của bé ', 1, 1, '180000', 'Chiếc ghế ngồi xinh xắn cho bé ngồi chơi, ngồi học, ngồi ăn cùng gia đình, kích thước 28.5cm x 28.5cm x 26cm (cao 49 cm), có 4 màu cho bé lựa chọn: đỏ, cam, xanh lá cây, xanh da trời. Gỗ thông vân sáng bóng nhẵn, mịn, kết cấu chắc chắn, tháo lắp di c', 'SP005.jpg', 15, '0000-00-00'),
+('SP006', 'Chọn quần áo cho gấu ', 1, 1, '68000', NULL, 'SP006.jpg', 3, '0000-00-00'),
+('SP007', 'Lắp ráp nhà búp bê ', 1, 2, '365000', 'Bộ nhà BenHo. Giúp trẻ sáng tạo trong cách bày biện, thiết kế không gian sống theo trí tưởng tượng của Bé. Quan trọng hơn, ngôi nhà nhỏ này giúp bé có tình yêu thương gia đình, luôn hướng về ngôi nhà nhỏ thân thương của mình.', 'SP007.jpg', 10, '0000-00-00'),
+('SP008', 'Con gỗ - Gọt bút ', 1, 2, '20000', 'Với sản phẩm nghộ nghĩnh này bé không những có thể tự mình gọt bút chì một cách hào hứng mà còn là một món quà cho những giờ học thật lý thú', 'SP008.jpg', 0, '0000-00-00'),
+('SP009', 'Bộ mô hình phòng ngủ ', 1, 1, '140000', 'Giúp trẻ sáng tạo trong cách bày biện, thiết kế không gian sống theo trí tưởng tượng của Bé, bé sẽ bày biện căn phòng ngủ của mình thật xinh xắn, gọn gàng như trong truyện cổ tích với: giường, tủ quần áo, bàn trang điểm, đèn ngủ..Đây cũng là bộ sản p', 'SP009.jpg', 6, '0000-00-00'),
+('SP010', 'Bộ mô hình phòng khách ', 1, 1, '140000', 'Giúp trẻ sáng tạo trong cách bày biện, thiết kế không gian sống theo trí tưởng tượng của bé, bé sẽ bày biện phòng khách nhà mình thật gọn gàng để tiếp khách với bộ bàn ghế, tivi, đèn cây. Đây cũng là bộ sản phẩm giúp bé có tình yêu thương và gắn bó v', 'SP010.jpg', 22, '0000-00-00');
 
 -- --------------------------------------------------------
 

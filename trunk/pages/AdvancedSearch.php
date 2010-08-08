@@ -15,7 +15,7 @@ while($row = mysql_fetch_assoc($result)){
     $OptionNSX .= '<option value="'.$row['MaNSX'].'">'.$row['TenNSX'].'</option>';
 }
 
-//đưa dữ liệu vào 2 combobox
+//Khởi tạo giao diện tìm kiếm, đưa dữ liệu vào 2 combobox
 $asearch = new XTemplate('./template/PageAdvancedSearch.html');
 $asearch->assign('OptionLoai', $OptionLoai);
 $asearch->assign('OptionNSX', $OptionNSX);
@@ -23,7 +23,6 @@ $asearch->parse('searchbox');
 
 //đưa dữ liệu chính vào Content [Temp]
 $Temp = $asearch->text('searchbox');
-/** Khởi tạo content */
 $ctpl = new XTemplate('./template/incContentBox.html');
 //đưa dữ liệu vào content
 $ctpl->assign('ContentTitle',"Tìm kiếm nâng cao");
