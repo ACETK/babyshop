@@ -41,7 +41,7 @@ $Image = $k['HinhAnh'];
 								<div class="wrapper_pic_tr">
 									<div class="wrapper_pic_bl">
 										<div class="wrapper_pic_br" style="width:197px;height:157px;">
-                                                                                 <?php   echo '<img src="../images/sanpham/'.$Image.'" border="0" alt="" title="" width="197" height="157"> '; ?>
+                                                                                 <?php   echo '<img src="../images/sanpham/'.$Image.'" border="0" alt="" title=""> '; ?>
                                                                                 </div>
 									</div>
 								</div>
