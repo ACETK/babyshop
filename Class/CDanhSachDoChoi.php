@@ -89,7 +89,7 @@ class CDanhSachDoChoi {
                                                         <tr><td class="price2_padd"><span class="productSpecialPrice">' . number_format($this->arrDoChoi[0]->getDonGia()) . '&nbsp;VNĐ</span></td></tr>
                                                         <tr><td class="button2_padd button2_marg">
                                                                 <a href="index.php?action=detail&id=' . $this->arrDoChoi[0]->getMaDoChoi() . '" ><img src="template/images/english/button_details.gif" border="0" alt="" width="81" height="19"  class="btn1"></a>
-                                                                <a href="includes/english/XuLyGioHang.php?action=add&idproduct=' . $this->arrDoChoi[$i]->getMaDoChoi() . '" ><img src="template/images/english/button_add_to_cart1.gif" border="0" alt="" width="104" height="19"  class="btn2"></a>
+                                                                <a href="includes/english/XuLyGioHang.php?action=add&idproduct=' . $this->arrDoChoi[0]->getMaDoChoi() . '" ><img src="template/images/english/button_add_to_cart1.gif" border="0" alt="" width="104" height="19"  class="btn2"></a>
                                                             </td></tr>
                                                     </table>
                                                 </td></tr>

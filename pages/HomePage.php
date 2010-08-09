@@ -4,14 +4,17 @@
 require_once 'Class/CDoChoi.php';
 require_once 'Class/CDanhSachDoChoi.php';
 require_once 'Class/MySQLHelper.php';
+//////////////////
+////select 10 đồ chơi vừa được nhập thêm hàng
+//$sql = "SELECT dc.MaDoChoi,MaLoai,MaNSX,TenDoChoi,ThongTin,DonGia,HinhAnh,nh,SoLuotXem
+//        FROM dochoi dc JOIN (SELECT ct.MaDoChoi,NgayNhap as nh
+//                             FROM cthdnhap ct JOIN hdnhap hd on ct.SoHDN=hd.SoHDN
+//                             ORDER BY hd.NgayNhap DESC) t on dc.MaDoChoi=t.MaDoChoi
+//        GROUP BY dc.MaDoChoi
+//        ORDER BY nh DESC,TenDoChoi
+//        LIMIT 0,10";
 
-$sql = "SELECT dc.MaDoChoi,MaLoai,MaNSX,TenDoChoi,ThongTin,DonGia,HinhAnh,nh,SoLuotXem
-        FROM dochoi dc JOIN (SELECT ct.MaDoChoi,NgayNhap as nh
-                             FROM cthdnhap ct JOIN hdnhap hd on ct.SoHDN=hd.SoHDN
-                             ORDER BY hd.NgayNhap DESC) t on dc.MaDoChoi=t.MaDoChoi
-        GROUP BY dc.MaDoChoi
-        ORDER BY nh DESC,TenDoChoi
-        LIMIT 0,10";
+$sql = "SELECT * FROM dochoi ORDER BY NgayNhap DESC,TenDoChoi LIMIT 0,10";
 $result = MySQLHelper::executeQuery($sql);
 
 $Temp ="";
