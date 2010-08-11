@@ -67,7 +67,7 @@
                             $truyvan = sprintf("INSERT INTO dochoi (MaDoChoi, TenDoChoi, MaLoai, MaNSX, DonGia, ThongTin, HinhAnh,NgayNhap) VALUES ('%s', '%s',%d, %d, '%s', '%s', '%s', '%s')",$maNew,$tendochoi,$maloaidochoi,$masanxuat,$giaban,$thongtin,$tenhinhmoi,$ngaycapnhat);
                             $kq = MySQLHelper::executeQuery($truyvan);
                             if($kq==1){
-                                    header( "refresh:5; url=index.php?action=ProductsAdmin" );
+                                    header( "refresh:3; url=index.php?action=ProductsAdmin" );
                                     $Temp.="Thêm đồ chơi thành công! <a href='index.php?action=ProductsAdmin'>Quay lại</a> ";
                                 }else{
                                     $Temp.="Thêm thất bại";

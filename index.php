@@ -117,6 +117,9 @@ if (isset($_GET['action'])) {
        case "QuanLyDoChoi":
             include 'pages/QuanLyDoChoi.php';
             break;
+        case "DeleteProducts":
+            include 'pages/DeleteProductsAdmin.php';
+            break;
 //        case "Shipping":
 //            include 'pages/Shipping.php';
 //            break;
