@@ -68,8 +68,8 @@ if ( !isset($_SESSION['isLogin']) || $_SESSION['isLogin'] == 0) {
                      $Temp.='<form>
                                <table>
                           <tr><td> <a href="index.php?action=QuanLyNhaSanXuat">Quản lý nhà sản xuất</a><tr><td>
-                          <tr><td> <a href="index.php?action=QuanLyLoaiDoChoi">Quản lý loại đồ chơi</a><tr><td>
-                          <tr><td> <a href="index.php?action=QuanLyDoChoi">Quản lý đồ chơi </a><tr><td>
+                          <tr><td> <a href="admin.php?action=QuanLyLoaiDoChoi">Quản lý loại đồ chơi</a><tr><td>
+                          <tr><td> <a href="admin.php?action=QuanLyDoChoi">Quản lý đồ chơi </a><tr><td>
                          <tr><td> <a href="index.php?action=">Quản lý người dùng</a><tr><td>
                          </table></form>';
                 }
