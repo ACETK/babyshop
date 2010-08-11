@@ -67,8 +67,8 @@ if ( !isset($_SESSION['isLogin']) || $_SESSION['isLogin'] == 0) {
                  if($tentk=="admin")   {
                      $Temp.='<form>
                                <table>
-                          <tr><td> <a href="index.php?action=">Quản lý nhà sản xuất</a><tr><td>
-                          <tr><td> <a href="index.php?action=">Quản lý loại đồ chơi</a><tr><td>
+                          <tr><td> <a href="index.php?action=QuanLyNhaSanXuat">Quản lý nhà sản xuất</a><tr><td>
+                          <tr><td> <a href="index.php?action=QuanLyLoaiDoChoi">Quản lý loại đồ chơi</a><tr><td>
                           <tr><td> <a href="index.php?action=QuanLyDoChoi">Quản lý đồ chơi </a><tr><td>
                          <tr><td> <a href="index.php?action=">Quản lý người dùng</a><tr><td>
                          </table></form>';

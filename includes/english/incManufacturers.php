@@ -34,8 +34,13 @@ $Temp.='    </select>
 ';
 //Kết thúc nghiệp vụ
 /** Khởi tạo box */
-$btpl = new XTemplate('./template/incInfoBox.html');
-$btpl->assign('BoxTitle','Nhà sản xuất');
+if(isset ($_GET['action']) && $_GET['action']=='QuanLyNhaSanXuat' ){
+    $btpl = new XTemplate('template/incInfoBoxAdmin.html');
+    $btpl->assign('BoxTitle', 'Xem trước danh sách');
+}else{
+    $btpl = new XTemplate('template/incInfoBox.html');
+    $btpl->assign('BoxTitle', 'Nhà sản xuất');
+}
 //đưa dữ liệu vào box
 $btpl->assign('BoxInfo', $Temp);
 $btpl->parse('box');

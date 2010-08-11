@@ -6,6 +6,10 @@ include_once 'Class/MySQLHelper.php';
 include_once 'xtemplate.class.php';
 $tpl = new XTemplate('template/template.html');
 
+$tpl->assign_file('FileHeader','template/english/incHeader.html');
+$tpl->assign_file('FileMenu','template/english/incMenu.html');
+$tpl->assign_file('FileNavigation','template/english/incNavigation.html');
+
 //Thiết kế cột trái
 include 'includes/english/incCategories.php';
 $tpl->assign('BlockInfo', $Categories);
@@ -119,6 +123,12 @@ if (isset($_GET['action'])) {
             break;
         case "DeleteProducts":
             include 'pages/DeleteProductsAdmin.php';
+            break;
+        case "QuanLyLoaiDoChoi":
+            include 'admin/QuanLyLoaiDoChoi.php';
+            break;
+        case "QuanLyNhaSanXuat":
+            include 'admin/QuanLyNhaSanXuat.php';
             break;
 //        case "Shipping":
 //            include 'pages/Shipping.php';

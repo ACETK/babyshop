@@ -39,17 +39,17 @@
 /* ************************************************************************************* */
 /* ************************************************************************************* */
 /* ************************************************************************************* */
-.infoBoxHeading2_t 				{background:url("../images/infoBoxHeading2_t.png"/*tpa=http://osc4.template-help.com/osc_28658/images/infoBoxHeading2_t.png*/) 0px 0px repeat-x;margin:0px 10px 0px 10px; font-size:0px; line-height:0px;height:10px;}  
-.infoBoxHeading2_tl				{background:url("../images/infoBoxHeading2_tl.png"/*tpa=http://osc4.template-help.com/osc_28658/images/infoBoxHeading2_tl.png*/) 0px 0px no-repeat;}
-.infoBoxHeading2_tr				{background:url("../images/infoBoxHeading2_tr.png"/*tpa=http://osc4.template-help.com/osc_28658/images/infoBoxHeading2_tr.png*/) 100% 0px no-repeat;}
+.infoBoxHeading2_t 				{background:url("../images/infoBoxHeading2_t.png") 0px 0px repeat-x;margin:0px 10px 0px 10px; font-size:0px; line-height:0px;height:10px;}  
+.infoBoxHeading2_tl				{background:url("../images/infoBoxHeading2_tl.png") 0px 0px no-repeat;}
+.infoBoxHeading2_tr				{background:url("../images/infoBoxHeading2_tr.png") 100% 0px no-repeat;}
 
 .infoBoxHeading2_l 				{background:#dedede;}   
 .infoBoxHeading2_r				{background:#dedede;}
 .infoBoxHeading2_c				{background:#dedede;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px; height:100%;}
 
-.infoBoxHeading2_b 				{background:url("../images/infoBoxHeading2_b.png"/*tpa=http://osc4.template-help.com/osc_28658/images/infoBoxHeading2_b.png*/) 0px 0px repeat-x;margin:0px 10px 0px 10px;font-size:0px; line-height:0px; height:10px;}  
-.infoBoxHeading2_bl				{background:url("../images/infoBoxHeading2_bl.png"/*tpa=http://osc4.template-help.com/osc_28658/images/infoBoxHeading2_bl.png*/) 0px 0px no-repeat;}
-.infoBoxHeading2_br				{background:url("../images/infoBoxHeading2_br.png"/*tpa=http://osc4.template-help.com/osc_28658/images/infoBoxHeading2_br.png*/) 100% 0px no-repeat;}
+.infoBoxHeading2_b 				{background:url("../images/infoBoxHeading2_b.png") 0px 0px repeat-x;margin:0px 10px 0px 10px;font-size:0px; line-height:0px; height:10px;}  
+.infoBoxHeading2_bl				{background:url("../images/infoBoxHeading2_bl.png") 0px 0px no-repeat;}
+.infoBoxHeading2_br				{background:url("../images/infoBoxHeading2_br.png") 100% 0px no-repeat;}
 
 .infoBoxHeading2_table			{margin:0px 0px 0px 0px;background:url("../images/infoBoxHeading2_table.png"/*tpa=http://osc4.template-help.com/osc_28658/images/infoBoxHeading2_table.png*/) 0px 0px repeat-x #414141;}
 .infoBoxHeading2_td				{width:100%;padding:1px 23px 0px 38px;vertical-align:top;height:18px;background:url("../images/infoBoxHeading2_td.png"/*tpa=http://osc4.template-help.com/osc_28658/images/infoBoxHeading2_td.png*/) 15px 0px no-repeat}								
