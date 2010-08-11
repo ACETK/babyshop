@@ -78,8 +78,27 @@ if (isset($_GET['action'])) {
             $tpl->parse('main.body.left');
             break;
         case "QuanLyDoChoi":
-            include 'pages/QuanLyDoChoi.php';
+            include 'admin/QuanLyDoChoi.php';
+            break;        
+        case "ThemDoChoi":
+            include 'admin/ThemDoChoi.php';
             break;
+        case "XuLyDoChoi":
+            include 'admin/XuLyDoChoi.php';
+            break;
+        case "CapNhatDoChoi":
+            include 'admin/CapNhatDoChoi.php';
+            break;
+        case "DeleteProducts":
+            include 'admin/XoaDoChoi.php';
+            break;
+        case "QuanLyLoaiDoChoi":
+            include 'admin/QuanLyLoaiDoChoi.php';
+            break;
+        case "QuanLyNhaSanXuat":
+            include 'admin/QuanLyNhaSanXuat.php';
+            break;
+        
 //        case "WhatsNew":
 //            include 'pages/WhatsNew.php';
 //            break;

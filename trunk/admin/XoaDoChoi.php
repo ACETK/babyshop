@@ -10,8 +10,7 @@ $iddochoixoa=$_POST['iddochoi'];
    echo $x;
     if($x==true){
         $Temp.= 'Xóa đồ chơi thành công';
-        header( "refresh:3; url=index.php?action=QuanLyDoChoi" );
-
+        header( "refresh:3; url=admin.php?action=QuanLyDoChoi" );
     }else{
         $Temp.="Xóa thất bại";
     }
