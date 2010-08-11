@@ -8,7 +8,7 @@ $tpl = new XTemplate('template/template.html');
 
 $tpl->assign_file('FileHeader','template/english/incHeaderAdmin.html');
 $tpl->assign_file('FileMenu','template/english/incMenuAdmin.html');
-if(!isset ($_GET['action']) || $_GET['action']!='HomeAdmin'){
+if(!isset ($_GET['page']) || $_GET['page']!='HomeAdmin'){
     $tpl->assign_file('FileNavigation','template/english/incNavigationAdmin.html');
     $tpl->parse('main.header.nav');
 }
@@ -57,8 +57,8 @@ if(!isset ($_GET['action']) || $_GET['action']!='HomeAdmin'){
 //$tpl->assign('NumOfCartItems', $numofitems);
 
 //Bắt đầu cột chính
-if (isset($_GET['action'])) {
-    $page = $_GET['action'];
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
     switch ($page) {
         case "HomeAdmin":
             include 'admin/HomeAdmin.php';
@@ -72,6 +72,13 @@ if (isset($_GET['action'])) {
             break;
         case "QuanLyNhaSanXuat":
             include 'admin/QuanLyNhaSanXuat.php';
+            include 'includes/english/incManufacturers.php';
+            $tpl->assign('BlockInfo', $Manufacturers);
+            $tpl->parse('main.body.left.block');
+            $tpl->parse('main.body.left');
+            break;
+        case "QuanLyNhaSanXuat_XuLy":
+            include 'admin/QuanLyNhaSanXuat_XuLy.php';
             include 'includes/english/incManufacturers.php';
             $tpl->assign('BlockInfo', $Manufacturers);
             $tpl->parse('main.body.left.block');

@@ -33,7 +33,7 @@ $Temp = '<style type="text/css" >
             <td style="color: blue; font-weight:bold;" align="center" class="loaiheader">Email</td>
             <td class="cart_line_y padd2_vv"><img width="1" height="1" border="0" alt="" src="template/images/spacer.gif"></td>
             <td colspan="2" align="center" class="loaibutton">
-                <form name="them" method="post" action="admin/QuanLyNhaSanXuat_XuLy.php?action=insert">
+                <form name="them" method="post" action="admin.php?page=QuanLyNhaSanXuat_XuLy&action=insert">
                     <input type="hidden" name="TenLoai" value="">
                     <input type="image" border="0" alt="Thêm mới" src="images/insert.png">
                 </form>
@@ -59,7 +59,7 @@ while($row = mysql_fetch_assoc($result)){
             <td class="loainame" align="center" >&nbsp;'.$row['Email'].'</td>
             <td class="cart_line_y padd2_vv"><img width="1" height="1" border="0" alt="" src="template/images/spacer.gif"></td>
             <td align="center" class="loaibutton">
-                <form name="update'.$STT.'" method="post" action="admin/QuanLyNhaSanXuat_XuLy.php?action=update">
+                <form name="update'.$STT.'" method="post" action="admin.php?page=QuanLyNhaSanXuat_XuLy&action=update">
                   <input type="hidden" name="MaNSX" value="'.$row['MaNSX'].'">
                   <input type="image" border="0" alt="Cập nhật" src="images/edit.png">
                 </form>
@@ -71,7 +71,7 @@ while($row = mysql_fetch_assoc($result)){
             $check = MySQLHelper::executeQuery($sql);
             if(mysql_num_rows($check)==false){
                 $Temp.='<td align="center" class="loaibutton">
-                            <form name="delete'.$STT.'" method="post" action="admin/QuanLyNhaSanXuat_XuLy.php?action=delete" onsubmit="return xacNhan();">
+                            <form name="delete'.$STT.'" method="post" action="admin.php?page=QuanLyNhaSanXuat_XuLy&action=delete" onsubmit="return xacNhan();">
                               <input type="hidden" name="MaNSX" value="'.$row['MaNSX'].'">
                               <input type="image" border="0" alt="Xóa" src="images/delete.png">
                             </form>

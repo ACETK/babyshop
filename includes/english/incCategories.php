@@ -19,7 +19,7 @@ $Temp.='</ul>';
     //Kết thúc nghiệp vụ
 
 /** Khởi tạo box */
-if(isset ($_GET['action']) && $_GET['action']=='QuanLyLoaiDoChoi' ){
+if(isset ($_GET['page']) && $_GET['page']=='QuanLyLoaiDoChoi' ){
     $btpl = new XTemplate('template/incInfoBoxAdmin.html');
     $btpl->assign('BoxTitle', 'Xem trước danh sách');
 }else{
