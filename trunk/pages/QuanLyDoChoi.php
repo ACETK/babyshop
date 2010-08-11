@@ -7,7 +7,7 @@ $sql = "SELECT* FROM loaidochoi ldc join dochoi dc on dc.MaLoai=ldc.MaLoai join 
 $kq = MySQLHelper::executeQuery($sql);
 $row = mysql_fetch_array($result);
 $Temp="";
-$Temp.='<form method="post" action="" enctype="multipart/form-data" name="danhsachdochoi">
+$Temp.='<form method="POST" action="" name="danhsachdochoi">
     <table cellspacing="0" cellpadding="0" border="0">
         <tbody>
             <tr>
@@ -36,7 +36,10 @@ $Temp.='<form method="post" action="" enctype="multipart/form-data" name="danhsa
                                                     <td ><strong>Thông tin</strong></td>
                                                     <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
                                                     <td align="center" colspan="2"><a href="index.php?action=ProductsAdmin"><input type="image" name="insert" title="thêm" alt="thêm"  src="images/insert.png"></a></td>
-                                                </tr>';
+                                                </tr>
+                                               <tr>
+                            <td class="prod_line_x padd_gg" colspan="14"><img src="template/images/spacer.gif" border="0" alt="" width="1" height="1"></td>
+                          </tr>';
                                                $a=1;
                                             while($mang = mysql_fetch_array($kq)) {
                                                 $Temp.='
@@ -44,7 +47,7 @@ $Temp.='<form method="post" action="" enctype="multipart/form-data" name="danhsa
                                                 <tr>
                                                     <td>'.$a++.'</td>
                                                       <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
-                                                    <td>'.$mang['TenDoChoi'].'</td>
+                                                      <td>'.$mang['TenDoChoi'].'</td>
                                                         <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
                                                     <td>'.$mang['TenLoai'].'</td>
                                                         <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
@@ -56,9 +59,11 @@ $Temp.='<form method="post" action="" enctype="multipart/form-data" name="danhsa
                                                     <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
 
     <td><a href="index.php?action=UpdateProducts&iddochoi='.$mang['MaDoChoi'].'"><input type="image" name="update" title="cập nhật" alt="cập nhật"  src="images/edit.png"></a></td>
-    <td><a href="index.php?action="><input type="image" name="delete" title="xóa" alt="xóa" src="images/delete.png"></a></td>
+    <td><a href="index.php?action=DeleteProducts&iddochoi='.$mang['MaDoChoi'].'"><input type="image" name="delete" title="xóa" alt="xóa" src="images/delete.png"></a></td>
                                                 </tr>
-                                                ';
+                                               <tr>
+                            <td class="prod_line_x padd_gg" colspan="14"><img src="template/images/spacer.gif" border="0" alt="" width="1" height="1"></td>
+                          </tr> ';
                                                 }
                                                 $Temp.='
 
@@ -72,14 +77,18 @@ $Temp.='<form method="post" action="" enctype="multipart/form-data" name="danhsa
         <tbody><tr><td>
                     <table width="100%" cellspacing="0" cellpadding="2" border="0">
                         <tbody><tr>
-                                <td><a href="index.php?action=QuanLyDoChoi"><img width="71" height="19" border="0" title=" Back " alt="Back" src="template/images/english/button_back1.gif"></a></td>
-                                <td><input type="image" name="submit" title="Continue" alt="Continue" src="template/images/english/button_continue.gif"></td>
+                                <td><a href=""><img width="71" height="19" border="0" title=" Back " alt="Back" src="template/images/english/button_back1.gif"></a></td>
+                                
                             </tr>
                         </tbody></table>
 
                 </td></tr>
         </tbody></table>
 </form>';
+//////////
+
+    
+
 /** Khởi tạo content */
 $ctpl = new XTemplate('./template/incContentBox.html');
 $ctpl->assign('ContentTitle',"Quản lý đồ chơi");
