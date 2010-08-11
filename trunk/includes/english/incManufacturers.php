@@ -34,7 +34,7 @@ $Temp.='    </select>
 ';
 //Kết thúc nghiệp vụ
 /** Khởi tạo box */
-if(isset ($_GET['action']) && $_GET['action']=='QuanLyNhaSanXuat' ){
+if(isset ($_GET['page']) && ($_GET['page']=='QuanLyNhaSanXuat' || $_GET['page']=='QuanLyNhaSanXuat_XuLy' )){
     $btpl = new XTemplate('template/incInfoBoxAdmin.html');
     $btpl->assign('BoxTitle', 'Xem trước danh sách');
 }else{
