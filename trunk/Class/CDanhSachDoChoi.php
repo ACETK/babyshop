@@ -150,15 +150,15 @@ class CDanhSachDoChoi {
                                             <table cellspacing="0" cellpadding="0" border="0" class="listing">
                                                 <tbody>
                                                     <tr>
-                                                        <td><b><font>Loại đồ chơi&nbsp;:</font></b></td>
+                                                        <td><b><font>Loại&nbsp;:</font></b></td>
 							<td align="right"><font><a href="index.php?action=productslist&idloai=' . $this->arrDoChoi[$i]->getMaLoai() . '">' . $loai['TenLoai'] . '</a></font></td>
                                                     </tr>
                                                     <tr>
-							<td><b><font style="">Nhà sản xuất&nbsp;:</font></b></td>
+							<td><b><font style="">Sản xuất&nbsp;:</font></b></td>
 							<td align="right"><font><a href="index.php?action=productslist&idnsx=' . $this->arrDoChoi[$i]->getMaNSX() . '">' . $nsx['TenNSX'] . '</a></font></td>
                                                     </tr>
                                                     <tr>
-							<td><b><font>Số lượt xem&nbsp;:</font></b></td>
+							<td><b><font>Lượt xem&nbsp;:</font></b></td>
 							<td align="right"><font>' . $this->arrDoChoi[$i]->getSoLuotXem() . '</font></td>
                                                     </tr>
                                                 </tbody></table>

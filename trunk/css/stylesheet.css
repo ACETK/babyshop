@@ -7,7 +7,7 @@
 */
 /* ************************************************************************************* */
 BODY 								{color:#959595;margin:0px;background:#fff;}
-.bg2_body							{height:100%;background:url("../images/bg_body.gif") center 0px repeat fixed;}
+.bg2_body							{height:100%;background:url("../images/bg_body.gif") center 0px repeat;}
 .bg3_body							{height:100%;}
 .bg4_body							{height:100%;}
 html, body 							{height:100%;}
@@ -37,14 +37,14 @@ html, body 							{height:100%;}
 .row_4						{padding:10px 0px 10px 0px; background:#f3f3f4; border-top:1px solid #ecedee;}
 /* ************************************************************************************* */
 /* ************************************************************************************* */
-.logo						{padding:25px 0px 0px 0px;height:99px; vertical-align:top; background:#fff;}
+.logo						{padding:25px 0px 0px 0px;height:99px; vertical-align:top; background:transparent;}
 .banner_02  				{padding:18px 0px 0px 0px; width:100%;}
 .banner_03  				{padding:0px 0px 0px 0px;}
 .banner_06,
 .banner_07					{padding:0px 0px 7px 0px;}
 
 .navigation					{width:100%;}
-.navigation2 				{text-align:right; height:49px; vertical-align:middle;background:url("../images/navigation2_bg.gif"/*tpa=http://osc4.template-help.com/osc_28658/images/navigation2_bg.gif*/) 0px 0px no-repeat;}
+.navigation2 				{text-align:right; height:49px; vertical-align:middle;background:url("../images/navigation2_bg.gif") 0px 0px no-repeat;}
 .navigation2 td				{white-space:nowrap; vertical-align:middle;}
 .navigation2 .td			{vertical-align:middle; white-space:nowrap;color:#bfbfbf;}
 
@@ -148,8 +148,8 @@ html, body 							{height:100%;}
 /* ************************************************************************************* */
 /* ************************************************************************************* */
 .menu 						{width:100%;padding:0px 0px 0px 0px; width:100%;background:url("../images/menu_bg.gif") 0px 0px repeat-x;}
-.menu div					{background:url("../images/menu_tl.gif") 0px 0px no-repeat}
-.menu table					{background:url("../images/menu_tr.gif") 100% 0px no-repeat}
+.menu div					{background:url("../images/menu_tl.gif") 0px 0px no-repeat;}
+.menu table					{background:url("../images/menu_tr.gif") 100% 0px no-repeat;}
 .menu_separator				{width:2px;}
 .menu_separator	img			{padding:0px 0px 0px 0px; vertical-align:middle; text-align:center; width:2px;}
 /* ************************************************************************************* */	

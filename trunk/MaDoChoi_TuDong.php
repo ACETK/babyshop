@@ -26,6 +26,6 @@
     }else{
         $ThongBao = "Số lượng sản phẩm đã vượt wá mức lưu trữ"; //ghi cái này cho zui thôi ^ ^
     }
-}
+
     echo $maNew;
 ?>
