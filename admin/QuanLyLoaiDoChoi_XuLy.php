@@ -15,7 +15,7 @@ if(isset ($_GET['action'])){
         $sql = "INSERT INTO loaidochoi(TenLoai) VALUES('$TenLoai')" ;
     }
     MySQLHelper::executeQuery($sql);
-    header('location:../index.php?action=QuanLyLoaiDoChoi');
+    header('location:../admin.php?action=QuanLyLoaiDoChoi');
 }else{
     header('location:../index.php');
 }

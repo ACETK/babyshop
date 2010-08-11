@@ -54,7 +54,7 @@ html, body 							{height:100%;}
 .navigation2 .navigation 				{padding:8px 0px 0px 0px;}
 .navigation2 .navigation table			{width:22px;}
 .navigation2 .navigation .td			{padding:0px 17px 0px 0px;}
-.navigation_separator		{width:50%; text-align:center;}
+.navigation_separator		{width:40%; text-align:center;}
 /* ************************************************************************************* */
 .advancedsearch 						{padding:0px 0px 0px 0px; text-align:center; vertical-align:top;}
 .advancedsearch table				{width:auto;}

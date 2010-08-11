@@ -47,7 +47,7 @@ $Temp = '<style type="text/css" >
             <td style="color: blue; font-weight:bold;" align="center" class="loaiheader">Loại đồ chơi</td>
             <td class="cart_line_y padd2_vv"><img width="1" height="1" border="0" alt="" src="template/images/spacer.gif"></td>
             <td colspan="2" align="center" class="loaibutton">
-                <form name="them" method="post" action="admin/QuanLyDoChoi_XuLy.php?action=insert" onsubmit="return themMoi(this);">
+                <form name="them" method="post" action="admin/QuanLyLoaiDoChoi_XuLy.php?action=insert" onsubmit="return themMoi(this);">
                     <input type="hidden" name="TenLoai" value="">
                     <input type="image" border="0" alt="Thêm mới" src="images/insert.png">
                 </form>

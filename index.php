@@ -155,6 +155,7 @@ if (isset($_GET['action'])) {
 $tpl->assign('ContentInfo', $Content);
 $tpl->parse('main.body.content');
 $tpl->parse('main.body');
+$tpl->parse('main.header.nav');
 $tpl->parse('main.header');
 $tpl->parse('main.footer');
 $tpl->parse('main');
