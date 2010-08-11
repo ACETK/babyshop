@@ -108,28 +108,11 @@ if (isset($_GET['action'])) {
             break;
         case "XuLyQuenMT":
             include 'pages/XuLyQuenMatKhau.php';
-            break;
-         case "ProductsAdmin":
-            include 'pages/InsertProductsAdmin.php';
-            break;
-        case "InsertAdminManage":
-            include 'pages/InsertAdminManage.php';
-            break;
+            break;     
         case "UpdateProducts":
-            include 'pages/InsertProductsAdmin.php';
+            include 'pages/UpdateProductsAdmin.php';
             break;
-       case "QuanLyDoChoi":
-            include 'pages/QuanLyDoChoi.php';
-            break;
-        case "DeleteProducts":
-            include 'pages/DeleteProductsAdmin.php';
-            break;
-        case "QuanLyLoaiDoChoi":
-            include 'admin/QuanLyLoaiDoChoi.php';
-            break;
-        case "QuanLyNhaSanXuat":
-            include 'admin/QuanLyNhaSanXuat.php';
-            break;
+       
 //        case "Shipping":
 //            include 'pages/Shipping.php';
 //            break;
@@ -155,7 +138,6 @@ if (isset($_GET['action'])) {
 $tpl->assign('ContentInfo', $Content);
 $tpl->parse('main.body.content');
 $tpl->parse('main.body');
-$tpl->parse('main.header.nav');
 $tpl->parse('main.header');
 $tpl->parse('main.footer');
 $tpl->parse('main');
