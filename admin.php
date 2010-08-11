@@ -8,7 +8,10 @@ $tpl = new XTemplate('template/template.html');
 
 $tpl->assign_file('FileHeader','template/english/incHeaderAdmin.html');
 $tpl->assign_file('FileMenu','template/english/incMenuAdmin.html');
-$tpl->assign_file('FileNavigation','template/english/incNavigationAdmin.html');
+if(!isset ($_GET['action']) || $_GET['action']!='HomeAdmin'){
+    $tpl->assign_file('FileNavigation','template/english/incNavigationAdmin.html');
+    $tpl->parse('main.header.nav');
+}
 
 ////Thiết kế cột trái
 //include 'includes/english/incCategories.php';
@@ -65,12 +68,14 @@ if (isset($_GET['action'])) {
             include 'includes/english/incCategories.php';
             $tpl->assign('BlockInfo', $Categories);
             $tpl->parse('main.body.left.block');
+            $tpl->parse('main.body.left');
             break;
         case "QuanLyNhaSanXuat":
             include 'admin/QuanLyNhaSanXuat.php';
             include 'includes/english/incManufacturers.php';
             $tpl->assign('BlockInfo', $Manufacturers);
             $tpl->parse('main.body.left.block');
+            $tpl->parse('main.body.left');
             break;
         case "QuanLyDoChoi":
             include 'pages/QuanLyDoChoi.php';
@@ -156,18 +161,12 @@ if (isset($_GET['action'])) {
 }else{
     include 'admin/HomeAdmin.php';
 }
-if(!isset ($_GET['action']) || $_GET['action'] != 'HomeAdmin'){
-    include 'admin/incBoxLink.php';
-    $tpl->assign('BlockInfo', $Link);
-    $tpl->parse('main.body.left.block');
-    $tpl->parse('main.body.left');
-}
 
 $tpl->assign('ContentInfo', $Content);
 $tpl->parse('main.body.content');
 $tpl->parse('main.body');
 $tpl->parse('main.header');
-$tpl->parse('main.footer');
+//$tpl->parse('main.footer');
 $tpl->parse('main');
 $tpl->out('main');
 ?>
