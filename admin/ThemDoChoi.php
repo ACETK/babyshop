@@ -159,7 +159,7 @@ function check_form(form_name) {
         <tbody><tr><td>
                     <table width="100%" cellspacing="0" cellpadding="2" border="0">
                         <tbody><tr>
-                                <td><a href="admin.php?action=QuanLyDoChoi"><img  name="back" title="Quay lại" alt="Quay lại" src="template/images/english/button_back1.gif" border="0"></a></td>  
+                                <td><a href="admin.php?page=QuanLyDoChoi"><img  name="back" title="Quay lại" alt="Quay lại" src="template/images/english/button_back1.gif" border="0"></a></td>
 <td align="left"><input type="submit" name="submit" title="Continue" alt="Continue" value="Thêm"></td>
                             
                              </tr>
