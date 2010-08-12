@@ -91,10 +91,9 @@ while ($row = mysql_fetch_assoc($result)) {
             }else if($row['TinhTrang']==0){
                 $Temp.='<td align="center" class="loaibutton">
                               <a href="admin.php?page=QuanLyNhaSanXuat_XuLy&action=hide&id=' . $row['MaNSX'] . '" title="Loại khỏi danh sách" onclick="return xacNhanAn();">
-                              <input type="image" border="0" alt="Xóa" src="images/hide.png"></a>
+                              <input type="image" border="0" alt="Ẩn" src="images/hide.png"></a>
                         </td>';
-            }
-            else if($row['TinhTrang']==1){
+            }else if($row['TinhTrang']==1){
                 $Temp.='<td align="center" class="loaibutton">
                               <a href="admin.php?page=QuanLyNhaSanXuat_XuLy&action=show&id=' . $row['MaNSX'] . '" title="Đưa vào danh sách" onclick="return xacNhanHien();">
                               <input type="image" border="0" alt="Xóa" src="images/show.png"></a>

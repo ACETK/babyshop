@@ -9,6 +9,7 @@ $tpl = new XTemplate('template/template.html');
 $tpl->assign_file('FileHeader','template/english/incHeader.html');
 $tpl->assign_file('FileMenu','template/english/incMenu.html');
 $tpl->assign_file('FileNavigation','template/english/incNavigation.html');
+$tpl->parse('main.header.nav');
 
 //Thiết kế cột trái
 include 'includes/english/incCategories.php';
