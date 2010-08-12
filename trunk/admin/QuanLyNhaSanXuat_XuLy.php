@@ -8,7 +8,7 @@ if (isset($_GET['action'])) {
             $sql = "SELECT * FROM nhasanxuat WHERE MaNSX =$id";
             $result = MySQLHelper::executeQuery($sql);
             $nsx = mysql_fetch_assoc($result);
-            if($nsx['HienThi']==0){
+            if($nsx['TinhTrang']==1){
                 $check = "";
             }
             $TieuDe = "Cập nhật thông tin nhà sản xuất";
@@ -71,7 +71,7 @@ if (isset($_GET['action'])) {
                                                             </tr>
                                                             <tr>
                                                                 <td class="main b_width"><strong>Hiển thị ở trang chủ:</strong></td>
-                                                                <td class="main width2_100"><input type="checkbox" name="HienThi" '.$check.'/></td>
+                                                                <td class="main width2_100"><input type="checkbox" name="TinhTrang" '.$check.'/></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -98,15 +98,15 @@ if (isset($_GET['action'])) {
                     </tbody></table>
             </form>';
         if (isset($_POST['tennsx'])) {
-            if(isset($_POST['HienThi'])){
-                $check = '1';
-            }else
+            if(isset($_POST['TinhTrang'])){
                 $check = '0';
+            }else
+                $check = '1';
             if ($_GET['action'] == 'update') {
-                $sql = sprintf("UPDATE nhasanxuat SET TenNSX = '%s',DiaChi = '%s',DienThoai = '%s',Email = '%s', HienThi = '%s' 
+                $sql = sprintf("UPDATE nhasanxuat SET TenNSX = '%s',DiaChi = '%s',DienThoai = '%s',Email = '%s', TinhTrang = '%s'
                                 WHERE MaNSX =%s", $_POST['tennsx'], $_POST['diachi'], $_POST['dienthoai'], $_POST['email'],$check, $_GET['id']);
             } else {
-                $sql = sprintf("INSERT INTO nhasanxuat (TenNSX ,DiaChi ,DienThoai ,Email ,HienThi)
+                $sql = sprintf("INSERT INTO nhasanxuat (TenNSX ,DiaChi ,DienThoai ,Email ,TinhTrang)
                             VALUES ('%s', '%s' , '%s' , '%s' , '%s')", $_POST['tennsx'], $_POST['diachi'], $_POST['dienthoai'], $_POST['email'],$check);
             }
             $result = MySQLHelper::executeQuery($sql);
@@ -117,11 +117,11 @@ if (isset($_GET['action'])) {
         MySQLHelper::executeQuery($sql);
         header('location:admin.php?page=QuanLyNhaSanXuat');
     } else if ($_GET['action'] == 'show') {
-        $sql = "UPDATE nhasanxuat SET HienThi=1 WHERE MaNSX={$_GET['id']}";
+        $sql = "UPDATE nhasanxuat SET TinhTrang=0 WHERE MaNSX={$_GET['id']}";
         MySQLHelper::executeQuery($sql);
         header('location:admin.php?page=QuanLyNhaSanXuat');
     } else if ($_GET['action'] == 'hide') {
-        $sql = "UPDATE nhasanxuat SET HienThi=0  WHERE MaNSX={$_GET['id']}";
+        $sql = "UPDATE nhasanxuat SET TinhTrang=1  WHERE MaNSX={$_GET['id']}";
         MySQLHelper::executeQuery($sql);
         header('location:admin.php?page=QuanLyNhaSanXuat');
     }

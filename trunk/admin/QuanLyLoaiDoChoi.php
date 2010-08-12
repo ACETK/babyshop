@@ -61,7 +61,7 @@ $sql = "SELECT * FROM loaidochoi";
 $result = MySQLHelper::executeQuery($sql);
 $STT = 1;
 while ($row = mysql_fetch_assoc($result)) {
-    if($row['HienThi']==0){
+    if($row['TinhTrang']==1){
         $Temp .= '<tr style="background-color:#ffd2d2;">';
     }else{
         $Temp .= '<tr>';
