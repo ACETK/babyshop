@@ -8,6 +8,15 @@ $tpl = new XTemplate('template/template.html');
 
 $tpl->assign_file('FileHeader','template/english/incHeader.html');
 $tpl->assign_file('FileMenu','template/english/incMenu.html');
+
+//đếm số lượng sản phẩm trong giỏ hàng
+$numofitems = 0;
+if(isset ($_SESSION['cart'])){
+    foreach ($_SESSION['cart'] as $key => $value) {
+        $numofitems += $value;
+    }
+}
+$tpl->assign('NumOfCartItems', $numofitems);
 $tpl->assign_file('FileNavigation','template/english/incNavigation.html');
 $tpl->parse('main.header.nav');
 
@@ -44,15 +53,6 @@ $tpl->assign('BlockInfo', $Shipping);
 $tpl->parse('main.body.right.block');
 
 $tpl->parse('main.body.right');//Kết thúc cột phải
-
-//đếm số lượng sản phẩm trong giỏ hàng
-$numofitems = 0;
-if(isset ($_SESSION['cart'])){
-    foreach ($_SESSION['cart'] as $key => $value) {
-        $numofitems += $value;
-    }
-}
-$tpl->assign('NumOfCartItems', $numofitems);
 
 //Bắt đầu cột chính
 if (isset($_GET['action'])) {
