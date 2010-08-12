@@ -65,13 +65,11 @@ if ( !isset($_SESSION['isLogin']) || $_SESSION['isLogin'] == 0) {
                                 <tr> <td> Chào <a href="index.php?action=EditProfileSuccess">'.$tentk.' </a> | <input type="submit" name="thoat" value="Thoát" title=" Đăng xuất " alt="Đăng xuất"> </td></tr>
                                 </table></form>';
                  if($tentk=="admin")   {
+                    header("location:admin.php");
                      $Temp.='<form>
                                <table>
-                          <tr><td> <a href="index.php?action=QuanLyNhaSanXuat">Quản lý nhà sản xuất</a><tr><td>
-                          <tr><td> <a href="admin.php?action=QuanLyLoaiDoChoi">Quản lý loại đồ chơi</a><tr><td>
-                          <tr><td> <a href="admin.php?action=QuanLyDoChoi">Quản lý đồ chơi </a><tr><td>
-                         <tr><td> <a href="index.php?action=">Quản lý người dùng</a><tr><td>
-                         </table></form>';
+                          <tr><td> <a href="admin.php">Home Admin</a><tr><td>
+                           </table></form>';
                 }
          }
     }

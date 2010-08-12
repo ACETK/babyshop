@@ -22,6 +22,5 @@ if (isset($_POST['ok'])) {
         $_SESSION['isLogin'] = 0;
     }
     header("refresh:3;url=../../index.php");
-    echo "chờ tí nhé ^ ^";
 }
 ?>
