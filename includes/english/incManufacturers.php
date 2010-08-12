@@ -2,7 +2,7 @@
 //Sử lý nghiệp vụ -- yêu cầu gán vào biến $Temp
 require_once 'Class/CNhaSanXuat.php';
 
-$sql = "SELECT* FROM nhasanxuat WHERE HienThi=1";
+$sql = "SELECT* FROM nhasanxuat WHERE TinhTrang=0";
 $result = MySQLHelper::executeQuery($sql);
 
 

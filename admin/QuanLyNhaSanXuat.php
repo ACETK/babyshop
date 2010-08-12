@@ -62,7 +62,7 @@ $sql = "SELECT * FROM nhasanxuat";
 $result = MySQLHelper::executeQuery($sql);
 $STT = 1;
 while ($row = mysql_fetch_assoc($result)) {
-    if($row['HienThi']==0){
+    if($row['TinhTrang']==1){
         $Temp .= '<tr style="background-color:#ffd2d2;">';
     }else{
         $Temp .= '<tr>';
@@ -88,13 +88,13 @@ while ($row = mysql_fetch_assoc($result)) {
                               <a href="admin.php?page=QuanLyNhaSanXuat_XuLy&action=delete&id=' . $row['MaNSX'] . '" title="Xóa khỏi CSDL" onclick="return xacNhanXoa();">
                               <input type="image" border="0" alt="Xóa" src="images/delete.png"></a>
                         </td>';
-            }else if($row['HienThi']==1){
+            }else if($row['TinhTrang']==0){
                 $Temp.='<td align="center" class="loaibutton">
                               <a href="admin.php?page=QuanLyNhaSanXuat_XuLy&action=hide&id=' . $row['MaNSX'] . '" title="Loại khỏi danh sách" onclick="return xacNhanAn();">
                               <input type="image" border="0" alt="Xóa" src="images/hide.png"></a>
                         </td>';
             }
-            else if($row['HienThi']==0){
+            else if($row['TinhTrang']==1){
                 $Temp.='<td align="center" class="loaibutton">
                               <a href="admin.php?page=QuanLyNhaSanXuat_XuLy&action=show&id=' . $row['MaNSX'] . '" title="Đưa vào danh sách" onclick="return xacNhanHien();">
                               <input type="image" border="0" alt="Xóa" src="images/show.png"></a>
