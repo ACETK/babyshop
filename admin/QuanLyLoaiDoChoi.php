@@ -1,4 +1,5 @@
 <?php
+
 $Temp = '<style type="text/css" >
             .loaiheader{
                 color: blue;
@@ -60,10 +61,14 @@ $sql = "SELECT * FROM loaidochoi";
 $result = MySQLHelper::executeQuery($sql);
 $STT = 1;
 while ($row = mysql_fetch_assoc($result)) {
-    $Temp.='<tr>
-            <td align="center" style="text-align:center; padding: 10px 0 0;">' . $STT . '</td>
+    if($row['HienThi']==0){
+        $Temp .= '<tr style="background-color:#ffd2d2;">';
+    }else{
+        $Temp .= '<tr>';
+    }
+    $Temp.='<td align="center" style="text-align:center; padding: 10px 0 0;">' . $STT . '</td>
             <td class="cart_line_y padd2_vv"><img width="1" height="1" border="0" alt="" src="template/images/spacer.gif"></td>
-            <td align="center" class="loainame"><a href="index.php?action=productslist&idloai='.$row['MaLoai'].'" >' . $row['TenLoai'] . '</a></td>
+            <td align="center" class="loainame"><a href="index.php?action=productslist&idloai=' . $row['MaLoai'] . '" >' . $row['TenLoai'] . '</a></td>
             <td class="cart_line_y padd2_vv"><img width="1" height="1" border="0" alt="" src="template/images/spacer.gif"></td>
             <td align="center" class="loaibutton">
                 <form name="update' . $STT . '" method="post" action="admin/QuanLyLoaiDoChoi_XuLy.php?action=update" onsubmit="return capNhat(this,\'' . $row['TenLoai'] . '\');">
