@@ -21,6 +21,12 @@ if (isset($_POST['ok'])) {
     } else {
         $_SESSION['isLogin'] = 0;
     }
-    header("refresh:3;url=../../index.php");
+    if($user=="admin")
+    {
+          header("location:../../admin.php");
+    }
+    else{
+         header("location:../../index.php");
+    }
 }
 ?>

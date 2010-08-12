@@ -4,18 +4,46 @@
  * and open the template in the editor.
  */
 
-$sql = "SELECT* FROM loaidochoi ldc join dochoi dc on dc.MaLoai=ldc.MaLoai join nhasanxuat nsx on nsx.MaNSX=dc.MaNSX Where dc.TinhTrang=0";
+$sql = "SELECT* FROM loaidochoi ldc join dochoi dc on dc.MaLoai=ldc.MaLoai join nhasanxuat nsx on nsx.MaNSX=dc.MaNSX";
 $kq = MySQLHelper::executeQuery($sql);
 $Temp="";
 $Temp.='
-    <script type="text/javascript">
-            function xacNhan(){
-                var xacnhan = confirm("Bạn chắc chắn muốn xóa này chứ ?");
+   
+     <script type="text/javascript">
+            function xacNhanXoa(){
+                var xacnhan = confirm("Bạn chắc chắn muốn xóa đồ chơi này?");
                 if(xacnhan==true) return true;
                 return false;
             }
-            </script>
-     
+            function xacNhanHien(){
+                var xacnhan = confirm("Đồ chơi này sẽ hiển thị trong danh sách ngoài trang chủ?");
+                if(xacnhan==true) return true;
+                return false;
+            }
+            function xacNhanAn(){
+                var xacnhan = confirm("Đồ chơi này sẽ được loại khỏi danh sách ngoài trang chủ?");
+                if(xacnhan==true) return true;
+                return false;
+            }
+        </script>
+        <style type="text/css" >
+            .loaiheader{
+                color: blue;
+                font-weight: bold;
+                vertical-align: middle;
+                text-align: center;
+            }
+            .loainame{
+                padding:0px 5px 0px 5px;
+                text-align:center;
+                vertical-align:middle;
+            }
+            .loaibutton{
+                padding:5px 0px 5px 0px;
+                text-align:center;
+                vertical-align:middle;
+            }
+        </style>
     <table cellspacing="0" cellpadding="0" border="0">
         <tbody>
             <tr>
@@ -25,7 +53,7 @@ $Temp.='
     </table>
     <table width="100%" cellspacing="0" cellpadding="2" border="0">
         <tbody>
-         <tr> <font color="#ff0000"><b>Chú ý:</b></font><small> Quản trị phải thêm dữ liệu loại đồ chơi và nhà sản xuất mới được thêm đồ chơi.</small>
+         <tr> <font color="#ff0000"><b>Chú ý:</b></font><small> Quản trị phải thêm dữ liệu loại đồ chơi và nhà sản xuất trước khi thêm đồ chơi.</small>
         </tr>
         
         <tr>
@@ -43,16 +71,20 @@ $Temp.='
                                                     <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
                                                     <td ><strong>Thông tin</strong></td>
                                                     <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
-                                                    <td align="center" colspan="2"><a href="admin.php?action=ThemDoChoi"><input type="image" name="insert" title="thêm" alt="thêm"  src="images/insert.png"></a></td>
+                                                    <td align="center" colspan="2"><a href="admin.php?page=ThemDoChoi"><input type="image" name="insert" title="thêm" alt="thêm"  src="images/insert.png"></a></td>
                                                 </tr>
                                                <tr>
                             <td class="prod_line_x padd_gg" colspan="14"><img src="template/images/spacer.gif" border="0" alt="" width="1" height="1"></td>
                           </tr>';
                                                $a=1;
                                             while($mang = mysql_fetch_array($kq)) {
-                                                $Temp.='
-                                                <tr>
-                                                    <td>'.$a++.'</td>
+                                                if($mang['TinhTrang']==1){
+                                                 $Temp .= '<tr style="background-color:#ffd2d2;">';
+                                                 }else{
+                                                     $Temp .= '<tr>';
+                                                    }
+                                               $Temp.='
+                                                      <td>'.$a++.'</td>
                                                       <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
                                                       <td>'.$mang['TenDoChoi'].'</td>
                                                         <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
@@ -63,11 +95,34 @@ $Temp.='
                                                     <td>'.$mang['DonGia'].'</td>
                                                         <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
                                                     <td>'.$mang['ThongTin'].'</td>
-                                                    <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>                                                    
-    <td><a href="admin.php?action=CapNhatDoChoi&iddochoi='.$mang['MaDoChoi'].'"><img  name="update" title="cập nhật" alt="cập nhật"  src="images/edit.png" border="0"></a></td>
-    <td><a onclick="return xacNhan();" href="admin.php?action=XuLyDoChoi&iddochoi='.$mang['MaDoChoi'].'"><img  name="delete" title="xóa" alt="xóa" src="images/delete.png" border="0"></a></td>
-                                                </tr>
-                                               <tr>
+                                                    <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
+                                                    <td align="center" class="loaibutton">
+                                                      <a href="admin.php?page=CapNhatDoChoi&id=' . $mang['MaNSX'] . '" title="Cập nhật đồ chơi">
+                                                      <input type="image" border="0" alt="Cập nhật" src="images/edit.png"></a>
+                                                </td>';
+                                                $sql = "SELECT b.MaDoChoi FROM  (cthdnhap a join dochoi b on a.MaDoChoi=b.MaDoChoi) join cthdxuat c on b.MaDoChoi=b.MaDoChoi WHERE b.MaDoChoi = '{$mang['MaDoChoi']}'";
+                                                $check = MySQLHelper::executeQuery($sql);
+                                                if(mysql_num_rows($check)==false){
+                                                            $Temp.='<td align="center" class="loaibutton">
+                                                                          <a href="admin.php?page=XuLyDoChoi&action=delete&id=' . $mang['MaDoChoi'] . '" title="Xóa khỏi CSDL" onclick="return xacNhanXoa();">
+                                                                          <input type="image" border="0" alt="Xóa" src="images/delete.png"></a>
+                                                                    </td>';
+                                                        }else if($mang['TinhTrang']==0){
+                                                            $Temp.='<td align="center" class="loaibutton">
+                                                                          <a href="admin.php?page=XuLyDoChoi&action=hide&id=' . $mang['MaDoChoi'] . '" title="Loại khỏi danh sách" onclick="return xacNhanAn();">
+                                                                          <input type="image" border="0" alt="Ẩn" src="images/hide.png"></a>
+                                                                    </td>';
+                                                        }
+                                                        else if($mang['TinhTrang']==1){
+                                                            $Temp.='<td align="center" class="loaibutton">
+                                                                          <a href="admin.php?page=XuLyDoChoi&action=show&id=' . $mang['MaDoChoi'] . '" title="Đưa vào danh sách" onclick="return xacNhanHien();">
+                                                                          <input type="image" border="0" alt="Hiện" src="images/show.png"></a>
+                                                                    </td>';
+                                                        }
+
+
+                                                
+                                            $Temp.='   <tr>
                             <td class="prod_line_x padd_gg" colspan="14"><img src="template/images/spacer.gif" border="0" alt="" width="1" height="1"></td>
                           </tr> ';
                                                 }
@@ -91,7 +146,7 @@ $Temp.='
                 </td></tr>
         </tbody></table>';
 //////////
-
+                                            
     
 
 /** Khởi tạo content */

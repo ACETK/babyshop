@@ -55,26 +55,24 @@ if ( !isset($_SESSION['isLogin']) || $_SESSION['isLogin'] == 0) {
 
 
 
-}
-    else {
-            if(isset ($_SESSION['TenTaiKhoan'])){
-                $TuaDe= "Đăng xuất";
-                $tentk = $_SESSION['TenTaiKhoan'];
-                $Temp.=' <form name = "Logout" method ="post" action="includes/english/XuLyDangXuat.php">
-                               <table>
-                                <tr> <td> Chào <a href="index.php?action=EditProfileSuccess">'.$tentk.' </a> | <input type="submit" name="thoat" value="Thoát" title=" Đăng xuất " alt="Đăng xuất"> </td></tr>
-                                </table></form>';
-                 if($tentk=="admin")   {
-                    header("location:admin.php");
-                     $Temp.='<form>
-                               <table>
-                          <tr><td> <a href="admin.php">Home Admin</a><tr><td>
-                           </table></form>';
-                }
-         }
-    }
+        }
+            else {
+                    if(isset ($_SESSION['TenTaiKhoan'])){
+                        $TuaDe= "Đăng xuất";
+                        $tentk = $_SESSION['TenTaiKhoan'];
+                        $Temp.=' <form name = "Logout" method ="post" action="includes/english/XuLyDangXuat.php">
+                                       <table>
+                                        <tr> <td> Chào <a href="index.php?action=EditProfileSuccess">'.$tentk.' </a> | <input type="submit" name="thoat" value="Thoát" title=" Đăng xuất " alt="Đăng xuất"> </td></tr>
+                                        </table></form>';
+                         if($tentk=="admin")   {
 
-
+                             $Temp.='<form>
+                                       <table>
+                                  <tr><td> <a href="admin.php">Home Admin</a><tr><td>
+                                   </table></form>';
+                        }
+                 }
+            }
 ////////////
 
 //Kết thúc nghiệp vụ

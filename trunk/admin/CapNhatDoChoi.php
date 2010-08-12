@@ -7,7 +7,7 @@ include_once 'Class/CLoaiDoChoi.php';
 include_once 'Class/CNhaSanXuat.php';
 
 //load du lieu
-$macapnhat = $_GET['iddochoi'];
+$macapnhat = $_GET['id'];
 $sql1 = "SELECT* FROM dochoi Where MaDoChoi='$macapnhat' AND TinhTrang=0";
 $res1 = MySQLHelper::executeQuery($sql1);
 $mangdc = mysql_fetch_array($res1);
