@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-$sql = "SELECT* FROM loaidochoi ldc join dochoi dc on dc.MaLoai=ldc.MaLoai join nhasanxuat nsx on nsx.MaNSX=dc.MaNSX Where TinhTrang=0";
+$sql = "SELECT* FROM loaidochoi ldc join dochoi dc on dc.MaLoai=ldc.MaLoai join nhasanxuat nsx on nsx.MaNSX=dc.MaNSX Where dc.TinhTrang=0";
 $kq = MySQLHelper::executeQuery($sql);
 $Temp="";
 $Temp.='
