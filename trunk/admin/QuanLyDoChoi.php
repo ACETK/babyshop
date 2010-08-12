@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-$sql = "SELECT* FROM loaidochoi ldc join dochoi dc on dc.MaLoai=ldc.MaLoai join nhasanxuat nsx on nsx.MaNSX=dc.MaNSX";
+$sql = "SELECT dc.MaDoChoi,dc.TenDoChoi,dc.TinhTrang,dc.ThongTin,dc.DonGia,ldc.TenLoai,nsx.TenNSX FROM loaidochoi ldc join dochoi dc on dc.MaLoai=ldc.MaLoai join nhasanxuat nsx on nsx.MaNSX=dc.MaNSX";
 $kq = MySQLHelper::executeQuery($sql);
 $Temp="";
 $Temp.='
@@ -44,21 +44,13 @@ $Temp.='
                 vertical-align:middle;
             }
         </style>
-    <table cellspacing="0" cellpadding="0" border="0">
-        <tbody>
-            <tr>
-                <td><img width="100%" height="10" border="0" alt="" src="images/pixel_trans.gif"></td>
-            </tr>
-        </tbody>
-    </table>
+   
     <table width="100%" cellspacing="0" cellpadding="2" border="0">
         <tbody>
-         <tr> <font color="#ff0000"><b>Chú ý:</b></font><small> Quản trị phải thêm dữ liệu loại đồ chơi và nhà sản xuất trước khi thêm đồ chơi.</small>
-        </tr>
-        
+         <tr>
+         <font color="#ff0000"><b>Chú ý:</b></font><small> Quản trị phải thêm dữ liệu loại đồ chơi và nhà sản xuất trước khi thêm đồ chơi.</small>
+        </tr> 
         <tr>
-        <table cellspacing="4" cellpadding="2" border="0" >
-            <tbody><tr style="color: blue">
                                                     <td><strong>STT</strong></td>
                                                     <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
                                                     <td><strong>Tên đồ chơi</strong></td>
@@ -73,14 +65,15 @@ $Temp.='
                                                     <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
                                                     <td align="center" colspan="2"><a href="admin.php?page=ThemDoChoi"><input type="image" name="insert" title="thêm" alt="thêm"  src="images/insert.png"></a></td>
                                                 </tr>
-                                               <tr>
+                              <tr>
                             <td class="prod_line_x padd_gg" colspan="14"><img src="template/images/spacer.gif" border="0" alt="" width="1" height="1"></td>
                           </tr>';
                                                $a=1;
                                             while($mang = mysql_fetch_array($kq)) {
-                                                if($mang['TinhTrang']==1){
-                                                 $Temp .= '<tr style="background-color:#ffd2d2;">';
-                                                 }else{
+                                                    if($mang['TinhTrang']==1){
+                                                        $Temp .= '<tr style="background-color:#ffd2d2;">';
+                                                    }else
+                                                    {
                                                      $Temp .= '<tr>';
                                                     }
                                                $Temp.='
@@ -97,10 +90,13 @@ $Temp.='
                                                     <td>'.$mang['ThongTin'].'</td>
                                                     <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
                                                     <td align="center" class="loaibutton">
-                                                      <a href="admin.php?page=CapNhatDoChoi&id=' . $mang['MaNSX'] . '" title="Cập nhật đồ chơi">
+                                                      <a href="admin.php?page=CapNhatDoChoi&id='.$mang['MaDoChoi']. '" title="Cập nhật đồ chơi">
                                                       <input type="image" border="0" alt="Cập nhật" src="images/edit.png"></a>
-                                                </td>';
-                                                $sql = "SELECT b.MaDoChoi FROM  (cthdnhap a join dochoi b on a.MaDoChoi=b.MaDoChoi) join cthdxuat c on b.MaDoChoi=b.MaDoChoi WHERE b.MaDoChoi = '{$mang['MaDoChoi']}'";
+                                                </td>
+                                                ';
+                                                $sql = "SELECT b.MaDoChoi FROM hdxuat a join dochoi b on a.MaDoChoi=b.MaDoChoi Where b.MaDoChoi='{$mang['MaDoChoi']}'
+                                                    UNION
+                                                    SELECT b.MaDoChoi FROM hdnhap c join dochoi b on c.MaDoChoi=b.MaDoChoi Where b.MaDoChoi='{$mang['MaDoChoi']}'";
                                                 $check = MySQLHelper::executeQuery($sql);
                                                 if(mysql_num_rows($check)==false){
                                                             $Temp.='<td align="center" class="loaibutton">
@@ -118,10 +114,7 @@ $Temp.='
                                                                           <a href="admin.php?page=XuLyDoChoi&action=show&id=' . $mang['MaDoChoi'] . '" title="Đưa vào danh sách" onclick="return xacNhanHien();">
                                                                           <input type="image" border="0" alt="Hiện" src="images/show.png"></a>
                                                                     </td>';
-                                                        }
-
-
-                                                
+                                                        }                                               
                                             $Temp.='   <tr>
                             <td class="prod_line_x padd_gg" colspan="14"><img src="template/images/spacer.gif" border="0" alt="" width="1" height="1"></td>
                           </tr> ';
