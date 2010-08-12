@@ -38,7 +38,11 @@ if (!isset ($ok)) {
         $shoppingcart->assign('ProductTotalPrice',  number_format($ProductTotalPrice)." VND");
 
         if(isset ($_SESSION['tomuch'][$ProductID])){
-            $shoppingcart->assign('OutOfStock', 'Số lượng trong kho chỉ còn '.$_SESSION['tomuch'][$ProductID]);
+            if($_SESSION['tomuch'][$ProductID]==0){
+                $shoppingcart->assign('OutOfStock', 'Sản phẩm này đã hết hàng.');
+            }else{
+                $shoppingcart->assign('OutOfStock', 'Số lượng trong kho chỉ còn '.$_SESSION['tomuch'][$ProductID]);
+            }
             $shoppingcart->parse('cart.product.OutOfStock');
         }
 

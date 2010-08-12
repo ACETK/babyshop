@@ -1,7 +1,7 @@
 <?php
 //Sử lý nghiệp vụ -- yêu cầu gán vào biến $Temp
 $sql = "SELECT dc.MaDoChoi,TenDoChoi
-        FROM dochoi dc JOIN cthdxuat ct ON dc.MaDoChoi=ct.MaDoChoi
+        FROM dochoi dc JOIN hdxuat hdx ON dc.MaDoChoi=hdx.MaDoChoi
         ORDER BY SoLuong DESC,TenDoChoi";
 $result = MySQLHelper::executeQuery($sql);
 

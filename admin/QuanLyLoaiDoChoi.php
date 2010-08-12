@@ -61,9 +61,9 @@ $sql = "SELECT * FROM loaidochoi";
 $result = MySQLHelper::executeQuery($sql);
 $STT = 1;
 while ($row = mysql_fetch_assoc($result)) {
-    if($row['TinhTrang']==1){
+    if ($row['TinhTrang'] == 1) {
         $Temp .= '<tr style="background-color:#ffd2d2;">';
-    }else{
+    } else {
         $Temp .= '<tr>';
     }
     $Temp.='<td align="center" style="text-align:center; padding: 10px 0 0;">' . $STT . '</td>
@@ -81,11 +81,25 @@ while ($row = mysql_fetch_assoc($result)) {
     $check = MySQLHelper::executeQuery($sql);
     if (mysql_num_rows($check) == false) {
         $Temp.='<td align="center" class="loaibutton">
-                            <form name="delete' . $STT . '" method="post" action="admin/QuanLyLoaiDoChoi_XuLy.php?action=delete" onsubmit="return xacNhan();">
-                              <input type="hidden" name="MaLoai" value="' . $row['MaLoai'] . '">
-                              <input type="image" border="0" alt="Xóa" src="images/delete.png">
-                            </form>
-                       </td>';
+                    <form name="delete' . $STT . '" method="post" action="admin/QuanLyLoaiDoChoi_XuLy.php?action=delete" onsubmit="return xacNhan();">
+                      <input type="hidden" name="MaLoai" value="' . $row['MaLoai'] . '">
+                      <input type="image" border="0" alt="Xóa" src="images/delete.png">
+                    </form>
+               </td>';
+    } else if ($row['TinhTrang'] == 0) {
+        $Temp.='<td align="center" class="loaibutton">
+                    <form name="hide' . $STT . '" method="post" action="admin/QuanLyLoaiDoChoi_XuLy.php?action=hide" onsubmit="return xacNhanAn();">
+                      <input type="hidden" name="MaLoai" value="' . $row['MaLoai'] . '">
+                      <input type="image" border="0" alt="Ẩn" src="images/hide.png">
+                    </form>
+               </td>';
+    } else if ($row['TinhTrang'] == 1) {
+        $Temp.='<td align="center" class="loaibutton">
+                    <form name="show' . $STT . '" method="post" action="admin/QuanLyLoaiDoChoi_XuLy.php?action=show" onsubmit="return xacNhanHien();">
+                      <input type="hidden" name="MaLoai" value="' . $row['MaLoai'] . '">
+                      <input type="image" border="0" alt="Hiện" src="images/show.png">
+                    </form>
+               </td>';
     }
 
     $Temp.='</tr>

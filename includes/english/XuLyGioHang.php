@@ -25,9 +25,12 @@ if (isset($_GET['action'])) {
         $cart_quantity = $_POST['cart_quantity'];
         foreach ($cart_quantity as $key => $value) {
             if(is_numeric($value)){
-                $sql = "SELECT Sum(SoLuong) as SoLuongHang FROM `cthdnhap` WHERE MaDoChoi = '$productsID[$key]'";
+                $sql = "SELECT Sum(SoLuong) as SoLuongHang FROM hdnhap WHERE MaDoChoi = '$productsID[$key]'";
                 $result = MySQLHelper::executeQuery($sql);
                 $SoLuongHang = mysql_fetch_row($result);
+                if($SoLuongHang[0]==NULL){
+                    $SoLuongHang[0] = 0;
+                }
                 if(intval($value)<=$SoLuongHang[0]){
                     $_SESSION['cart'][$productsID[$key]] = intval($value);
                 }else{
@@ -39,15 +42,15 @@ if (isset($_GET['action'])) {
         if(isset($_POST['cart_delete'])){
             $cart_delete = $_POST['cart_delete'];
             if(count($cart_delete) == count($productsID)){
-                unset($_SESSION['cart']);
+//                unset($_SESSION['cart']);
             }else{
                 foreach ($cart_delete as $ID){
-                    unset ($_SESSION['cart'][$ID]);
+//                    unset ($_SESSION['cart'][$ID]);
                 }
             }
         }
 
     }
 }
-header("location:../../index.php?action=ShoppingCart");
+//header("location:../../index.php?action=ShoppingCart");
 ?>

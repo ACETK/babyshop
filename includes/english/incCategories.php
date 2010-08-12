@@ -4,7 +4,7 @@
 require_once 'Class/CLoaiDoChoi.php';
 
 
-$sql = "SELECT* FROM loaidochoi";
+$sql = "SELECT* FROM loaidochoi WHERE TinhTrang=0";
 $result = MySQLHelper::executeQuery($sql);
 
 $Temp ='<ul class="categories">';
