@@ -1,5 +1,23 @@
 <?php
-$Temp = '<style type="text/css" >
+$Temp = '<script type="text/javascript">
+            function xacNhanXoa(){
+                var xacnhan = confirm("Bạn chắc chắn muốn xóa nhà sản xuất này?");
+                if(xacnhan==true) return true;
+                return false;
+            }
+            function xacNhanHien(){
+                var xacnhan = confirm("NSX này sẽ hiển thị trong danh sách ngoài trang chủ?");
+                if(xacnhan==true) return true;
+                return false;
+            }
+            function xacNhanAn(){
+                var xacnhan = confirm("NSX này sẽ được loại khỏi danh sách ngoài trang chủ?");
+                if(xacnhan==true) return true;
+                return false;
+            }
+        </script>
+    
+        <style type="text/css" >
             .loaiheader{
                 color: blue;
                 font-weight: bold;
@@ -33,10 +51,7 @@ $Temp = '<style type="text/css" >
             <td style="color: blue; font-weight:bold;" align="center" class="loaiheader">Email</td>
             <td class="cart_line_y padd2_vv"><img width="1" height="1" border="0" alt="" src="template/images/spacer.gif"></td>
             <td colspan="2" align="center" class="loaibutton">
-                <form name="them" method="post" action="admin.php?page=QuanLyNhaSanXuat_XuLy&action=insert">
-                    <input type="hidden" name="TenLoai" value="">
-                    <input type="image" border="0" alt="Thêm mới" src="images/insert.png">
-                </form>
+                <a href="admin.php?page=QuanLyNhaSanXuat_XuLy&action=insert" title="Thêm nhà sản xuất"><img border="0" alt="Thêm mới" src="images/insert.png"></a>
             </td>
         </tr>
         <tr>
@@ -45,37 +60,45 @@ $Temp = '<style type="text/css" >
 ';
 $sql = "SELECT * FROM nhasanxuat";
 $result = MySQLHelper::executeQuery($sql);
-$STT=1;
-while($row = mysql_fetch_assoc($result)){
-    $Temp .= '<tr>
-            <td align="center" style="text-align:center; padding: 10px 0 0;">'.$STT.'</td>
+$STT = 1;
+while ($row = mysql_fetch_assoc($result)) {
+    if($row['HienThi']==0){
+        $Temp .= '<tr style="background-color:#ffd2d2;">';
+    }else{
+        $Temp .= '<tr>';
+    }
+  $Temp .= '<td align="center" style="text-align:center; padding: 10px 0 0;">' . $STT . '</td>
             <td class="cart_line_y padd2_vv"><img width="1" height="1" border="0" alt="" src="template/images/spacer.gif"></td>
-            <td class="loainame" align="center" ><a href="index.php?action=productslist&idnsx='.$row['MaNSX'].'" >'.$row['TenNSX'].'</a></td>
+            <td class="loainame" align="center" ><a href="index.php?action=productslist&idnsx=' . $row['MaNSX'] . '" >' . $row['TenNSX'] . '</a></td>
             <td class="cart_line_y padd2_vv"><img width="1" height="1" border="0" alt="" src="template/images/spacer.gif"></td>
-            <td class="loainame" align="center" >&nbsp;'.$row['DiaChi'].'</td>
+            <td class="loainame" align="center" >&nbsp;' . $row['DiaChi'] . '</td>
             <td class="cart_line_y padd2_vv"><img width="1" height="1" border="0" alt="" src="template/images/spacer.gif"></td>
-            <td class="loainame" align="center" >&nbsp;'.$row['DienThoai'].'</td>
+            <td class="loainame" align="center" >&nbsp;' . $row['DienThoai'] . '</td>
             <td class="cart_line_y padd2_vv"><img width="1" height="1" border="0" alt="" src="template/images/spacer.gif"></td>
-            <td class="loainame" align="center" >&nbsp;'.$row['Email'].'</td>
+            <td class="loainame" align="center" >&nbsp;' . $row['Email'] . '</td>
             <td class="cart_line_y padd2_vv"><img width="1" height="1" border="0" alt="" src="template/images/spacer.gif"></td>
             <td align="center" class="loaibutton">
-                <form name="update'.$STT.'" method="post" action="admin.php?page=QuanLyNhaSanXuat_XuLy&action=update">
-                  <input type="hidden" name="MaNSX" value="'.$row['MaNSX'].'">
-                  <input type="image" border="0" alt="Cập nhật" src="images/edit.png">
-                </form>
+                  <a href="admin.php?page=QuanLyNhaSanXuat_XuLy&action=update&id=' . $row['MaNSX'] . '" title="Thêm NSX mới">
+                  <input type="image" border="0" alt="Cập nhật" src="images/edit.png"></a>
             </td>';
-            $sql = "SELECT dc.mansx
-                    FROM cthdnhap ctn JOIN dochoi dc ON ctn.MaDoChoi=dc.MaDoChoi
-                        JOIN cthdxuat ctx ON dc.MaDoChoi=ctx.MaDoChoi
-                    WHERE mansx = {$row['MaNSX']}";
+            $sql = "SELECT MaNSX FROM dochoi WHERE MaNSX = {$row['MaNSX']}";
             $check = MySQLHelper::executeQuery($sql);
             if(mysql_num_rows($check)==false){
                 $Temp.='<td align="center" class="loaibutton">
-                            <form name="delete'.$STT.'" method="post" action="admin.php?page=QuanLyNhaSanXuat_XuLy&action=delete" onsubmit="return xacNhan();">
-                              <input type="hidden" name="MaNSX" value="'.$row['MaNSX'].'">
-                              <input type="image" border="0" alt="Xóa" src="images/delete.png">
-                            </form>
-                       </td>';
+                              <a href="admin.php?page=QuanLyNhaSanXuat_XuLy&action=delete&id=' . $row['MaNSX'] . '" title="Xóa khỏi CSDL" onclick="return xacNhanXoa();">
+                              <input type="image" border="0" alt="Xóa" src="images/delete.png"></a>
+                        </td>';
+            }else if($row['HienThi']==1){
+                $Temp.='<td align="center" class="loaibutton">
+                              <a href="admin.php?page=QuanLyNhaSanXuat_XuLy&action=hide&id=' . $row['MaNSX'] . '" title="Loại khỏi danh sách" onclick="return xacNhanAn();">
+                              <input type="image" border="0" alt="Xóa" src="images/hide.png"></a>
+                        </td>';
+            }
+            else if($row['HienThi']==0){
+                $Temp.='<td align="center" class="loaibutton">
+                              <a href="admin.php?page=QuanLyNhaSanXuat_XuLy&action=show&id=' . $row['MaNSX'] . '" title="Đưa vào danh sách" onclick="return xacNhanHien();">
+                              <input type="image" border="0" alt="Xóa" src="images/show.png"></a>
+                        </td>';
             }
     $Temp.='</tr>
         <tr>

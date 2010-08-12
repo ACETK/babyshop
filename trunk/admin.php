@@ -8,7 +8,7 @@ $tpl = new XTemplate('template/template.html');
 
 $tpl->assign_file('FileHeader','template/english/incHeaderAdmin.html');
 $tpl->assign_file('FileMenu','template/english/incMenuAdmin.html');
-if(!isset ($_GET['page']) || $_GET['page']!='HomeAdmin'){
+if(isset ($_GET['page']) && $_GET['page']!='HomeAdmin'){
     $tpl->assign_file('FileNavigation','template/english/incNavigationAdmin.html');
     $tpl->parse('main.header.nav');
 }
