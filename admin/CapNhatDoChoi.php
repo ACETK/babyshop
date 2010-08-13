@@ -87,6 +87,9 @@ function check_form(form_name) {
 <form onsubmit="return check_form(themdochoi);" method="post" action="" enctype="multipart/form-data" name="themdochoi">
     <table cellspacing="0" cellpadding="0" border="0">
         <tbody>
+        <tr>
+         <font color="#ff0000"><b>Chú ý:</b></font><small> Quản trị phải upload lại file hình mới!</small>
+        </tr>
             <tr>
                 <td><img width="100%" height="10" border="0" alt="" src="images/pixel_trans.gif"></td>
             </tr>
@@ -175,8 +178,8 @@ function check_form(form_name) {
         <tbody><tr><td>
                     <table width="100%" cellspacing="0" cellpadding="2" border="0">
                         <tbody><tr>
-                                <td><input type="button" name="Quay lại" title="Quay lại" alt="Quay lại" value="Quay lại"></a></td>
-                                <td><input type="submit" name="submit" title="Continue" alt="Continue" value="Sửa"></td>
+                                <td><a href="admin.php?page=QuanLyDoChoi"><img width="71" height="19" border="0" title=" Back " alt="Back" src="template/images/english/button_back1.gif"></a></td>
+                                <td><input type="image" title=" Continue " alt="Continue" src="template/images/english/button_continue.gif"></td>
                             </tr>
                         </tbody></table>
 
@@ -186,7 +189,7 @@ function check_form(form_name) {
 ';
 
 //Xu li gia tri sau khi post
-if(isset ($_POST['submit'])){
+if(isset ($_POST['tendochoi'])){
         $tendochoi= $_POST['tendochoi'];
         $maloaidochoi=  $_POST['loaidochoi'];
         $masanxuat =  $_POST['nhasanxuat'];
@@ -223,8 +226,7 @@ if(isset ($_POST['submit'])){
                             $truyvan = sprintf("UPDATE dochoi SET TenDoChoi='%s', MaLoai=%d, MaNSX=%d, DonGia='%s', ThongTin='%s', HinhAnh='%s' Where MaDoChoi='%s' ",$tendochoi,$maloaidochoi,$masanxuat,$giaban,$thongtin,$tenhinhmoi,$macapnhat);
                             $kq = MySQLHelper::executeQuery($truyvan);
                             if($kq==1){
-                                    $Temp.= 'Cập nhật đồ chơi '.$tendochoi.' thành công';
-                                    header( "refresh:3; url=admin.php?action=QuanLyDoChoi" );
+                                    header('location:admin.php?page=QuanLyDoChoi');
                                 }else{
                                     $Temp.="Cập nhật thất bại";
                                 }

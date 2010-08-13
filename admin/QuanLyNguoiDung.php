@@ -1,27 +1,27 @@
 <?php
-/* 
+/*
  * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * and open the template in the editor...
  */
 
-$sql = "SELECT dc.MaDoChoi,dc.TenDoChoi,dc.TinhTrang,dc.ThongTin,dc.DonGia,ldc.TenLoai,nsx.TenNSX FROM loaidochoi ldc join dochoi dc on dc.MaLoai=ldc.MaLoai join nhasanxuat nsx on nsx.MaNSX=dc.MaNSX";
+$sql = "SELECT* FROM nguoidung";
 $kq = MySQLHelper::executeQuery($sql);
 $Temp="";
 $Temp.='
-   
+
      <script type="text/javascript">
             function xacNhanXoa(){
-                var xacnhan = confirm("Bạn chắc chắn muốn xóa đồ chơi này?");
+                var xacnhan = confirm("Bạn chắc chắn muốn tài khoản này?");
                 if(xacnhan==true) return true;
                 return false;
             }
             function xacNhanHien(){
-                var xacnhan = confirm("Đồ chơi này sẽ hiển thị trong danh sách ngoài trang chủ?");
+                var xacnhan = confirm("Tài khoản này sẽ được khởi tạo lại để sử dụng!");
                 if(xacnhan==true) return true;
                 return false;
             }
             function xacNhanAn(){
-                var xacnhan = confirm("Đồ chơi này sẽ được loại khỏi danh sách ngoài trang chủ?");
+                var xacnhan = confirm("Tài khoản  này sẽ không được sử dụng nữa!");
                 if(xacnhan==true) return true;
                 return false;
             }
@@ -44,29 +44,37 @@ $Temp.='
                 vertical-align:middle;
             }
         </style>
-   
+
     <table width="100%" cellspacing="0" cellpadding="2" border="0">
         <tbody>
          <tr>
          <font color="#ff0000"><b>Chú ý:</b></font><small> Quản trị phải thêm dữ liệu loại đồ chơi và nhà sản xuất trước khi thêm đồ chơi.</small>
-        </tr> 
+        </tr>
         <tr style="color: blue; font-weight:bold;" align="center" class="loaiheader">
                                                     <td><strong>STT</strong></td>
                                                     <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
-                                                    <td><strong>Tên đồ chơi</strong></td>
+                                                    <td><strong>Tên tài khoản</strong></td>
                                                     <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
-                                                    <td ><strong >Loại đồ chơi</strong></td>
+                                                    <td ><strong >Tên người dùng</strong></td>
                                                     <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
-                                                    <td ><strong>Nhà sản xuất</strong></td>
+                                                    <td ><strong>Mật khẩu</strong></td>
                                                     <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
-                                                    <td ><strong>Đơn giá</strong></td>
+                                                    <td ><strong>Ngày sinh</strong></td>
                                                     <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
-                                                    <td ><strong>Thông tin</strong></td>
+                                                    <td ><strong>Giới tính</strong></td>
                                                     <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
-                                                    <td align="center" colspan="2"><a href="admin.php?page=ThemDoChoi"><input type="image" name="insert" title="thêm" alt="thêm"  src="images/insert.png"></a></td>
+                                                    <td ><strong>Địa chỉ</strong></td>
+                                                    <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
+                                                    <td ><strong>Điện thoại</strong></td>
+                                                    <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
+                                                    <td ><strong>Email</strong></td>
+                                                    <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
+                                                    <td ><strong>Mã Loại</strong></td>
+                                                    <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
+                                                    <td align="center" colspan="2"><a href="admin.php?page=ThemNguoiDung"><input type="image" name="insert" title="thêm" alt="thêm"  src="images/insert.png"></a></td>
                                                 </tr>
                               <tr>
-                            <td class="prod_line_x padd_gg" colspan="14"><img src="template/images/spacer.gif" border="0" alt="" width="1" height="1"></td>
+                            <td class="prod_line_x padd_gg" colspan="20"><img src="template/images/spacer.gif" border="0" alt="" width="1" height="1"></td>
                           </tr>';
                                                $a=1;
                                             while($mang = mysql_fetch_array($kq)) {
@@ -79,69 +87,76 @@ $Temp.='
                                                $Temp.='
                                                       <td>'.$a++.'</td>
                                                       <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
-                                                      <td>'.$mang['TenDoChoi'].'</td>
+                                                      <td>'.$mang['TenTaiKhoan'].'</td>
                                                         <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
-                                                    <td>'.$mang['TenLoai'].'</td>
+                                                    <td>'.$mang['TenNguoiDung'].'</td>
                                                         <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
-                                                    <td>'.$mang['TenNSX'].'</td>
+                                                    <td>'.$mang['MatKhau'].'</td>
                                                         <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
-                                                    <td>'.$mang['DonGia'].'</td>
+                                                    <td>'.$mang['NgaySinh'].'</td>
                                                         <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
-                                                    <td>'.$mang['ThongTin'].'</td>
-                                                    <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
+                                                    <td>'.$mang['GioiTinh'].'</td>
+                                                        <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
+                                                    <td>'.$mang['DiaChi'].'</td>
+                                                        <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
+                                                    <td>'.$mang['DienThoai'].'</td>
+                                                        <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
+                                                    <td>'.$mang['Email'].'</td>
+                                                        <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
+                                                    <td>'.$mang['MaLoai'].'</td>
+                                                        <td class="prod_line_y padd_vv"><img height="1" border="0" width="1" alt="" src="template/images/spacer.gif"/></td>
                                                     <td align="center" class="loaibutton">
-                                                      <a href="admin.php?page=CapNhatDoChoi&id='.$mang['MaDoChoi']. '" title="Cập nhật đồ chơi">
+                                                      <a href="admin.php?page=CapNhatNguoiDung&tentaikhoan='.$mang['TenTaiKhoan']. '" title="Cập nhật đồ chơi">
                                                       <input type="image" border="0" alt="Cập nhật" src="images/edit.png"></a>
                                                 </td>
                                                 ';
-                                                $sql = "SELECT b.MaDoChoi FROM hdxuat a join dochoi b on a.MaDoChoi=b.MaDoChoi Where b.MaDoChoi='{$mang['MaDoChoi']}'
-                                                    UNION
-                                                    SELECT b.MaDoChoi FROM hdnhap c join dochoi b on c.MaDoChoi=b.MaDoChoi Where b.MaDoChoi='{$mang['MaDoChoi']}'";
+                                                $sql = "SELECT a.TenTaiKhoan FROM nguoidung a join hdxuat b on a.TenTaiKhoan=b.TenTaiKhoan Where a.TenTaiKhoan='{$mang['TenTaiKhoan']}'";
                                                 $check = MySQLHelper::executeQuery($sql);
                                                 if(mysql_num_rows($check)==false){
                                                             $Temp.='<td align="center" class="loaibutton">
-                                                                          <a href="admin.php?page=XuLyDoChoi&action=delete&id=' . $mang['MaDoChoi'] . '" title="Xóa khỏi CSDL" onclick="return xacNhanXoa();">
+                                                                          <a href="admin.php?page=XuLyNguoiDung&action=delete&tentaikhoan=' . $mang['TenTaiKhoan'] . '" title="Xóa khỏi CSDL" onclick="return xacNhanXoa();">
                                                                           <input type="image" border="0" alt="Xóa" src="images/delete.png"></a>
                                                                     </td>';
                                                         }else if($mang['TinhTrang']==0){
                                                             $Temp.='<td align="center" class="loaibutton">
-                                                                          <a href="admin.php?page=XuLyDoChoi&action=hide&id=' . $mang['MaDoChoi'] . '" title="Loại khỏi danh sách" onclick="return xacNhanAn();">
+                                                                          <a href="admin.php?page=XuLyNguoiDung&action=hide&tentaikhoan=' . $mang['TenTaiKhoan'] . '" title="Loại khỏi danh sách" onclick="return xacNhanAn();">
                                                                           <input type="image" border="0" alt="Ẩn" src="images/hide.png"></a>
                                                                     </td>';
                                                         }
                                                         else if($mang['TinhTrang']==1){
                                                             $Temp.='<td align="center" class="loaibutton">
-                                                                          <a href="admin.php?page=XuLyDoChoi&action=show&id=' . $mang['MaDoChoi'] . '" title="Đưa vào danh sách" onclick="return xacNhanHien();">
+                                                                          <a href="admin.php?page=XuLyNguoiDung&action=show&tentaikhoan=' . $mang['TenTaiKhoan'] . '" title="Đưa vào danh sách" onclick="return xacNhanHien();">
                                                                           <input type="image" border="0" alt="Hiện" src="images/show.png"></a>
                                                                     </td>';
-                                                        }                                               
+                                                        }
                                             $Temp.='   <tr>
-                            <td class="prod_line_x padd_gg" colspan="14"><img src="template/images/spacer.gif" border="0" alt="" width="1" height="1"></td>
+                            <td class="prod_line_x padd_gg" colspan="20"><img src="template/images/spacer.gif" border="0" alt="" width="1" height="1"></td>
                           </tr> ';
                                                 }
                                                 $Temp.='
 
                                             </tbody>
                                         </table>
-       
+
     <div style="padding: 0px 0px 4px;"><img width="1" height="1" border="0" alt="" src="images/spacer.gif"></div>
     <table cellspacing="5" cellpadding="0" border="0">
         <tbody><tr>
                     <td><a href=""><img width="71" height="19" border="0" title=" Back " alt="Back" src="template/images/english/button_back1.gif"></a></td>
-                        
+
                             </tr>
-                        
+
         </tbody></table>';
 //////////
-                                            
-    
+
+
 
 /** Khởi tạo content */
 $ctpl = new XTemplate('./template/incContentBox.html');
-$ctpl->assign('ContentTitle',"Quản lý đồ chơi");
+$ctpl->assign('ContentTitle',"Quản lý người dùng");
 //đưa dữ liệu vào content
 $ctpl->assign('ContentInfo', $Temp);
 $ctpl->parse('box');
 $Content = $ctpl->text('box');
 /** Kết thúc content */
 ?>
+
