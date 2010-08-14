@@ -3,6 +3,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+if (isset($_SESSION['isLogin']) && $_SESSION['LoaiTK']=="admin"){
 include_once 'Class/CLoaiDoChoi.php';
 include_once 'Class/CNhaSanXuat.php';
 
@@ -242,6 +243,9 @@ if(isset ($_POST['tendochoi'])){
                         }
                 }
 }
+}else{
+       header("location:index.php");
+  }
 /** Khởi tạo content */
 $ctpl = new XTemplate('./template/incContentBox.html');
 $ctpl->assign('ContentTitle',"Quản lý đồ chơi - Thêm đồ chơi");

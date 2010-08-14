@@ -378,10 +378,16 @@ if(isset($_POST['capcha'])) {
     $ntn = $nam."-".$thang."-". $ngay;
             $DK->setTenTaiKhoan($tk);
             $sql = sprintf("INSERT INTO nguoidung (TenTaiKhoan, TenNguoiDung, MatKhau,NgaySinh,GioiTinh,DiaChi,DienThoai,Email,MaLoai) VALUES ('%s', '%s','%s', '%s', '%s','%s','%s', '%s','user')",$tk,$ht,$mk,$ntn,$gt,$dc,$dt,$em);
-            $result = MySQLHelper::executeQuery($sql);
+            $connection = mysql_connect("localhost","root","");
+            mysql_select_db("SHOPDOCHOI", $connection);
+            mysql_query("set names 'utf8'");
+            $result = mysql_query($sql, $connection);
             if($result==1){
                 $Temp="";
-                $Temp .= $DK->View();
+                $Temp.= $DK->View();
+            }
+            else{
+                 header("location:index.php")   ;
             }
     } else {
          $Temp.= 'Bạn nhập mã kiểm tra sai!';

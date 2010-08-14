@@ -3,7 +3,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor...
  */
-
+if (isset($_SESSION['isLogin']) && $_SESSION['LoaiTK']=="admin"){
 $sql = "SELECT* FROM nguoidung";
 $kq = MySQLHelper::executeQuery($sql);
 $Temp="";
@@ -149,7 +149,9 @@ $Temp.='
 //////////
 
 
-
+}else{
+       header("location:index.php");
+  }
 /** Khởi tạo content */
 $ctpl = new XTemplate('./template/incContentBox.html');
 $ctpl->assign('ContentTitle',"Quản lý người dùng");

@@ -3,7 +3,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
+if (isset($_SESSION['isLogin']) && $_SESSION['LoaiTK']=="admin"){
 $sql = "SELECT dc.MaDoChoi,dc.TenDoChoi,dc.TinhTrang,dc.ThongTin,dc.DonGia,ldc.TenLoai,nsx.TenNSX FROM loaidochoi ldc join dochoi dc on dc.MaLoai=ldc.MaLoai join nhasanxuat nsx on nsx.MaNSX=dc.MaNSX";
 $kq = MySQLHelper::executeQuery($sql);
 $Temp="";
@@ -134,7 +134,9 @@ $Temp.='
         </tbody></table>';
 //////////
                                             
-    
+}else{
+       header("location:index.php");
+  }
 
 /** Khởi tạo content */
 $ctpl = new XTemplate('./template/incContentBox.html');
