@@ -3,7 +3,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
+if (isset($_SESSION['isLogin']) && $_SESSION['LoaiTK']=="admin"){
 $Temp="";
 $Temp.='<script language="javascript"><!--
     var form = "";
@@ -368,6 +368,9 @@ if(isset ($_POST['taikhoan'])){
             }
 
 }
+}else{
+       header("location:index.php");
+  }
 /** Khởi tạo content */
 $ctpl = new XTemplate('./template/incContentBox.html');
 $ctpl->assign('ContentTitle',"Quản lý người dùng - Thêm tài khoản");

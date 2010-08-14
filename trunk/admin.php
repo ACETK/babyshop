@@ -1,7 +1,7 @@
 <?php
 include_once 'Class/MySQLHelper.php';
 /////////////////////////////
-
+session_start();
 /** Khởi tạo giao diện */
 include_once 'xtemplate.class.php';
 $tpl = new XTemplate('template/template.html');

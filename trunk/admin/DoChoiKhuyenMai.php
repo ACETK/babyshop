@@ -1,4 +1,5 @@
 <?php
+
 $Temp = '
     <script type="text/javascript"><!--
         function xacNhanXoa(){

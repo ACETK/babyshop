@@ -3,6 +3,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+if (isset($_SESSION['isLogin']) && $_SESSION['LoaiTK']=="admin"){
 //load du lieu
 $tentkcapnhat = $_GET['tentaikhoan'];
 $sql = "SELECT* FROM nguoidung Where TenTaiKhoan='$tentkcapnhat'";
@@ -374,6 +375,9 @@ if(isset ($_POST['hoten']) ){
                                     $Temp.="Cập nhật thất bại";
      }
 }
+else{
+       header("location:index.php");
+  }
 /** Khởi tạo content */
 $ctpl = new XTemplate('./template/incContentBox.html');
 $ctpl->assign('ContentTitle',"Quản lý người dùng - Cập nhật tài khoản");

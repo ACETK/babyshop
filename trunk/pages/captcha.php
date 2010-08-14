@@ -1,12 +1,12 @@
 <?php
 session_start();
-$captcha = imagecreatefromgif('cross.gif');
+$captcha = imagecreatefromgif('../images/cross.gif');
 
 //set some variables
 $black = imagecolorallocate($captcha, 0, 0, 0);
 $white = imagecolorallocate($captcha, 225, 225, 225);
 $red = imagecolorallocate($captcha, 225, 0, 0);
-$font = 'arial.ttf';
+$font = '../images/arial.ttf';
 
 //random stuff
 $string = md5(microtime() * mktime());

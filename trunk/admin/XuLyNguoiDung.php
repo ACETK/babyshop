@@ -3,6 +3,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+if (isset($_SESSION['isLogin']) && $_SESSION['LoaiTK']=="admin"){
 $Temp="";
 $idxuly=$_GET['tentaikhoan'];
 if ($_GET['action'] == 'delete') {
@@ -23,7 +24,9 @@ if ($_GET['action'] == 'hide') {
 }
 
 
-
+}else{
+       header("location:index.php");
+  }
 /** Khởi tạo content */
 $ctpl = new XTemplate('./template/incContentBox.html');
 $ctpl->assign('ContentTitle',"Xử lý người dùng");

@@ -1,7 +1,6 @@
 <?php
 //Sử lý nghiệp vụ -- yêu cầu gán vào biến $Temp
 //lam lai:
-
 $Temp='
     <script language="javascript" type="text/javascript">
 	function KiemTra()
@@ -36,11 +35,13 @@ if ( !isset($_SESSION['isLogin']) || $_SESSION['isLogin'] == 0) {
                   <td class="main"><b>Mật khẩu:</b></td></tr>
                    <tr><td class="main width3_100"><input type="password" maxlength="40" name="txtMatKhau" id="txtMatKhau"></td></tr>
                     <tr><td colspan="2"><img width="100%" height="10" border="0" alt="" src="images/pixel_trans.gif"></td></tr>
+                    <tr><td align="center"><input type="checkbox" name="ghinho"/>Ghi nhớ</td> </tr>
                     <tr><td class="smallText"><a href="index.php?action=PasswordForgotten">Quên mật khẩu? Nhấp vào đây.</a></td></tr>
                      <tr><td>
                    <table width="100%" cellspacing="0" cellpadding="2" border="0">
-                               <tbody><tr>
-                             <td><input type="image" name="ok" value="Đăng nhập" title=" Đăng nhập " alt="Đăng nhập" src="images/btndangnhaph.png"></td>
+                               <tbody>
+                               <tr>
+                             <td><input type="image"  value="Đăng nhập" title=" Đăng nhập " alt="Đăng nhập" src="images/btndangnhaph.png"></td>
                               <td><a href="index.php?action=CreateAccount"><img title=" Đăng ký " alt="Đăng ký" src="images/btndangky.png" border="0"></a></td>
                             </tr>
                                      </tbody></table>
@@ -61,6 +62,7 @@ if ( !isset($_SESSION['isLogin']) || $_SESSION['isLogin'] == 0) {
         }
         else {
                     if(isset ($_SESSION['TenTaiKhoan']) && isset ($_SESSION['LoaiTK'])){
+                        
                         $TuaDe= "Đăng xuất";
                         $tentk = $_SESSION['TenTaiKhoan'];
                         $maloaitk = $_SESSION['LoaiTK'];
@@ -77,7 +79,6 @@ if ( !isset($_SESSION['isLogin']) || $_SESSION['isLogin'] == 0) {
                  }
             }
 ////////////
-
 //Kết thúc nghiệp vụ
     /** Khởi tạo box */
     $btpl = new XTemplate('./template/incInfoBox.html');
