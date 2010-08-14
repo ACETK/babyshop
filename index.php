@@ -60,6 +60,8 @@ if (isset($_GET['action'])) {
     switch ($page) {
         case "Home":
             include 'pages/HomePage.php';
+            include 'includes/english/incBanner.php';
+            $tpl->assign('Banner', $Banner);
             $tpl->parse('main.header.banner');
             break;
         case "WhatsNew":

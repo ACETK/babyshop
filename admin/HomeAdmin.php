@@ -43,7 +43,7 @@ $Temp = '<style type="text/css" >
             <td align="right"><img src="template/images/admin/nsx.png" alt=""></td>
             <td class="list"><a href="admin.php?page=QuanLyNhaSanXuat" >Danh sách nhà sản xuất</a></td>
             <td align="left"><img src="template/images/admin/sale.png" alt=""></td>
-            <td class="list"><a href="#" >Sản phẩm giảm giá</a></td>
+            <td class="list"><a href="admin.php?page=DoChoiKhuyenMai" >Sản phẩm giảm giá</a></td>
           </tr>
           <tr>
             <td colspan="4">&nbsp;</td>

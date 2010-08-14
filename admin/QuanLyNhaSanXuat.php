@@ -1,5 +1,5 @@
 <?php
-$Temp = '<script type="text/javascript">
+$Temp = '<script type="text/javascript"><!--
             function xacNhanXoa(){
                 var xacnhan = confirm("Bạn chắc chắn muốn xóa nhà sản xuất này?");
                 if(xacnhan==true) return true;
@@ -15,11 +15,12 @@ $Temp = '<script type="text/javascript">
                 if(xacnhan==true) return true;
                 return false;
             }
+            //-->
         </script>
     
         <style type="text/css" >
+            <!--
             .loaiheader{
-                color: blue;
                 font-weight: bold;
                 vertical-align: middle;
                 text-align: center;
@@ -34,21 +35,22 @@ $Temp = '<script type="text/javascript">
                 text-align:center;
                 vertical-align:middle;
             }
+            //-->
         </style>
 
 <table width="" cellspacing="0" cellpadding="0" border="0" class="tableBox_shopping_cart main">
     <tbody>
-        <tr><td colspan="12"><b>Chú ý:&nbsp; </b> Chỉ có thể xóa loại đồ chơi không chứa bất kì món đồ chơi nào.</td></tr>
+        <tr><td colspan="12"><b>Chú ý:&nbsp; </b>Hướng dẫn sử dụng.</td></tr>
         <tr>
-            <td style="color: blue; font-weight:bold;" align="center" class="loaiheader">STT</td>
+            <td style="color:blue;" class="loaiheader">STT</td>
             <td class="cart_line_y padd2_vv"><img width="1" height="1" border="0" alt="" src="template/images/spacer.gif"></td>
-            <td style="color: blue; font-weight:bold;" align="center" class="loaiheader">Tên NSX</td>
+            <td style="color:blue;" class="loaiheader">Tên NSX</td>
             <td class="cart_line_y padd2_vv"><img width="1" height="1" border="0" alt="" src="template/images/spacer.gif"></td>
-            <td style="color: blue; font-weight:bold;" align="center" class="loaiheader">Địa chỉ</td>
+            <td style="color:blue;" class="loaiheader">Địa chỉ</td>
             <td class="cart_line_y padd2_vv"><img width="1" height="1" border="0" alt="" src="template/images/spacer.gif"></td>
-            <td style="color: blue; font-weight:bold;" align="center" class="loaiheader">Số điện thoại</td>
+            <td style="color:blue;" class="loaiheader">Số điện thoại</td>
             <td class="cart_line_y padd2_vv"><img width="1" height="1" border="0" alt="" src="template/images/spacer.gif"></td>
-            <td style="color: blue; font-weight:bold;" align="center" class="loaiheader">Email</td>
+            <td style="color:blue;" class="loaiheader">Email</td>
             <td class="cart_line_y padd2_vv"><img width="1" height="1" border="0" alt="" src="template/images/spacer.gif"></td>
             <td colspan="2" align="center" class="loaibutton">
                 <a href="admin.php?page=QuanLyNhaSanXuat_XuLy&action=insert" title="Thêm nhà sản xuất"><img border="0" alt="Thêm mới" src="images/insert.png"></a>
