@@ -40,32 +40,35 @@ if ( !isset($_SESSION['isLogin']) || $_SESSION['isLogin'] == 0) {
                      <tr><td>
                    <table width="100%" cellspacing="0" cellpadding="2" border="0">
                                <tbody><tr>
-                             <td align="center"><input type="submit" name="ok" value="Đăng nhập" title=" Đăng nhập " alt="Đăng nhập"></td>
-                               </tr>
+                             <td><input type="image" name="ok" value="Đăng nhập" title=" Đăng nhập " alt="Đăng nhập" src="images/btndangnhaph.png"></td>
+                              <td><a href="index.php?action=CreateAccount"><img title=" Đăng ký " alt="Đăng ký" src="images/btndangky.png" border="0"></a></td>
+                            </tr>
                                      </tbody></table>
                                        </td></tr>
                                        </tbody></table> 
                                    <div id="divErrorMessage"></div>';?>
                      <?php
                     if (isset($_SESSION['isLogin']) && $_SESSION['isLogin'] == 0) {
-                        $Temp.='Sai tài khoản hoặc mật khẩu';  ?>
+                        $Temp.='Sai tài khoản hoặc mật khẩu';
+                        unset ($_SESSION['isLogin']);
+                        ?>
                         <?php
-                        $Temp.=' </form>';
+                        $Temp.='</form> ';
                     }
 
 
 
         }
-            else {
-                    if(isset ($_SESSION['TenTaiKhoan'])){
+        else {
+                    if(isset ($_SESSION['TenTaiKhoan']) && isset ($_SESSION['LoaiTK'])){
                         $TuaDe= "Đăng xuất";
                         $tentk = $_SESSION['TenTaiKhoan'];
+                        $maloaitk = $_SESSION['LoaiTK'];
                         $Temp.=' <form name = "Logout" method ="post" action="includes/english/XuLyDangXuat.php">
                                        <table>
                                         <tr> <td> Chào <a href="index.php?action=EditProfileSuccess">'.$tentk.' </a> | <input type="submit" name="thoat" value="Thoát" title=" Đăng xuất " alt="Đăng xuất"> </td></tr>
                                         </table></form>';
-                         if($tentk=="admin")   {
-
+                         if($maloaitk=="admin")   {
                              $Temp.='<form>
                                        <table>
                                   <tr><td> <a href="admin.php">Home Admin</a><tr><td>

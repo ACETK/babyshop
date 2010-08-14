@@ -88,10 +88,7 @@ if (isset($_GET['action'])) {
          case "CreateAccount":
             include 'pages/CreateAccount.php';
             break;
-         case "CASuccess":
-            include 'pages/CreateAccountSuccess.php';
-            break;
-        case "LogIn":
+          case "LogIn":
             include 'pages/LogIn.php';
             break;
         case "AdvancedSearch":

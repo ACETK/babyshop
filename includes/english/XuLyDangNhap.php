@@ -17,11 +17,12 @@ if (isset($_POST['ok'])) {
     if ($row == true && $row["MatKhau"] == $pass) {
         $_SESSION['isLogin'] = 1;
         $_SESSION['TenTaiKhoan'] = $row['TenTaiKhoan'];
+        $_SESSION['LoaiTK'] = $row['MaLoai'];
         $_SESSION['MatKhau'] = $row['MatKhau'];
     } else {
         $_SESSION['isLogin'] = 0;
     }
-    if($user=="admin")
+    if($_SESSION['LoaiTK']=="admin")
     {
           header("location:../../admin.php");
     }

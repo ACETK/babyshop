@@ -122,9 +122,10 @@ check_input("hoten", 2, "Họ tên ít nhất 2 ký tự .");
 check_input("dob", 10, "Vui lòng nhập ngày sinh theo định dạng: MM/DD/YYYY (VD: 05/21/1970)");
 
 check_input("email_address", 6, "Địa chỉ email ít nhất 6 ký tự.");
-check_input("diachi", 5, "Địa chỉ ít nhất 5 ký tự");
+check_input("diachi", 5, "Địa chỉ ít nhất 5 ký tự.");
 
-check_input("telephone", 3, "Điện thoại ít nhất 3 kí tụ.");
+check_input("telephone", 3, "Điện thoại ít nhất 3 kí tự.");
+check_input("capcha", 1, "Mã kiểm tra không được để trống.");
 check_input("taikhoan", 5, "Tài khoản ít nhất 5 ký tự .");
 check_password("password", "confirmation", 5, "Mật khẩu ít nhất 5 ký tự", "Mật khẩu nhập lại phải giống mật khẩu ban đầu.");
 check_password_new("password_current", "password_new", "password_confirmation", 5, "Mật khẩu cũ ít nhất 5 ký tự.", "Mật khẩu mới cũng ít nhất 5 ký tự.", "2 mật khẩu mới phải trùng nhau.");
@@ -165,7 +166,7 @@ if (http.readyState == 4) {
 }
 
 //--></script>
-<form onsubmit="return check_form(create_account);" method="post" action="index.php?action=CASuccess" name="create_account"><input type="hidden" value="process" name="action">
+<form onsubmit="return check_form(create_account);" method="post" action="" name="create_account"><input type="hidden" value="process" name="action">
     <table cellspacing="0" cellpadding="0" border="0">
         <tbody><tr>
                 <td class="smallText"><br>
@@ -270,17 +271,16 @@ if (http.readyState == 4) {
                 <td class="main indent_2"><b>Thông tin tài khoản:</b></td>
             </tr>
         </tbody></table>
-
-    <div class="wrapper_pic2_t infoBox_">
+       <div class="wrapper_pic2_t infoBox_">
         <div class="wrapper_pic2_r">
             <div class="wrapper_pic2_b">
                 <div class="wrapper_pic2_l">
-
                     <div class="wrapper_pic2_tl s_width2_100">
                         <div class="wrapper_pic2_tr">
                             <div class="wrapper_pic2_bl">
                                 <div class="wrapper_pic2_br wrapper_pic2_padd">
                                     <div class="s_width2_100">
+                  
                                         <table cellspacing="4" cellpadding="2" border="0">
                                             <tbody>
                                                 <tr>
@@ -298,7 +298,42 @@ if (http.readyState == 4) {
                                                     <td class="main width2_100"><input type="password" maxlength="40" name="confirmation">&nbsp;<span class="inputRequirement">*</span></td>
                                                 </tr>
                                             </tbody></table>
+                                            
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table cellspacing="0" cellpadding="0" border="0">
+        <tbody><tr>
+                <td class="main indent_2"><b>Mã kiểm tra:</b></td>
+            </tr>
+        </tbody></table>
+        <div class="wrapper_pic2_t infoBox_">
+        <div class="wrapper_pic2_r">
+            <div class="wrapper_pic2_b">
+                <div class="wrapper_pic2_l">
+                    <div class="wrapper_pic2_tl s_width2_100">
+                        <div class="wrapper_pic2_tr">
+                            <div class="wrapper_pic2_bl">
+                                <div class="wrapper_pic2_br wrapper_pic2_padd">
+                                    <div class="s_width2_100">
+                                        <table cellspacing="4" cellpadding="2" border="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="main b_width"><strong>Mã kiểm tra:</strong></td>
+                                                    <td class="main b_width"><img src="pages/captcha.php" alt="captcha" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="main b_width"><strong>Nhập mã kiểm tra:</strong></td>
+                                                    <td class="main width2_100"><input type="text" name="capcha">&nbsp;<span class="inputRequirement">*</span></td>
+                                                </tr>
 
+                                            </tbody></table>
                                     </div>
                                 </div>
                             </div>
@@ -321,6 +356,38 @@ if (http.readyState == 4) {
         </tbody></table>
 </form>
 ';
+require_once 'Class/CNguoiDung.php';
+
+//////lay du lieu tu trang tao tk///////////
+if(isset($_POST['capcha'])) {
+    if($_POST['capcha'] == $_SESSION['code']) {
+
+     $DK = new CNguoiDung();
+    $tk=$_POST['taikhoan'];
+    $ht=$_POST['hoten'];
+    $mk=$_POST['password'];
+    $ns=$_POST['dob'];
+    $gt=$_POST['gender'];
+    $dc=$_POST['diachi'];
+    $dt=$_POST['telephone'];
+    $em=$_POST['email_address'];
+    //cat ngay sinh
+    $thang = substr($ns,3,2);
+    $ngay = substr($ns,0,2);
+    $nam = substr($ns,6,4);
+    $ntn = $nam."-".$thang."-". $ngay;
+            $DK->setTenTaiKhoan($tk);
+            $sql = sprintf("INSERT INTO nguoidung (TenTaiKhoan, TenNguoiDung, MatKhau,NgaySinh,GioiTinh,DiaChi,DienThoai,Email,MaLoai) VALUES ('%s', '%s','%s', '%s', '%s','%s','%s', '%s','user')",$tk,$ht,$mk,$ntn,$gt,$dc,$dt,$em);
+            $result = MySQLHelper::executeQuery($sql);
+            if($result==1){
+                $Temp="";
+                $Temp .= $DK->View();
+            }
+    } else {
+         $Temp.= 'Bạn nhập mã kiểm tra sai!';
+    }
+}
+///////////////////////////
 /** Khởi tạo content */
 $ctpl = new XTemplate('./template/incContentBox.html');
 $ctpl->assign('ContentTitle',"Thông tin đăng kí");
