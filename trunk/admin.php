@@ -117,6 +117,13 @@ if (isset($_GET['page'])) {
          case "CapNhatNguoiDung":
             include 'admin/CapNhatNguoiDung.php';
             break;
+        case "DoChoiKhuyenMai":
+            include 'admin/DoChoiKhuyenMai.php';
+            break;
+        case "DoChoiKhuyenMai_XuLy":
+            include 'admin/DoChoiKhuyenMai_XuLy.php';
+            break;
+
 //        case "WhatsNew":
 //            include 'pages/WhatsNew.php';
 //            break;

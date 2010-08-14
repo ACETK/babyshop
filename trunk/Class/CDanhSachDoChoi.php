@@ -4,7 +4,8 @@
  *
  * @author DarkMagikian
  */
-require_once 'Class/CDoChoi.php';
+require_once 'CDoChoi.php';
+require_once 'MySQLHelper.php';
 
 class CDanhSachDoChoi {
 
@@ -116,15 +117,22 @@ class CDanhSachDoChoi {
             }
             //xuất dữ liệu
             if ($this->arrDoChoi[$i] instanceof CDoChoi) {
-                $sql = 'select TenLoai from loaidochoi where maloai =' . $this->arrDoChoi[$i]->getMaLoai();
+                $sql = "select TenLoai from loaidochoi where maloai ='{$this->arrDoChoi[$i]->getMaLoai()}'";
                 $result = MySQLHelper::executeQuery($sql);
                 $loai = mysql_fetch_assoc($result);
 
-                $sql = 'select TenNSX from nhasanxuat where mansx =' . $this->arrDoChoi[$i]->getMaNSX();
+                $sql = "select TenNSX from nhasanxuat where mansx ='{$this->arrDoChoi[$i]->getMaNSX()}'";
                 $result = MySQLHelper::executeQuery($sql);
                 $nsx = mysql_fetch_assoc($result);
-                mysql_free_result($result);
 
+                $sql = "SELECT DonGia FROM khuyenmai WHERE MaDoChoi = '{$this->arrDoChoi[$i]->getMaDoChoi()}'";
+                $result = MySQLHelper::executeQuery($sql);
+                $khuyenmai = mysql_fetch_assoc($result);
+                mysql_free_result($result);
+                if($khuyenmai['DonGia']!=NULL)
+                    $DonGia = '<strike style="color: red; font-size: 11pt; font-weight: bold;">'.number_format($this->arrDoChoi[$i]->getDonGia()).'</strike>&nbsp;' . number_format($khuyenmai['DonGia']) . '&nbsp;VNĐ';
+                else
+                    $DonGia = number_format($this->arrDoChoi[$i]->getDonGia()) . '&nbsp;VNĐ';
                 $Temp .= '<td align="left"  style="width:50%;">
                     <table cellpadding="0" cellspacing="0" border="0" class="prod_div">
                         <tr><td class="prod_padd2">
@@ -163,7 +171,7 @@ class CDanhSachDoChoi {
                                                     </tr>
                                                 </tbody></table>
                                         </td></tr>
-                                    <tr><td class="price2_padd"><span class="productSpecialPrice">' . number_format($this->arrDoChoi[$i]->getDonGia()) . '&nbsp;VNĐ</span></td></tr>
+                                    <tr><td class="price2_padd"><span class="productSpecialPrice">'.$DonGia.'</span></td></tr>
                                     <tr><td class="button2_padd button2_marg">
                                             <a href="index.php?action=detail&id=' . $this->arrDoChoi[$i]->getMaDoChoi() . '" ><img src="template/images/english/button_details.gif" border="0" alt="" width="81" height="19"  class="btn1"></a>
                                             <a href="includes/english/XuLyGioHang.php?action=add&idproduct=' . $this->arrDoChoi[$i]->getMaDoChoi() . '" ><img src="template/images/english/button_add_to_cart1.gif" border="0" alt="Thêm vào giỏ hàng" width="104" height="19"  class="btn2"></a>

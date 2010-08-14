@@ -42,15 +42,15 @@ if (isset($_GET['action'])) {
         if(isset($_POST['cart_delete'])){
             $cart_delete = $_POST['cart_delete'];
             if(count($cart_delete) == count($productsID)){
-//                unset($_SESSION['cart']);
+                unset($_SESSION['cart']);
             }else{
                 foreach ($cart_delete as $ID){
-//                    unset ($_SESSION['cart'][$ID]);
+                    unset ($_SESSION['cart'][$ID]);
                 }
             }
         }
 
     }
 }
-//header("location:../../index.php?action=ShoppingCart");
+header("location:../../index.php?action=ShoppingCart");
 ?>

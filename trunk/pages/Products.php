@@ -1,6 +1,4 @@
 <?php
-/** Khởi tạo content */
-$ctpl = new XTemplate('./template/incContentBox.html');
 
 //Sử lý nghiệp vụ -- yêu cầu gán vào biến $Temp
 require_once 'Class/CDoChoi.php';
@@ -12,11 +10,19 @@ require_once 'Class/MySQLHelper.php';
 if(isset ($_GET['idloai'])){
     $IDMaLoai = $_GET['idloai'];
     $sql = "SELECT* FROM dochoi where MaLoai=$IDMaLoai";
-    $ctpl->assign('ContentTitle', "Danh sách theo loại đồ chơi");
+    $sql_temp = "SELECT TenLoai FROM loaidochoi WHERE MaLoai=$IDMaLoai";
+    $result= MySQLHelper::executeQuery($sql_temp);
+    $loai = mysql_fetch_assoc($result);
+    $TieuDe = "Danh sách theo loại: ".$loai['TenLoai'];
 }else if(isset ($_GET['idnsx'])){
     $IDNSX = $_GET['idnsx'];
     $sql = "SELECT* FROM dochoi where MaNSX=$IDNSX";
-    $ctpl->assign('ContentTitle', "Danh sách theo nhà sản xuất");
+    $sql_temp = "SELECT TenNSX FROM nhasanxuat WHERE MaNSX=$IDNSX";
+    $result= MySQLHelper::executeQuery($sql_temp);
+    $loai = mysql_fetch_assoc($result);
+    $TieuDe = "Danh sách theo NSX: ".$loai['TenNSX'];
+}else{
+    header('location:index.php');
 }
 
 ////////////////////
@@ -112,6 +118,9 @@ if($maxPage > 1)
 
 ////////////////////////////////
 //Đưa dữ liệu vào trang chính
+/** Khởi tạo content */
+$ctpl = new XTemplate('./template/incContentBox.html');
+$ctpl->assign('ContentTitle', $TieuDe);
 $ctpl->assign('ContentInfo', $Temp);
 $ctpl->parse('box');
 $Content = $ctpl->text('box');

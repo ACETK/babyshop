@@ -27,7 +27,7 @@ if (isset($_GET['pfrom']) && isset($_GET['pto'])) {
     }
 }
 if (isset($_GET['dfrom']) && isset($_GET['dto']) && ($_GET['dfrom']!="dd/mm/yyyy" || $_GET['dto']!="dd/mm/yyyy")) {
-    $join = " dochoi dc JOIN cthdnhap ct ON dc.madochoi=ct.madochoi JOIN hdnhap hd ON ct.sohdn=hd.sohdn ";
+    $join = " dochoi dc JOIN hdnhap hdn ON dc.madochoi=hdn.madochoi ";
     $sql = str_replace("dochoi", $join, $sql);
     $dfrom = $_GET['dfrom'];
     $dto = $_GET['dto'];
@@ -37,15 +37,14 @@ if (isset($_GET['dfrom']) && isset($_GET['dto']) && ($_GET['dfrom']!="dd/mm/yyyy
     $dto = $dto[2]."-".$dto[1]."-".$dto[0];
 
     if ($dfrom != "yyyy-mm-dd" && $dto != "yyyy-mm-dd") {
-        $sql .= " AND hd.NgayNhap BETWEEN '$dfrom' AND '$dto'";
+        $sql .= " AND hdn.NgayNhap BETWEEN '$dfrom' AND '$dto'";
     } else if ($dfrom != "yyyy-mm-dd" && $dto == "yyyy-mm-dd") {
-        $sql .= " AND hd.NgayNhap > '$dfrom'";
+        $sql .= " AND hdn.NgayNhap > '$dfrom'";
     } else if ($dfrom == "yyyy-mm-dd" && $dto != "yyyy-mm-dd") {
-        $sql .= " AND hd.NgayNhap < '$dto'";
+        $sql .= " AND hdn.NgayNhap < '$dto'";
     }
     $sql.= " GROUP BY dc.madochoi ";
 }
-
 ////////////////////
 // Bắt đầu phân trang
 // số sản phẩm trên một trang
@@ -150,9 +149,13 @@ $Content .= '<div style="padding: 0px 0px 4px;"><img height="1" border="0" width
         <table cellspacing="0" cellpadding="0" border="0">
             <tbody>
                 <tr>
-                    <td align="right" class="main">
-                        <a href="index.php?action=TimKiem"><img height="19" border="0" width="71" title=" Back " alt="Back" src="includes/english/images/buttons/button_back1.gif" style="width: 71px; height: 19px;"></a>
-                    </td></tr>
+                    <td align="left" class="main" style="padding-left: 15px;">
+                        <a href="javascript:history.go(-1);"><img height="19" border="0" title=" Back " alt="Back" src="template/images/english/button_back1.gif"></a>
+                    </td>
+                    <td align="right" class="main" style="padding-right: 15px;">
+                        <a href="index.php?action=AdvancedSearch"><img height="19" border="0"title=" Back " alt="Back" src="template/images/english/button_advanced_search.gif"></a>
+                    </td>
+                </tr>
             </tbody></table>';
 ?>
 

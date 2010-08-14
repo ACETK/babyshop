@@ -17,13 +17,26 @@ class CDoChoi {
     private $HinhAnh;
     private $SoLuotXem;
     private $NgayNhap;
+    private $SoLuong;
 
     ///
+    public function getSoLuong() {
+        return $this->SoLuong;
+    }
+
+    public function setSoLuong($SoLuong) {
+        $this->SoLuong = $SoLuong;
+    }
+
     public function getNgayNhap() {
-        return $this->NgayNhap;
+        $NgayNhap = explode("-", $this->NgayNhap);
+        $NgayNhap = $NgayNhap[0]."-".$NgayNhap[1]."-".$NgayNhap[2];
+        return $NgayNhap;
     }
 
     public function setNgayNhap($NgayNhap) {
+        $NgayNhap = explode("-", $NgayNhap);
+        $NgayNhap = $NgayNhap[2]."-".$NgayNhap[1]."-".$NgayNhap[0];
         $this->NgayNhap = $NgayNhap;
     }
 
@@ -102,6 +115,7 @@ class CDoChoi {
         $this->SoLuotXem = 0;
         $this->MaNSX = 0;
         $this->NgayNhap = "";
+        $this->SoLuong = 0;
     }
 
     public function ViewDetail() {
@@ -112,7 +126,15 @@ class CDoChoi {
         $sql = 'select TenNSX from nhasanxuat where mansx =' . $this->MaNSX;
         $result = MySQLHelper::executeQuery($sql);
         $nsx = mysql_fetch_assoc($result);
+
+        $sql = "SELECT DonGia FROM khuyenmai WHERE MaDoChoi = '{$this->MaDoChoi}'";
+        $result = MySQLHelper::executeQuery($sql);
+        $khuyenmai = mysql_fetch_assoc($result);
         mysql_free_result($result);
+        if($khuyenmai['DonGia']!=NULL)
+            $DonGia = '<strike style="color: red; font-size: 11pt; font-weight: bold;">'.number_format($this->DonGia).'</strike>&nbsp;' . number_format($khuyenmai['DonGia']) . '&nbsp;VNĐ';
+        else
+            $DonGia = number_format($this->DonGia) . '&nbsp;VNĐ';
 
         $Temp = "";
         $Temp.='<script language="javascript"><!--
@@ -120,7 +142,6 @@ class CDoChoi {
                         window.open(url,\'popupWindow\',\'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes,copyhistory=no,width=100,height=100,screenX=150,screenY=150,top=150,left=150\')
                     }
                     //--></script>
-                <form method="post" action="" name="">
                     <table cellspacing="0" cellpadding="0" border="0" class="content_wrapper2_table"><tbody><tr><td class="content_wrapper2_td">
                                     <div style="width: 210px;" class="main prod_info">
                                         <div style="width: 207px; height: 159px;" class="wrapper_pic2_div">
@@ -159,7 +180,7 @@ class CDoChoi {
                                     </div>
                                     <div class="main"><div class="desc2">' . $this->ThongTin . '<br>
                                         </div><br>
-                                        <br><div><b class="productSpecialPrice">' . number_format($this->DonGia) . '&nbsp;VNĐ</b></div></div><br>
+                                        <br><div><b class="productSpecialPrice">' . $DonGia. '</b></div></div><br>
                                     <div style="clear: both;"></div>
                                 </td></tr>
                         </tbody>
@@ -186,6 +207,10 @@ class CDoChoi {
                                                                 <td align="right"><font><a href="index.php?action=productslist&idnsx=' . $this->MaNSX.'">' . $nsx['TenNSX'] . '</a></font></td>
                                                             </tr>
                                                             <tr>
+                                                                <td><b><font>Ngày nhập&nbsp;:</font></b></td>
+                                                                <td align="right"><font>' . $this->NgayNhap . '</font></td>
+                                                            </tr>
+                                                            <tr>
                                                                 <td><b><font>Số lượt xem&nbsp;:</font></b></td>
                                                                 <td align="right"><font>' . $this->SoLuotXem . '</font></td>
                                                             </tr>
@@ -210,14 +235,15 @@ class CDoChoi {
                                     <table width="100%" cellspacing="0" cellpadding="0" border="0">
                                         <tbody>
                                             <tr>
-                                                <td class="main button_marg"><a href="" ><img width="90" height="19" border="0" title=" Reviews " alt="Reviews" src="template/images/english/button_reviews.gif"></a></td>
-                                                <td align="right" class="main button_marg"><input type="hidden" value="104" name="products_id"><input type="image" title=" Add to Shopping Cart " alt="Add to Shopping Cart" src="template/images/english/button_add_to_cart1.gif"></td>
+                                                <td class="main button_marg"><a href="javascript:history.back();" ><img height="19" border="0" title=" Quay lại " alt="Quay lại" src="template/images/english/button_back.gif"></a></td>
+                                                <td align="right" class="main button_marg">
+                                                    <a href="includes/english/XuLyGioHang.php?action=add&idproduct=' . $this->MaDoChoi . '" ><img title=" Thêm vào giỏ hàng " alt="Thêm vào giỏ hàng" src="template/images/english/button_add_to_cart1.gif" border="0"></a>
+                                                </td>
                                             </tr>
                                         </tbody>
                                               </table>
                                 </td></tr>
                         </tbody></table>
-                </form>
     ';
         return $Temp;
     }

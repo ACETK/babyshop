@@ -33,7 +33,7 @@
                                         </td></tr>
                                     <!-- BEGIN: banner -->
                                     <tr><td class="banner">
-                                            {FILE "template/english/incBanner.html"}
+                                            {Banner}
                                         </td></tr>
                                     <!-- END: banner -->
                                     <!-- BEGIN: nav -->
@@ -110,7 +110,7 @@
             <!--
 
             Xoffset= 15;    // modify these values to ...
-            Yoffset= 45;    // change the popup position.
+            Yoffset= 25;    // change the popup position.
             var old,skn,iex=(document.all),yyy=-1000;
             var ns4=document.layers
             var ns6=document.getElementById&&!document.all
@@ -130,7 +130,7 @@
             document.onmousemove=get_mouse;
 
             function popup(msg){
-                var content="<TABLE  WIDTH=300 style=border-collapse:collapse BORDER=1 bordercolorlight=#FF9900 bordercolordark=#800000 bgcolor=#FFFFE8 "+
+                var content="<TABLE  style='border-collapse:collapse; width:250px;' BORDER=1 bordercolorlight=#FF9900 bordercolordark=#800000 bgcolor=#FFFFE8 "+
                     "><TD ALIGN=left><FONT COLOR=black SIZE=2>"+msg+"</FONT></TD></TABLE>";
                 yyy=Yoffset;
                 if(ns4){skn.document.write(content);skn.document.close();skn.visibility="visible"}
