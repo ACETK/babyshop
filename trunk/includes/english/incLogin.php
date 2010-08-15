@@ -23,7 +23,6 @@ $Temp='
 	}
 </script>';
 $TuaDe= "Đăng nhập";
-session_start();
 if ( !isset($_SESSION['isLogin']) || $_SESSION['isLogin'] == 0) {
     
     $Temp.=' <form method="post" action="includes/english/XuLyDangNhap.php" onSubmit="return KiemTra()" >

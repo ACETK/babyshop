@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include_once 'Class/MySQLHelper.php';
 /////////////////////////////
 
@@ -65,15 +65,6 @@ if (isset($_GET['action'])) {
             $tpl->assign('Banner', $Banner);
             $tpl->parse('main.header.banner');
             break;
-        case "WhatsNew":
-            include 'pages/WhatsNew.php';
-            break;
-        case "Specials":
-            include 'pages/Specials.php';
-            break;
-        case "Review":
-            include 'pages/Review.php';
-            break;
         case "Contact":
             include 'pages/Contact.php';
             break;
@@ -83,13 +74,10 @@ if (isset($_GET['action'])) {
         case"detail":
             include "pages/Detail.php";
             break;
-        case"manufacturers":
-            include "pages/Manufacturers.php";
-            break;
          case "CreateAccount":
             include 'pages/CreateAccount.php';
             break;
-          case "LogIn":
+        case "LogIn":
             include 'pages/LogIn.php';
             break;
         case "AdvancedSearch":
@@ -113,7 +101,16 @@ if (isset($_GET['action'])) {
         case "UpdateProducts":
             include 'pages/UpdateProductsAdmin.php';
             break;
-       
+        case "CheckOutInfo":
+            include 'pages/CheckOut_Info.php';
+            break;
+        case "CheckOutConfirmation":
+            include 'pages/CheckOut_Confirmation.php';
+            break;
+        case "CheckOutSuccess":
+            include 'pages/CheckOut_Success.php';
+            break;
+
 //        case "Shipping":
 //            include 'pages/Shipping.php';
 //            break;
@@ -129,7 +126,8 @@ if (isset($_GET['action'])) {
             break;
 
         default:
-            $tpl->assign('PagesName', 'pages/HomePage.html');
+            include 'pages/HomePage.php';
+            $tpl->parse('main.header.banner');
             break;
     }
 }else{

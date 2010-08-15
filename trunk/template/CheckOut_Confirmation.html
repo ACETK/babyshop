@@ -1,0 +1,139 @@
+<!-- BEGIN: main #DiaChiNhan, ThanhToan, TongCong, LoiNhan-->
+<div class="wrapper_pic2_t infoBox_">
+    <div class="wrapper_pic2_r">
+        <div class="wrapper_pic2_b">
+            <div class="wrapper_pic2_l">
+                <div class="wrapper_pic2_tl s_width2_100">
+                    <div class="wrapper_pic2_tr">
+                        <div class="wrapper_pic2_bl">
+                            <div class="wrapper_pic2_br wrapper_pic2_padd">
+                                <div class="s_width2_100">
+                                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody><tr>
+                                                <td width="30%">
+                                                    <table width="100%" cellspacing="4" cellpadding="2" border="0">
+                                                        <tbody><tr>
+                                                                <td class="main"><b>Địa chỉ nhận</b>&nbsp;<a href="index.php?action=CheckOutInfo&doidiachi"><span class="orderEdit">(Sửa)</span></a></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="main">{DiaChiNhan}</td>
+                                                            </tr>
+                                                        </tbody></table>
+                                                </td>
+                                                <td class="infoBox"><img width="1" height="1" border="0" alt="" src="images/spacer.gif"></td>
+                                                <td width="70%">
+                                                    <table width="100%" cellspacing="4" cellpadding="0" border="0">
+                                                        <tbody><tr>
+                                                                <td><table width="100%" cellspacing="0" cellpadding="2" border="0">
+                                                                        <tbody><tr>
+                                                                                <td colspan="3" class="main"><b>Danh sách đồ chơi </b> <a href="index.php?action=ShoppingCart"><span class="orderEdit">(Sửa)</span></a></td>
+                                                                            </tr>
+                                                                            <!-- BEGIN: giohang -->
+                                                                            <tr>
+                                                                                <td width="30" align="right" class="main">{SL}&nbsp;x</td>
+                                                                                <td class="main">&nbsp;{TenDoChoi}</td>
+                                                                                <td align="right" class="main">{ThanhTien}</td>
+                                                                            </tr>
+                                                                            <!-- END: giohang -->
+                                                                        </tbody></table></td>
+                                                            </tr>
+                                                        </tbody></table>
+                                                </td>
+                                            </tr>
+                                        </tbody></table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<table cellspacing="0" cellpadding="0" border="0"><tbody><tr>
+            <td class="main indent_2"><b>Thông tin hóa đơn</b></td>
+        </tr>
+    </tbody></table>
+
+<div class="wrapper_pic2_t infoBox_">
+    <div class="wrapper_pic2_r">
+        <div class="wrapper_pic2_b">
+            <div class="wrapper_pic2_l">
+                <div class="wrapper_pic2_tl s_width2_100">
+                    <div class="wrapper_pic2_tr">
+                        <div class="wrapper_pic2_bl">
+                            <div class="wrapper_pic2_br wrapper_pic2_padd">
+                                <div class="s_width2_100">
+                                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody><tr>
+                                                <td width="30%">
+                                                    <table width="100%" cellspacing="4" cellpadding="2" border="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="main"><b>Phương thức thanh toán</b> <a href="index.php?action=CheckOutInfo"><span class="orderEdit">(Sửa)</span></a></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="main">{ThanhToan}</td>
+                                                            </tr>
+                                                        </tbody></table></td>
+                                                <td class="infoBox"><img width="1" height="1" border="0" alt="" src="images/spacer.gif"></td>
+                                                <td width="70%" align="right" style="vertical-align: middle;">
+                                                    <table cellspacing="4" cellpadding="2" border="0">
+                                                        <tbody><tr>
+                                                                <td align="right" class="main"><b>Tổng cộng:</b></td>
+                                                                <td align="right" class="main"><b>{TongCong}</b></td>
+                                                            </tr>            </tbody></table></td>
+                                            </tr>
+                                        </tbody></table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table cellspacing="0" cellpadding="0" border="0"><tbody><tr>
+            <td class="main indent_2"><b>Lời nhắn gửi kèm </b><a href="index.php?action=CheckOutInfo"><span class="orderEdit">(Sửa)</span></a></td>
+        </tr>
+</tbody></table>
+
+<div class="wrapper_pic2_t infoBox_">
+    <div class="wrapper_pic2_r">
+        <div class="wrapper_pic2_b">
+            <div class="wrapper_pic2_l">
+                <div class="wrapper_pic2_tl s_width2_100">
+                    <div class="wrapper_pic2_tr">
+                        <div class="wrapper_pic2_bl">
+                            <div class="wrapper_pic2_br wrapper_pic2_padd">
+                                <div class="s_width2_100">
+                                    <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                                        <tbody><tr>
+                                                <td class="main">{LoiNhan}
+                                                    <input type="hidden" value="{LoiNhan}" name="loinhan"></td>
+                                            </tr>
+                                        </tbody></table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br style="line-height: 1px;"><br style="line-height: 10px;">
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tbody><tr>
+            <td align="right" class="main bg_input">
+                <a href="index.php?action=CheckOutSuccess" title=" Xác nhận hóa đơn" ><img border="0" alt="Xác nhận" src="template/images/english/button_confirm_order.gif"></a>
+            </td>
+        </tr>
+    </tbody></table>
+<!-- END: main -->

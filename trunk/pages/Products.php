@@ -9,18 +9,24 @@ require_once 'Class/MySQLHelper.php';
 //Lấy dữ liệu, tạo câu truy vấn
 if(isset ($_GET['idloai'])){
     $IDMaLoai = $_GET['idloai'];
-    $sql = "SELECT* FROM dochoi where MaLoai=$IDMaLoai";
+    $sql = "SELECT* FROM dochoi where MaLoai=$IDMaLoai AND TinhTrang=0 ORDER BY RAND()";
     $sql_temp = "SELECT TenLoai FROM loaidochoi WHERE MaLoai=$IDMaLoai";
     $result= MySQLHelper::executeQuery($sql_temp);
     $loai = mysql_fetch_assoc($result);
     $TieuDe = "Danh sách theo loại: ".$loai['TenLoai'];
 }else if(isset ($_GET['idnsx'])){
     $IDNSX = $_GET['idnsx'];
-    $sql = "SELECT* FROM dochoi where MaNSX=$IDNSX";
+    $sql = "SELECT* FROM dochoi where MaNSX=$IDNSX AND TinhTrang=0 ORDER BY RAND()";
     $sql_temp = "SELECT TenNSX FROM nhasanxuat WHERE MaNSX=$IDNSX";
     $result= MySQLHelper::executeQuery($sql_temp);
     $loai = mysql_fetch_assoc($result);
     $TieuDe = "Danh sách theo NSX: ".$loai['TenNSX'];
+}else if(isset ($_GET['new'])){
+    $sql = "SELECT * FROM dochoi WHERE TinhTrang=0 ORDER BY NgayNhap DESC,TenDoChoi";
+    $TieuDe = "Danh sách đồ chơi mới nhập";
+}else if(isset ($_GET['khuyenmai'])){
+    $sql = "SELECT * FROM dochoi WHERE MaDoChoi IN (SELECT MaDoChoi FROM khuyenmai) AND TinhTrang=0 ORDER BY RAND()";
+    $TieuDe = "Danh sách đồ chơi đang khuyến mãi";
 }else{
     header('location:index.php');
 }

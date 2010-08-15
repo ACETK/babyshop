@@ -1,5 +1,4 @@
 <?php
-
 //Sử lý nghiệp vụ -- yêu cầu gán vào biến $Temp
 require_once 'Class/CDoChoi.php';
 require_once 'Class/CDanhSachDoChoi.php';
@@ -10,13 +9,14 @@ $sql = "SELECT dc.MaDoChoi,MaLoai,MaNSX,TenDoChoi,ThongTin,DonGia,HinhAnh,nh,SoL
         FROM dochoi dc JOIN (SELECT MaDoChoi,NgayNhap as nh
                              FROM hdnhap
                              ORDER BY NgayNhap DESC) t on dc.MaDoChoi=t.MaDoChoi
+        WHERE TinhTrang=0
         GROUP BY dc.MaDoChoi
         ORDER BY nh DESC,TenDoChoi
         LIMIT 0,10";
 
 $result = MySQLHelper::executeQuery($sql);
 if(mysql_num_rows($result)==false){
-    $sql = "SELECT * FROM dochoi ORDER BY NgayNhap DESC,TenDoChoi LIMIT 0,10";
+    $sql = "SELECT * FROM dochoi WHERE TinhTrang=0 ORDER BY NgayNhap DESC,TenDoChoi LIMIT 0,10";
     $result = MySQLHelper::executeQuery($sql);
 }
 

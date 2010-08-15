@@ -8,7 +8,11 @@ if (isset($_SESSION['cart'])) {
     }
 }
 if (!isset ($ok)) {
-    $Temp = '<p>Ban khong co mon hang nao trong gio hang</p>';
+    $Temp = '<table cellspacing="0" cellpadding="0" class="main">
+					<tbody><tr><td style="padding: 25px 20px 20px;">Bạn chưa có món đồ chơi nào trong giỏ hàng.<br/><br/><br/>
+                                            <a href="index.php" ><img width="147" height="19" align="right" border="0" title=" Tiếp tục shopping " alt="Tiếp tục shopping" src="template/images/english/button_continue_shopping.gif"></a></td></tr>
+				</tbody></table>';
+//    unset ($_SESSION['cart']);
 } else {
     //Khởi tạo giao diện giỏ hàng
     $shoppingcart = new XTemplate('./template/PageShoppingCart.html');
@@ -28,29 +32,34 @@ if (!isset ($ok)) {
         $ProductName = $row['TenDoChoi'];
         $ProductImgURL = 'images/sanpham/'.$row['HinhAnh'];
         $ProductQty = $_SESSION['cart'][$row['MaDoChoi']];
-        $ProductTotalPrice =$ProductQty*intval($row['DonGia']);
 
+        $sql = "SELECT SoLuong FROM dochoi WHERE MaDoChoi = '{$row['MaDoChoi']}'";
+        $result_temp = MySQLHelper::executeQuery($sql);
+        $SoLuongHang = mysql_fetch_row($result_temp);
+
+        if($SoLuongHang[0]==0){
+            unset ($_SESSION['cart'][$row['MaDoChoi']]);
+            $shoppingcart->assign('OutOfStock', 'Số lương trong kho đã hết.Sản phẩm này sẽ được tự động loại khỏi giỏ hàng.');
+            $shoppingcart->parse('cart.product.OutOfStock');
+            $ProductQty = 0;
+        }else if($ProductQty>$SoLuongHang[0]){
+            $shoppingcart->assign('OutOfStock', 'Số lượng trong kho chỉ còn '.$SoLuongHang[0]);
+            $shoppingcart->parse('cart.product.OutOfStock');
+            $ProductQty = $SoLuongHang[0];
+        }
+
+        $ProductTotalPrice =$ProductQty*intval($row['DonGia']);
+        
         $shoppingcart->assign('ProductID', $ProductID);
         $shoppingcart->assign('ProductLink', $ProductLink);
         $shoppingcart->assign('ProductName', $ProductName);
         $shoppingcart->assign('ProductImgURL', $ProductImgURL);
         $shoppingcart->assign('ProductQty', $ProductQty);
         $shoppingcart->assign('ProductTotalPrice',  number_format($ProductTotalPrice)." VND");
-
-        if(isset ($_SESSION['tomuch'][$ProductID])){
-            if($_SESSION['tomuch'][$ProductID]==0){
-                $shoppingcart->assign('OutOfStock', 'Sản phẩm này đã hết hàng.');
-            }else{
-                $shoppingcart->assign('OutOfStock', 'Số lượng trong kho chỉ còn '.$_SESSION['tomuch'][$ProductID]);
-            }
-            $shoppingcart->parse('cart.product.OutOfStock');
-        }
-
         $shoppingcart->parse('cart.product');
 
         $TotalPrice += $ProductTotalPrice;
     }
-    unset ($_SESSION['tomuch']);
     $shoppingcart->assign('TotalPrice', number_format($TotalPrice)." VND");
 
     $shoppingcart->parse('cart');
