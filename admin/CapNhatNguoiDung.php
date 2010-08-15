@@ -375,7 +375,7 @@ if(isset ($_POST['hoten']) ){
                                     $Temp.="Cập nhật thất bại";
      }
 }
-else{
+}else{
        header("location:index.php");
   }
 /** Khởi tạo content */

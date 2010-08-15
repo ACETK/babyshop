@@ -1,24 +1,77 @@
 <?php
-$Temp="";
-$Temp.='<script language="javascript"><!--
+$Temp='
+<script type="text/javascript">
+function toggle_pass() {
+    if (window.XMLHttpRequest) {
+        http = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        http = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    handle = document.getElementById("pass");
+    var url = \'ajax_check_pass.php?\';
+    if(handle.value.length > 0) {
+        var fullurl = url + \'do=check_password_strength&pass=\' + encodeURIComponent(handle.value);
+        http.open("GET", fullurl, true);
+        http.send(null);
+        http.onreadystatechange = statechange_password;
+    }else{
+        document.getElementById(\'password_strength\').innerHTML = \'\';
+    }
+}
+
+function statechange_password() {
+    if (http.readyState == 4) {
+        var xmlObj = http.responseXML;
+        var bar = xmlObj.getElementsByTagName("result").item(0).childNodes[0].data;
+        var text = xmlObj.getElementsByTagName("result").item(0).childNodes[1].data;
+        document.getElementById("password_strength").innerHTML = bar;
+        document.getElementById("rating").innerHTML = text;
+    }
+}
+</script>
+
+<style type="text/css">
+
+    #password_strength {
+        width: 140px;
+        background: #97B4FF;
+    }
+    #password_bar {
+        padding: 1px;
+    }
+    #rating{
+        font-size: 11px;
+        font-weight: bold;
+        text-shadow:#000;
+    }
+    #rating_font{
+        font-size: 11px;
+        font-weight: bold;
+        text-shadow:#000;
+    }
+</style>
+';
+$Temp.='
+<script language="javascript"><!--
     var form = "";
     var submitted = false;
     var error = false;
     var error_message = "";
 
+    
     function sosanhtk(field_name,message){
         if (form.elements[field_name] && (form.elements[field_name].type != "hidden")){
         var field_value = form.elements[field_name].value;
         var valuesosanh= Array();
                     ';
-                    $sql = "SELECT TenTaiKhoan FROM nguoidung";
-                    $result = MySQLHelper::executeQuery($sql);
-                    $i=0;
-                    while($m = mysql_fetch_array($result)){
-                        $Temp.='valuesosanh['.$i.']="'.$m['TenTaiKhoan'].'";';
-                        $i++;
-                    }
-                  $Temp.='
+$sql = "SELECT TenTaiKhoan FROM nguoidung";
+$result = MySQLHelper::executeQuery($sql);
+$i=0;
+while($m = mysql_fetch_array($result)) {
+    $Temp.='valuesosanh['.$i.']="'.$m['TenTaiKhoan'].'";';
+    $i++;
+}
+$Temp.='
                 for(var i=0;i<valuesosanh.length;i++){
                     if(valuesosanh[i] == field_value)
                     {
@@ -139,31 +192,7 @@ if (error == true) {
 }
 }
 
-function toggle_pass(passid) {
-if (window.XMLHttpRequest) {
-    http = new XMLHttpRequest();
-} else if (window.ActiveXObject) {
-    http = new ActiveXObject("Microsoft.XMLHTTP");
-}
-handle = document.getElementById(passid);
-var url = "ajax_check_pass.php?";
-if(handle.value.length > 0) {
-    var fullurl = url + "do=check_password_strength&pass=" + encodeURIComponent(handle.value);
-    http.open("GET", fullurl, true);
-    http.send(null);
-    http.onreadystatechange = statechange_password;
-}else{
-    document.getElementById("password_strength").innerHTML = "";
-}
-}
 
-function statechange_password() {
-if (http.readyState == 4) {
-    var xmlObj = http.responseXML;
-    var html = xmlObj.getElementsByTagName("result").item(0).firstChild.data;
-    document.getElementById("password_strength").innerHTML = html;
-}
-}
 
 //--></script>
 <form onsubmit="return check_form(create_account);" method="post" action="" name="create_account"><input type="hidden" value="process" name="action">
@@ -285,17 +314,16 @@ if (http.readyState == 4) {
                                             <tbody>
                                                 <tr>
                                                     <td class="main b_width"><strong>Tên tài khoản:</strong></td>
-                                                    <td class="main width2_100"><input type="text" name="taikhoan">&nbsp;<span class="inputRequirement">*</span></td>
+                                                    <td class="main width2_100"><input type="text" name="taikhoan"><span class="inputRequirement">*</span></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="main b_width"><strong>Mật khẩu:</strong></td>
-                                                    <td class="main width2_100"><input type="password" maxlength="40" name="password">
-                                                        &nbsp;<span class="inputRequirement">*</span></td>
-
+                                                    <td class="main width2_100"><input id="pass" type="password" name="password" onkeydown="toggle_pass();" /><span class="inputRequirement">*</span>
+                                                    <font id="rating"></font><div id="password_strength"></div></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="main b_width"><strong>Nhập lại mật khẩu:</strong></td>
-                                                    <td class="main width2_100"><input type="password" maxlength="40" name="confirmation">&nbsp;<span class="inputRequirement">*</span></td>
+                                                    <td class="main width2_100"><input type="password" maxlength="40" name="confirmation"><span class="inputRequirement">*</span></td>
                                                 </tr>
                                             </tbody></table>
                                             
@@ -362,35 +390,35 @@ require_once 'Class/CNguoiDung.php';
 if(isset($_POST['capcha'])) {
     if($_POST['capcha'] == $_SESSION['code']) {
 
-     $DK = new CNguoiDung();
-    $tk=$_POST['taikhoan'];
-    $ht=$_POST['hoten'];
-    $mk=$_POST['password'];
-    $ns=$_POST['dob'];
-    $gt=$_POST['gender'];
-    $dc=$_POST['diachi'];
-    $dt=$_POST['telephone'];
-    $em=$_POST['email_address'];
-    //cat ngay sinh
-    $thang = substr($ns,3,2);
-    $ngay = substr($ns,0,2);
-    $nam = substr($ns,6,4);
-    $ntn = $nam."-".$thang."-". $ngay;
-            $DK->setTenTaiKhoan($tk);
-            $sql = sprintf("INSERT INTO nguoidung (TenTaiKhoan, TenNguoiDung, MatKhau,NgaySinh,GioiTinh,DiaChi,DienThoai,Email,MaLoai) VALUES ('%s', '%s','%s', '%s', '%s','%s','%s', '%s','user')",$tk,$ht,$mk,$ntn,$gt,$dc,$dt,$em);
-            $connection = mysql_connect("localhost","root","");
-            mysql_select_db("SHOPDOCHOI", $connection);
-            mysql_query("set names 'utf8'");
-            $result = mysql_query($sql, $connection);
-            if($result==1){
-                $Temp="";
-                $Temp.= $DK->View();
-            }
-            else{
-                 header("location:index.php")   ;
-            }
+        $DK = new CNguoiDung();
+        $tk=$_POST['taikhoan'];
+        $ht=$_POST['hoten'];
+        $mk=$_POST['password'];
+        $ns=$_POST['dob'];
+        $gt=$_POST['gender'];
+        $dc=$_POST['diachi'];
+        $dt=$_POST['telephone'];
+        $em=$_POST['email_address'];
+        //cat ngay sinh
+        $thang = substr($ns,3,2);
+        $ngay = substr($ns,0,2);
+        $nam = substr($ns,6,4);
+        $ntn = $nam."-".$thang."-". $ngay;
+        $DK->setTenTaiKhoan($tk);
+        $sql = sprintf("INSERT INTO nguoidung (TenTaiKhoan, TenNguoiDung, MatKhau,NgaySinh,GioiTinh,DiaChi,DienThoai,Email,MaLoai) VALUES ('%s', '%s','%s', '%s', '%s','%s','%s', '%s','user')",$tk,$ht,$mk,$ntn,$gt,$dc,$dt,$em);
+        $connection = mysql_connect("localhost","root","");
+        mysql_select_db("SHOPDOCHOI", $connection);
+        mysql_query("set names 'utf8'");
+        $result = mysql_query($sql, $connection);
+        if($result==1) {
+            $Temp="";
+            $Temp.= $DK->View();
+        }
+        else {
+            header("location:index.php")   ;
+        }
     } else {
-         $Temp.= 'Bạn nhập mã kiểm tra sai!';
+        $Temp.= 'Bạn nhập mã kiểm tra sai!';
     }
 }
 ///////////////////////////

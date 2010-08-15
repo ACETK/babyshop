@@ -110,6 +110,10 @@ if (isset($_GET['action'])) {
         case "CheckOutSuccess":
             include 'pages/CheckOut_Success.php';
             break;
+        case "ajax":
+            include 'ajax_check_pass.php';
+            break;
+       
 
 //        case "Shipping":
 //            include 'pages/Shipping.php';
