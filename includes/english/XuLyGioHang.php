@@ -17,39 +17,29 @@ if (isset($_GET['action'])) {
 //            $prevpage = "../../index.php";
 //        }
 //        header("location:$prevpage");
-
-    }else if ($_GET['action'] == "update") {
+    } else if ($_GET['action'] == "update") {
         require_once '../../Class/MySQLHelper.php';
-
         $productsID = $_POST['products_id'];
         $cart_quantity = $_POST['cart_quantity'];
         foreach ($cart_quantity as $key => $value) {
-            if(is_numeric($value)){
-                $sql = "SELECT Sum(SoLuong) as SoLuongHang FROM hdnhap WHERE MaDoChoi = '$productsID[$key]'";
-                $result = MySQLHelper::executeQuery($sql);
-                $SoLuongHang = mysql_fetch_row($result);
-                if($SoLuongHang[0]==NULL){
-                    $SoLuongHang[0] = 0;
-                }
-                if(intval($value)<=$SoLuongHang[0]){
-                    $_SESSION['cart'][$productsID[$key]] = intval($value);
+            if (is_numeric($value)) {
+                if($value==0){
+                    unset ($_SESSION['cart'][$productsID[$key]]);
                 }else{
-                    $_SESSION['tomuch'][$productsID[$key]] = $SoLuongHang[0];
-                    $_SESSION['cart'][$productsID[$key]] = $SoLuongHang[0];
+                    $_SESSION['cart'][$productsID[$key]] = intval($value);
                 }
             }
         }
-        if(isset($_POST['cart_delete'])){
+        if (isset($_POST['cart_delete'])) {
             $cart_delete = $_POST['cart_delete'];
-            if(count($cart_delete) == count($productsID)){
+            if (count($cart_delete) == count($productsID)) {
                 unset($_SESSION['cart']);
-            }else{
-                foreach ($cart_delete as $ID){
-                    unset ($_SESSION['cart'][$ID]);
+            } else {
+                foreach ($cart_delete as $ID) {
+                    unset($_SESSION['cart'][$ID]);
                 }
             }
         }
-
     }
 }
 header("location:../../index.php?action=ShoppingCart");

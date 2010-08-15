@@ -1,0 +1,269 @@
+<!-- BEGIN: main #FormAction, ThayDoiDiaChi -->
+<script type="text/javascript" ><!--
+    var selected;
+    function selectRowEffect(object, buttonSelect) {
+        if (!selected) {
+            if (document.getElementById) {
+                selected = document.getElementById('defaultSelected');
+            } else {
+                selected = document.all['defaultSelected'];
+            }
+        }
+
+        if (selected) selected.className = 'moduleRow';
+        object.className = 'moduleRowSelected';
+        selected = object;
+
+        // one button is not an array
+        if (document.checkout.payment[0]) {
+            document.checkout.payment[buttonSelect].checked=true;
+        } else {
+            document.checkout.payment.checked=true;
+        }
+    }
+
+    function rowOverEffect(object) {
+        if (object.className == 'moduleRow') object.className = 'moduleRowOver';
+    }
+
+    function rowOutEffect(object) {
+        if (object.className == 'moduleRowOver') object.className = 'moduleRow';
+    }
+    //--></script>
+<form method="post" action="{FormAction}" name="checkout">
+    <table width="100%" cellspacing="0" cellpadding="2" border="0">
+        <tbody><tr><td class="main indent_2"><b>Địa chỉ nhận</b></td></tr>
+        </tbody></table>
+    <div class="wrapper_pic2_t infoBox_">
+        <div class="wrapper_pic2_r">
+            <div class="wrapper_pic2_b">
+                <div class="wrapper_pic2_l">
+                    <div class="wrapper_pic2_tl s_width2_100">
+                        <div class="wrapper_pic2_tr">
+                            <div class="wrapper_pic2_bl">
+                                <div class="wrapper_pic2_br wrapper_pic2_padd">
+                                    <div class="s_width2_100">
+                                        <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                                            <tbody><tr>
+                                                    <!-- BEGIN: kiemtradiachi -->
+                                                    <td width="50%" class="main">
+                                                        Vui lòng kiểm tra địa chỉ nhận bên cạnh. Hoặc thay đổi địa chỉ mà bạn mong muốn.<br>
+                                                        <br><a href="index.php?action=CheckOutInfo&doidiachi" ><img width="135" height="19" border="0" title=" Đổi địa chỉ nhận " alt="Đổi địa chỉ nhận" src="template/images/english/button_change_address1.gif"></a>
+                                                    </td>
+                                                    <!-- END: kiemtradiachi -->
+                                                    <!-- BEGIN: diachicu -->
+                                                    <td width="50%" class="main">
+                                                        Đây là địa chỉ đang được chọn để giao hàng, bạn có thể thay đổi theo thông tin dưới đây.<br>
+                                                    </td>
+                                                    <!-- END: diachicu -->
+                                                    <td width="50%" align="right"><table cellspacing="0" cellpadding="2" border="0">
+                                                            <tbody><tr>
+                                                                    <td align="left" class="main"><b>&nbsp;Địa chỉ:</b></td>
+                                                                    <td rowspan="2" class="main"><img width="10" height="1" border="0" alt="" src="images/pixel_trans.gif"></td>
+                                                                    <td rowspan="2" class="main">{DiaChiNhan}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="right"><img width="50" height="53" border="0" alt="" src="images/arrow_south_east.gif"></td>
+                                                                </tr>
+                                                            </tbody></table></td>
+                                                </tr>
+                                            </tbody></table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BEGIN: doidiachi -->
+    <div style="padding: 0px 0px 4px;"><img width="1" height="1" border="0" alt="" src="images/spacer.gif"></div>
+    <table width="100%" cellspacing="0" cellpadding="2" border="0">
+        <tbody><tr>
+                <td class="main indent_2"><b>Thay đổi địa chỉ giao hàng</b></td>
+            </tr>
+        </tbody></table>
+    <div class="wrapper_pic2_t infoBox_">
+        <div class="wrapper_pic2_r">
+            <div class="wrapper_pic2_b">
+                <div class="wrapper_pic2_l">
+                    <div class="wrapper_pic2_tl s_width2_100">
+                        <div class="wrapper_pic2_tr">
+                            <div class="wrapper_pic2_bl">
+                                <div class="wrapper_pic2_br wrapper_pic2_padd">
+                                    <div class="s_width2_100">
+                                        <table width="100%" cellspacing="0" cellpadding="2" border="0"><tbody><tr>
+                                                    <td><img width="10" height="1" border="0" alt="" src="images/pixel_trans.gif"></td>
+                                                    <td width="100%" class="main">Vui lòng điền đầy đủ thông tin dưới đây.</td>
+                                                    <td><img width="10" height="1" border="0" alt="" src="images/pixel_trans.gif"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img width="10" height="1" border="0" alt="" src="images/pixel_trans.gif"></td>
+                                                    <td><table width="100%" cellspacing="0" cellpadding="2" border="0">
+                                                            <tbody><tr>
+                                                                    <td width="10"><img width="10" height="1" border="0" alt="" src="images/pixel_trans.gif"></td>
+                                                                    <td><table width="100%" cellspacing="4" cellpadding="2" border="0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td class="main">Người nhận:</td>
+                                                                                    <td class="main"><input type="text" name="nguoinhan" size="45">&nbsp;<span class="inputRequirement">*</span></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="main">Địa chỉ:</td>
+                                                                                    <td class="main"><input type="text" name="diachi" size="45">&nbsp;<span class="inputRequirement">*</span></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="main">Số điện thoại:</td>
+                                                                                    <td class="main"><input type="text" name="dienthoai" size="45">&nbsp;<span class="inputRequirement">*</span></td>
+                                                                                </tr>
+                                                                            </tbody></table>
+                                                                    </td>
+                                                                    <td width="10"><img width="10" height="1" border="0" alt="" src="images/pixel_trans.gif"></td>
+                                                                </tr>
+                                                            </tbody></table></td>
+                                                    <td><img width="10" height="1" border="0" alt="" src="images/pixel_trans.gif"></td>
+                                                </tr>
+                                            </tbody></table>
+
+                                    </div>
+                                </div></div>
+                        </div></div>
+                </div></div>
+        </div></div>
+    <!-- END: doidiachi -->
+
+    <div style="padding: 0px 0px 4px;"><img width="1" height="1" border="0" alt="" src="images/spacer.gif"></div>
+    <table width="100%" cellspacing="0" cellpadding="2" border="0">
+        <tbody><tr><td class="main indent_2"><b>Phí vận chuyển</b></td></tr>
+        </tbody></table>
+    <div class="wrapper_pic2_t infoBox_">
+        <div class="wrapper_pic2_r">
+            <div class="wrapper_pic2_b">
+                <div class="wrapper_pic2_l">
+                    <div class="wrapper_pic2_tl s_width2_100">
+                        <div class="wrapper_pic2_tr">
+                            <div class="wrapper_pic2_bl">
+                                <div class="wrapper_pic2_br wrapper_pic2_padd">
+                                    <div class="s_width2_100">
+                                        <table width="100%" cellspacing="2" cellpadding="2" border="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td width="100%" class="main">
+                                                        Để phục vụ một cách tốt nhất cho khách hàng.
+                                                        Chúng tôi  nhận giao miễn phí trong khu vực trung tâm thành phố.
+                                                        Vui lòng cộng thêm 10,000 vnd cho các bạn ở Hooc-Môn, Q12, Q11, Q8, Q7, Q2, và 20,000 vnd cho các bạn ở ngoại thành.
+                                                        Với các bạn ở xa vui lòng cộng thêm chi phí chuyển phát nhanh theo đường bưu phẩm vào hóa đơn thanh toán.<br>
+                                                    </td>
+                                                </tr>
+                                            </tbody></table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BEGIN: thanhtoan -->
+    <div style="padding: 0px 0px 4px;"><img width="1" height="1" border="0" alt="" src="images/spacer.gif"></div>
+    <table width="100%" cellspacing="0" cellpadding="2" border="0">
+        <tbody><tr>
+                <td class="main indent_2"><b>Phương thức thanh toán</b></td></tr>
+        </tbody></table>
+    <div class="wrapper_pic2_t infoBox_">
+        <div class="wrapper_pic2_r">
+            <div class="wrapper_pic2_b">
+                <div class="wrapper_pic2_l">
+                    <div class="wrapper_pic2_tl s_width2_100">
+                        <div class="wrapper_pic2_tr">
+                            <div class="wrapper_pic2_bl">
+                                <div class="wrapper_pic2_br wrapper_pic2_padd">
+                                    <div class="s_width2_100">
+                                        <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%" class="main">Vui lòng chọn phương thức thanh toán cho hóa đơn đặt hàng này.</td>
+                                                    <td width="50%" align="right" class="main"><img width="52" height="57" border="0" alt="" src="images/arrow_east_south.gif"></td>
+                                                </tr>
+                                                <tr><td colspan="2">
+                                                        <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                                                            <tbody>
+                                                                <tr onclick="selectRowEffect(this, 0)" onmouseout="rowOutEffect(this)" onmouseover="rowOverEffect(this)" class="moduleRow">
+                                                                    <td width="10"><img width="10" height="24" border="0" alt="" src="images/pixel_trans.gif"></td>
+                                                                    <td colspan="3" style="vertical-align: middle;" class="main"><b>Thanh toán trực tiếp tại địa chỉ nhận hàng.</b></td>
+                                                                    <td align="right" style="vertical-align: middle;" class="main">
+                                                                        <input type="radio" style="background: url(&quot;images/spacer.gif&quot;) repeat scroll 0px 0px transparent; border: 0px none;" value="Trực tiếp" name="payment" checked>
+                                                                    </td>
+                                                                    <td width="10"><img width="10" height="1" border="0" alt="" src="images/pixel_trans.gif"></td>
+                                                                </tr>
+                                                            </tbody></table></td>
+
+                                                </tr>
+                                                <tr><td colspan="2">
+                                                        <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                                                            <tbody>
+                                                                <tr onclick="selectRowEffect(this, 1)" onmouseout="rowOutEffect(this)" onmouseover="rowOverEffect(this)" class="moduleRow">
+                                                                    <td width="10"><img width="10" height="24" border="0" alt="" src="images/pixel_trans.gif"></td>
+                                                                    <td colspan="3" style="vertical-align: middle;" class="main"><b>Chuyển khoản. Vui lòng xem thông tin chuyển khoản tại đây.</b></td>
+                                                                    <td align="right" style="vertical-align: middle;" class="main">
+                                                                        <input type="radio" style="background: url('images/spacer.gif') repeat scroll 0px 0px transparent; border: 0px none;" value="Chuyển khoản" name="payment">
+                                                                    </td>
+                                                                    <td width="10"><img width="10" height="1" border="0" alt="" src="images/pixel_trans.gif"></td>
+                                                                </tr>
+                                                            </tbody></table></td>
+
+                                                </tr>
+                                            </tbody></table>
+
+                                    </div>
+                                </div></div>
+                        </div></div>
+                </div></div>
+        </div></div>
+    <!-- END: thanhtoan -->
+
+    <!-- BEGIN: loinhan -->
+    <div style="padding: 0px 0px 4px;"><img width="1" height="1" border="0" alt="" src="images/spacer.gif"></div>
+    <table width="100%" cellspacing="0" cellpadding="2" border="0">
+        <tbody><tr>
+                <td class="main indent_2"><b>Lời nhắn gửi kèm:</b></td></tr>
+        </tbody></table>
+    <div class="wrapper_pic2_t infoBox_">
+        <div class="wrapper_pic2_r">
+            <div class="wrapper_pic2_b">
+                <div class="wrapper_pic2_l">
+                    <div class="wrapper_pic2_tl s_width2_100">
+                        <div class="wrapper_pic2_tr">
+                            <div class="wrapper_pic2_bl">
+                                <div class="wrapper_pic2_br wrapper_pic2_padd">
+                                    <div class="s_width2_100">
+                                        <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                                            <tbody><tr><td><textarea rows="5" cols="60" wrap="soft" name="loinhan">{LoiNhan}</textarea></td></tr>
+                                            </tbody></table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: loinhan -->
+
+    <div style="padding: 0px 0px 4px;"><img width="1" height="1" border="0" alt="" src="images/spacer.gif"></div>
+    <table cellspacing="5" cellpadding="0" border="0">
+        <tbody>
+            <tr><td align="right" class="main vam">
+                    <input type="image" title=" Continue " alt="Continue" src="template/images/english/button_continue.gif">
+                </td></tr>
+        </tbody></table>
+</form>
+<!-- END: main -->
